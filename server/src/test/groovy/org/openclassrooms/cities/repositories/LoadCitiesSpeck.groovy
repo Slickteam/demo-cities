@@ -35,7 +35,7 @@ class LoadCitiesSpeck extends Specification {
         def cities = repo.listCities()
 
         then: 'la liste doit contenir Paris et Rennes'
-        cities.collect{it.name} == ['Paris', "Rennes"]
+        cities.collect{it.name} == ['Paris', "Rennes", "Bordeaux", "Reims"]
 
     }
 }

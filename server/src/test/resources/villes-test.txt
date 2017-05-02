@@ -1,2 +1,4 @@
 Paris
 Rennes
+Bordeaux
+Reims

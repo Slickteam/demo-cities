@@ -2,10 +2,9 @@ package org.openclassrooms.cities.controlers
 
 import org.openclassrooms.cities.model.City
 import org.openclassrooms.cities.repositories.ICitiesRepository
-import org.springframework.web.bind.annotation.CrossOrigin
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.http.MediaType
+import org.springframework.web.bind.annotation.*
+import java.awt.PageAttributes
 
 
 /**
@@ -19,7 +18,9 @@ class CitiesController (var repository: ICitiesRepository){
 
 
 
-    @RequestMapping("/list")
+    @RequestMapping(value = "/list",
+            method = arrayOf(RequestMethod.GET),
+            produces = arrayOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
     fun getCities() : List<City> {
         val cities = repository.listCities()
         return cities

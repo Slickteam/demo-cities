@@ -42,6 +42,7 @@ dependencies {
     testCompile "org.codehaus.groovy:groovy-all:2.4.10"
     testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-4"
     testCompile "org.spockframework:spock-spring:1.1-groovy-2.4-rc-4"
+    testCompile 'com.geowarin:spring-spock-mvc:0.2.1'
     testCompile("org.springframework.boot:spring-boot-starter-test:$spring_boot_version")
 
 }

@@ -1,10 +1,20 @@
 package org.openclassrooms.cities.controlers
 
-import org.assertj.core.util.Lists
+import org.hamcrest.collection.IsCollectionWithSize
+import org.springframework.http.MediaType
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
+
+import org.junit.Before
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.test.context.TestPropertySource
+import org.springframework.test.context.web.WebAppConfiguration
+import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.setup.MockMvcBuilders
+import org.springframework.web.context.WebApplicationContext
 import spock.lang.Specification
 
 /**
@@ -26,4 +36,6 @@ class ListCitiesFromRestSpeck extends  Specification{
         then:
         cities.collect{it.name}.size() == 4
     }
+
+
 }

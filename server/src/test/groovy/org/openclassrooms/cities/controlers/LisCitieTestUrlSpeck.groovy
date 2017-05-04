@@ -39,7 +39,6 @@ class LisCitieTestUrlSpeck extends Specification {
                 accept(MediaType.APPLICATION_JSON)).andReturn().response
 
         then:
-//        1 * citiesRepository.listCities()
         response.status == OK.value()
         response.contentType == MediaType.APPLICATION_JSON_UTF8_VALUE
 //        .andExpect(jsonPath("\$", IsCollectionWithSize.hasSize(4)))

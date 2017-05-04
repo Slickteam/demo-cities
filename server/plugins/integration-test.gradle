@@ -1,0 +1,62 @@
+/**
+ * This file add integration test to the build
+ *
+ * integration test source file can be add in 'src/integrationTest/java' or 'src/integrationTest/groovy'
+ *
+ * to launch it :
+ * 'gradle integrationTest'
+ *
+ * 'gradle build' don't launch integration tests
+ *
+ * 'gradle BootRun' launch integration tests
+ */
+
+sourceSets {
+    integrationTest {
+
+
+        if (plugins.withType(org.gradle.api.plugins.GroovyPlugin)) {
+            groovy {
+                compileClasspath += main.output + test.output
+                runtimeClasspath += main.output + test.output
+            }
+        }
+        if (plugins.withType(org.gradle.api.plugins.JavaPlugin)) {
+            java {
+                compileClasspath += main.output + test.output
+                runtimeClasspath += main.output + test.output
+            }
+        }
+
+    }
+
+}
+
+
+// integration test can use all dependencies of unit test
+configurations {
+    integrationTestCompile.extendsFrom testImplementation
+}
+
+// create the integration test task
+task integrationTest(type: Test) {
+    testClassesDir = sourceSets.integrationTest.output.classesDir
+    classpath = sourceSets.integrationTest.runtimeClasspath
+}
+
+
+//integration test are run
+integrationTest.mustRunAfter test
+
+//gradle bootrun launch the integratinos test
+bootRun.dependsOn integrationTest
+
+/**
+ * separate integration and unit test reports
+ * unit tests is in 'build/reports/tests'
+ * integration tests report is in 'build/reports/integrationtests'
+ */
+tasks.withType(Test) {
+    reports.html.destination = file("${reporting.baseDir}/${name}s")
+}
+

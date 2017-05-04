@@ -1,4 +1,4 @@
-package org.openclassrooms.cities.controlers
+package org.openclassrooms.cities.controllers
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest

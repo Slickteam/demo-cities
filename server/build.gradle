@@ -1,6 +1,3 @@
-group 'org.openclassrooms'
-version '1.0-SNAPSHOT'
-
 buildscript {
 
     repositories {
@@ -13,12 +10,17 @@ buildscript {
     }
 }
 
+plugins {
+    id 'org.unbroken-dome.test-sets' version '1.3.2'
+}
 
-apply plugin: 'java-library'
+//apply plugin: 'java-library'
 apply plugin: 'kotlin'
 apply plugin: 'org.springframework.boot'
 apply plugin: "kotlin-spring"
 apply plugin: "groovy"
+
+
 
 repositories {
     jcenter()
@@ -38,23 +40,35 @@ compileKotlin {
     }
 }
 
+
+testSets {
+    integrationTest
+}
+
+bootRun.dependsOn integrationTest
 springBoot {
     mainClass = 'org.openclassrooms.cities.ApplicationKt'
 }
 
+def testDependencies = ["org.codehaus.groovy:groovy-all:2.4.10",
+                        "org.spockframework:spock-core:1.1-groovy-2.4-rc-4",
+                        "org.spockframework:spock-spring:1.1-groovy-2.4-rc-4",
+                        'com.geowarin:spring-spock-mvc:0.2.1',
+                        "org.springframework.boot:spring-boot-starter-test:$spring_boot_version"]
+
 dependencies {
-    api "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
-    api "org.springframework.boot:spring-boot-starter-web:$spring_boot_version"
-    api("org.springframework.boot:spring-boot-devtools")
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+    compile "org.springframework.boot:spring-boot-starter-web:$spring_boot_version"
+    compile("org.springframework.boot:spring-boot-devtools")
 
 
-    testImplementation group: 'junit', name: 'junit', version: '4.12'
-    // mandatory dependencies for using Spock
-    testImplementation "org.codehaus.groovy:groovy-all:2.4.10"
-    testImplementation "org.spockframework:spock-core:1.1-groovy-2.4-rc-4"
-    testImplementation "org.spockframework:spock-spring:1.1-groovy-2.4-rc-4"
-    testImplementation 'com.geowarin:spring-spock-mvc:0.2.1'
+    testCompile testDependencies
 
-    testImplementation("org.springframework.boot:spring-boot-starter-test:$spring_boot_version")
 
+
+}
+
+
+tasks.withType(Test) {
+    reports.html.destination = file("${reporting.baseDir}/${name}s")
 }

@@ -18,7 +18,7 @@ import spock.lang.Specification
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource("classpath:/env-test.properties")
-class FilterCitiesFromRestSpeck extends Specification {
+class FilterCitiesTestRestTempleSpeck extends Specification {
 
 
     @Autowired

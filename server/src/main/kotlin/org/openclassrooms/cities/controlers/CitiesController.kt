@@ -1,5 +1,6 @@
 package org.openclassrooms.cities.controlers
 
+import org.openclassrooms.cities.exceptions.CityNotFoundException
 import org.openclassrooms.cities.model.City
 import org.openclassrooms.cities.repositories.ICitiesRepository
 import org.springframework.http.MediaType
@@ -17,7 +18,11 @@ import java.awt.PageAttributes
 class CitiesController (var repository: ICitiesRepository){
 
 
-
+    /**
+     * get the complete list of cities
+     *
+     * rest url : '/cities/list'
+     */
     @RequestMapping(value = "/list",
             method = arrayOf(RequestMethod.GET),
             produces = arrayOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
@@ -26,6 +31,16 @@ class CitiesController (var repository: ICitiesRepository){
         return cities
     }
 
+    /**
+     * get all cities starting by these letters
+     *
+     * rest url : 'cities/filter?startWith=value'
+     *
+     * @param start : the starting letter of asking cities
+     * @return the list of desire cities
+     *
+     *
+     */
     @RequestMapping("/filter",
             method = arrayOf(RequestMethod.GET),
             produces = arrayOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
@@ -34,11 +49,25 @@ class CitiesController (var repository: ICitiesRepository){
         return cities
     }
 
+    /**
+     * get a city corresponding to a name
+     *
+     * rest url : '/cities/get?name=value'
+     *
+     * @param name : the city nane
+     * @return information of the asking city
+     *
+     * @throws CityNotFoundException if the city is not found.
+     * In the case, an http request with status 404 is send
+     * with message 'City not found.
+     *
+     * */
     @RequestMapping("/get",
             method = arrayOf(RequestMethod.GET),
             produces = arrayOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
     fun getCity(@RequestParam(value = "name") name: String) : City {
         val cities = repository.filterCities(name)
+        if (cities.isEmpty()) throw CityNotFoundException(name)
         return cities[0]
     }
 }

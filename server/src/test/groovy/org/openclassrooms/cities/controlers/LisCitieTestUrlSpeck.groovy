@@ -19,12 +19,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 class LisCitieTestUrlSpeck extends Specification {
 
 
-    ICitiesRepository citiesRepository = Mock() {
-        listCities() >> [new City("Paris", 1, 1),
-                         new City("Rennes", 1, 1),
-                         new City("Bordeaux", 1, 1),
-                         new City("Reims", 1, 1)]
-    }
+    ICitiesRepository citiesRepository = Mock()
     CitiesController citiesController = new CitiesController(citiesRepository)
 
     MockMvc mockMvc
@@ -34,15 +29,19 @@ class LisCitieTestUrlSpeck extends Specification {
     }
 
     def "list cities from rest api '/citie/list with json result"() {
-        given:
+        given:"this cities : 'Paris' 'Rennes' 'Bordeaux' 'Reims' contains in the repository"
+        citiesRepository.listCities() >> [new City("Paris", 1, 1),
+                                          new City("Rennes", 1, 1),
+                                          new City("Bordeaux", 1, 1),
+                                          new City("Reims", 1, 1)]
 
-        when:
+        when: "I ask for the rest api '/cities/rest'"
         def response = this.mockMvc.perform(get("/cities/list").
                 accept(MediaType.APPLICATION_JSON)).andReturn().response
         def villes = new JsonSlurper().parseText(response.contentAsString)
 
 
-        then:
+        then: "the result should be a valid json content of the cites 'Paris' 'Rennes' 'Bordeaux' 'Reims'"
         response.status == OK.value()
         response.contentType == MediaType.APPLICATION_JSON_UTF8_VALUE
         villes.size() == 4

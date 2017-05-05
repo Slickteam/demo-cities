@@ -6,13 +6,13 @@ import spock.lang.Specification
 
 
 /**
-* Created by jguidoux on 22/04/2017.
-        */
+ * Created by jguidoux on 22/04/2017.
+ */
 class LoadCitiesSpeck extends Specification {
 
 
-    def "le fichier spécifier est faux" () {
-        given:"un repository se basant sur un fichier inexistant"
+    def "le fichier spécifier est faux"() {
+        given: "un repository se basant sur un fichier inexistant"
         def filePath = 'villes-faux.txt'
         CitiesRepository repo = new CitiesRepository(filePath)
 
@@ -25,6 +25,7 @@ class LoadCitiesSpeck extends Specification {
         ex.message == "file '$filePath' does not exist!"
 
     }
+
     def "list cities"() {
         given: 'mon fichier villes-test.txt contenant Paris et Rennes'
         def filePath = 'villes-test.txt'
@@ -35,7 +36,7 @@ class LoadCitiesSpeck extends Specification {
         def cities = repo.listCities()
 
         then: 'la liste doit contenir Paris et Rennes'
-        cities.collect{it.name} == ['Paris', "Rennes", "Bordeaux", "Reims"]
+        cities.collect { it.name }.size() == 4
 
     }
 }

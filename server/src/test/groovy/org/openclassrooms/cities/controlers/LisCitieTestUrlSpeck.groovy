@@ -15,6 +15,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 /**
  * Created by jguidoux on 03/05/2017.
  * this file test the rest api to get cities
+ *
+ * this unit test only show if the rest api /cities/list work
+ *  call the CitiesController and return a list of cities in json format
  */
 class LisCitieTestUrlSpeck extends Specification {
 
@@ -29,6 +32,7 @@ class LisCitieTestUrlSpeck extends Specification {
     }
 
     def "list cities from rest api '/citie/list with json result"() {
+
         given:"this cities : 'Paris' 'Rennes' 'Bordeaux' 'Reims' contains in the repository"
         citiesRepository.listCities() >> [new City("Paris", 1, 1),
                                           new City("Rennes", 1, 1),

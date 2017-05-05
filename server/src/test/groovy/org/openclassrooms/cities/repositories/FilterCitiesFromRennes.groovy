@@ -5,34 +5,38 @@ import spock.lang.Specification
 
 /**
  * Created by jguidoux on 03/05/2017.
+ *
+ * unit test to test get the filtering of cities which start by a some letters
  */
 class FilterCitiesFromRennes extends Specification{
 
 
-    def "je recherche des villes qui ne sont pas contenu dans la liste des villes" () {
-        given:"un repository se basant sur un fichier existant"
+    def "database does not contains cities which start by 'gué'" () {
+
+        given:"this cities : 'Paris' 'Rennes' 'Bordeaux' 'Reims'"
         def filePath = 'villes-test.txt'
         CitiesRepository repo = new CitiesRepository(filePath)
         repo.setup()
 
-        when: "je demande les villes commençant par gué"
+        when: "I ask cities starting by 'gué'"
         def cities = repo.filterCities("gué")
 
-        then:
+        then: "the result list should be empty"
         cities.isEmpty()
 
     }
 
-    def "je recherche des villes qui sont contenu dans la liste des villes" () {
-        given:"un repository se basant sur un fichier existant"
+    def "database contains two cities starting by 're'" () {
+
+        given:"this cities : 'Paris' 'Rennes' 'Bordeaux' 'Reims'"
         def filePath = 'villes-test.txt'
         CitiesRepository repo = new CitiesRepository(filePath)
         repo.setup()
 
-        when: "je demande les villes commençant par re"
+        when: "I ask cities starting by  're'"
         def cities = repo.filterCities("re")
 
-        then:
+        then:"the result list should contains 'Rennes' and 'Reims'"
         cities.collect{it.name} == [ "Rennes", "Reims"]
 
     }

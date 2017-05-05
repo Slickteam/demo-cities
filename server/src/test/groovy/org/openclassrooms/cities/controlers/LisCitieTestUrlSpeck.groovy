@@ -1,5 +1,7 @@
 package org.openclassrooms.cities.controlers
 
+import com.jayway.jsonpath.JsonPath
+import groovy.json.JsonSlurper
 import org.openclassrooms.cities.model.City
 import org.openclassrooms.cities.repositories.ICitiesRepository
 import org.springframework.http.MediaType
@@ -37,11 +39,14 @@ class LisCitieTestUrlSpeck extends Specification {
         when:
         def response = this.mockMvc.perform(get("/cities/list").
                 accept(MediaType.APPLICATION_JSON)).andReturn().response
+        def villes = new JsonSlurper().parseText(response.contentAsString)
+
 
         then:
         response.status == OK.value()
         response.contentType == MediaType.APPLICATION_JSON_UTF8_VALUE
-//        .andExpect(jsonPath("\$", IsCollectionWithSize.hasSize(4)))
+        villes.size() == 4
+        villes.collect{it.name} == ['Paris', "Rennes", "Bordeaux", "Reims"]
     }
 
 

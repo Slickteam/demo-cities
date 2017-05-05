@@ -57,6 +57,8 @@ dependencies {
     testImplementation("org.codehaus.groovy:groovy-all:2.4.10",
             spockDependencies,
             "org.springframework.boot:spring-boot-starter-test:$spring_boot_version")
+    testImplementation group: 'org.codehaus.groovy', name: 'groovy-json', version: '2.4.10'
+
 
     integrationTestCompile 'com.geowarin:spring-spock-mvc:0.2.1'
 

@@ -3,6 +3,10 @@ buildscript {
     repositories {
         jcenter()
     }
+
+    // to let gradle to use kotlin, spring boot, and kotlin-allopen
+    // kotlin-allopen let spring use kotlin classes without the need to add the keyword 'open'
+    // see https://blog.jetbrains.com/kotlin/2016/12/kotlin-1-0-6-is-here/
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.springframework.boot:spring-boot-gradle-plugin:$spring_boot_version"
@@ -21,45 +25,57 @@ apply from: "plugins/integration-test.gradle"
 
 
 repositories {
+    // dependencies com from the https://bintray.com/bintray/jcenter
     jcenter()
 }
 
-
+// set java version (here java8)
 sourceCompatibility = java_version
 targetCompatibility = java_version
 
-compileKotlin {
-    sourceCompatibility = java_version
-    targetCompatibility = java_version
+if (targetCompatibility.isJava8Compatible()) {
+    // kotlin classes are compile in java8
+    logger.info("compile kotlin classes in java8")
+    compileKotlin {
+        sourceCompatibility = java_version
+        targetCompatibility = java_version
 
-    kotlinOptions {
-        jvmTarget = java_version
-        apiVersion = "1.1"
-        languageVersion = "1.1"
+        kotlinOptions {
+            jvmTarget = java_version
+            apiVersion = "1.1"
+            languageVersion = "1.1"
+        }
     }
 }
 
-
+// the main class to launch the app with spring-boot
 springBoot {
     mainClass = 'org.openclassrooms.cities.ApplicationKt'
 }
 
+// I show here many way to add dependencies
+// we can configure a lot of more
+// see https://docs.gradle.org/current/userguide/dependency_management.html#sub:module_dependencies
+// I also use the plugin 'java-library'
+// this plugin les us use new configuration dependencies 'implementation', 'ap', 'testImplémentation'
+// see https://docs.gradle.org/current/userguide/java_library_plugin.html
 
-def spockDependencies = ["org.spockframework:spock-core:1.1-groovy-2.4-rc-4",
-                         "org.spockframework:spock-spring:1.1-groovy-2.4-rc-4"]
 
 dependencies {
     implementation group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jre8', version: kotlin_version
-    implementation "org.springframework.boot:spring-boot-starter-web:$spring_boot_version"
+    implementation "org.springframework.boot:spring-boot-starter-web"
     implementation("org.springframework.boot:spring-boot-devtools")
 
+    // assemble spock dependensies in a list
+    def spockDependencies = ["org.spockframework:spock-core:$spock_version",
+                             "org.spockframework:spock-spring:$spock_version"]
 
-    testImplementation("org.codehaus.groovy:groovy-all:2.4.10",
-            spockDependencies,
-            "org.springframework.boot:spring-boot-starter-test:$spring_boot_version")
-    testImplementation group: 'org.codehaus.groovy', name: 'groovy-json', version: '2.4.10'
+    testImplementation("org.codehaus.groovy:groovy-all:$groovy_version",
+            "org.springframework.boot:spring-boot-starter-test",
+            spockDependencies)
+    testImplementation group: 'org.codehaus.groovy', name: 'groovy-json', version: groovy_version
 
 
-    integrationTestCompile 'com.geowarin:spring-spock-mvc:0.2.1'
+    integrationTestCompile "com.geowarin:spring-spock-mvc:$spock_mock_version"
 
 }

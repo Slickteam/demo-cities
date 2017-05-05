@@ -13,8 +13,9 @@ import org.springframework.test.context.TestPropertySource
  *
  * this test show the use the spring-mvc way to test a rest api
  * this test also use the spock-spring-mvc library to help to write test
+ * * see https://github.com/geowarin/spring-spock-mvc
  * this library contains the groovy json libray which is a nice library to manipulate json
- * this is my prefer way to test rese api
+ * this is my prefer way to test rest api
  */
 @TestPropertySource("classpath:/env-test.properties")
 class CitiesControllerITSpeck extends AbstractMvcSpec{
@@ -23,7 +24,7 @@ class CitiesControllerITSpeck extends AbstractMvcSpec{
 
         given:"this cities : 'Paris' 'Rennes' 'Bordeaux' 'Reims' contains in the repository"
 
-        when: "I ask for the rest api '/cities/rest'"
+        when: "I ask for the rest api '/cities/list'"
         def res = get('/cities/list')
 
         then: "the result should  the cites 'Paris' 'Rennes' 'Bordeaux' 'Reims'"

@@ -8,7 +8,7 @@ import spock.lang.Specification
  *
  * unit test to test get the filtering of cities which start by a some letters
  */
-class FilterCitiesFromRennes extends Specification{
+class FilterCitiesFromRepository extends Specification {
 
 
     def "database does not contains cities which start by 'gué'" () {

@@ -26,9 +26,19 @@ class CitiesController (var repository: ICitiesRepository){
         return cities
     }
 
-    @RequestMapping("/filter")
+    @RequestMapping("/filter",
+            method = arrayOf(RequestMethod.GET),
+            produces = arrayOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
     fun getCities(@RequestParam(value = "startWith") start: String) : List<City> {
         val cities = repository.filterCities(start)
         return cities
+    }
+
+    @RequestMapping("/get",
+            method = arrayOf(RequestMethod.GET),
+            produces = arrayOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
+    fun getCity(@RequestParam(value = "name") name: String) : City {
+        val cities = repository.filterCities(name)
+        return cities[0]
     }
 }

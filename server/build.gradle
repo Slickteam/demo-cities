@@ -84,8 +84,18 @@ dependencies {
 
 
 
-    //
-    if (project.hasProperty('dev')) {
+    // the 'dev' profile is the default profile
+    // to change the profile, use in the commandLine
+    // gradlew -Pprofile='test' for example
+    if (profile == "dev") {
+        logger.info(" ==== developement configuration ====")
+        // spring-boot-devtools let developper the possibility to modify the application
+        // even the application is running. The result will be directly apply by the server.
+        // to use it, launch
+        // 'gradlew springRun'
+        // with in parallel in an other terminal, launch
+        // 'gradlew classes -t' ou 'gradlew test -t'
+        // all modify classes, template thymeleaf, css, js will be loaded in the server
         runtimeOnly("org.springframework.boot:spring-boot-devtools")
     }
 

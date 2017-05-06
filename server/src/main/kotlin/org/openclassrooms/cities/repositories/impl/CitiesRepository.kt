@@ -33,12 +33,12 @@ class CitiesRepository : ICitiesRepository {
     @PostConstruct
     fun setup() {
         cities = listOf()
-        Files.lines(Paths.get(filePath).loadFromClassPath()).forEach{
-            cityName -> cities += City(cityName)
-        }
+//        Files.lines(Paths.get(filePath).loadFromClassPath()).forEach{
+//            cityName -> cities += City(cityName)
+//        }
 
         Files.newBufferedReader(Paths.get(filePath).loadFromClassPath()).use {
-            it.lines().forEach() { println(it )  }
+            it.lines().forEach() {  cityName -> cities += City(cityName) }
         }
 
     }

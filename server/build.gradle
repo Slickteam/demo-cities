@@ -79,8 +79,6 @@ dependencies {
 
     integrationTestCompile "com.geowarin:spring-spock-mvc:$spock_mock_version"
 
-
-
     // the 'dev' profile is the default profile
     // to change the profile, use in the commandLine
     // gradlew -Pprofile='test' for example
@@ -91,10 +89,22 @@ dependencies {
         // to use it, launch
         // 'gradlew springRun'
         //
-        // with in parallel in an other terminal, launch
+        // be careful spring-boo-devtools do not read filse in the src/ folder but in the build/ folder
+        // for some IDE the Compilations and copy resources files is automatic
+        // for others you have to launch it manually.
+        // For example in Intellij to 'recompile' a file is 'ctrl+shif+F9' or with 'Build -> Recompile'
+        // or 'build project' with a 'ctrl+F9' or with 'Build -> Build Project'
+        //
+        // you can also use gradle to compile sources and resources the command line
+        // 'gradlew classes'
+        // But in this case, the 'liveReload' will not work, only the 'liveRestart'
+        // You can also use the continious build from gradle
         // 'gradlew classes -t' ou 'gradlew test -t'
-        // all modify classes, template thymeleaf, css, js will be loaded in the server
+        //
         // see https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html
+        //
+        // You can also use the liveReload plugin in your browser to automatically reload the webpage
+        // http://livereload.com/extensions/
         runtimeOnly("org.springframework.boot:spring-boot-devtools")
     }
 

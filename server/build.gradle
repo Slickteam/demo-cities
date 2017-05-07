@@ -67,8 +67,6 @@ dependencies {
     implementation group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jre8', version: kotlin_version
     implementation "org.springframework.boot:spring-boot-starter-web"
     implementation "org.springframework.boot:spring-boot-starter-thymeleaf"
-//    implementation "org.thymeleaf:thymeleaf-spring4:3.0.5.RELEASE"
-//    implementation "org.thymeleaf:thymeleaf:3.0.5.RELEASE"
 
     // assemble spock dependencies in a list
     def spockDependencies = ["org.spockframework:spock-core:$spock_version",
@@ -78,7 +76,6 @@ dependencies {
             "org.springframework.boot:spring-boot-starter-test",
             spockDependencies)
     testImplementation(group: 'org.codehaus.groovy', name: 'groovy-json', version: groovy_version)
-
 
     integrationTestCompile "com.geowarin:spring-spock-mvc:$spock_mock_version"
 
@@ -93,9 +90,11 @@ dependencies {
         // even the application is running. The result will be directly apply by the server.
         // to use it, launch
         // 'gradlew springRun'
+        //
         // with in parallel in an other terminal, launch
         // 'gradlew classes -t' ou 'gradlew test -t'
         // all modify classes, template thymeleaf, css, js will be loaded in the server
+        // see https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html
         runtimeOnly("org.springframework.boot:spring-boot-devtools")
     }
 

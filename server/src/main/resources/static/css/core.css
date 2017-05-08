@@ -1,4 +1,54 @@
-p {
-    color: green;
-    font-size: 25px;
+#bloc_page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*justify-content: center;*/
+    height: 300px;
+    padding-top: 50px;
+    background-color: #F5F5F5;
+}
+
+#search_box {
+    position: relative;
+    /*display: flex;*/
+    /*height: 20px;*/
+}
+
+#search {
+    width: 220px;
+}
+
+#results {
+    display: none;
+    position: absolute;
+    top: 24px;
+    border: 1px solid black;
+    border-top: none;
+    background: white;
+    text-align: left;
+    width: 222px;
+    max-height: 220px;
+    overflow-y: auto;
+    z-index: 1;
+}
+
+#results > div:hover {
+    background-color: lightgrey;
+}
+
+.selected {
+    background-color: lightgrey;
+}
+
+.city {
+    padding-bottom: 10px;
+}
+
+.cityName {
+    font-weight: bold;
+}
+
+.cityInfo {
+    font-size: small;
+    padding-left: 20px;
 }

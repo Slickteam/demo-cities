@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
  * this unit test only show if the rest api /cities/list work
  *  call the CitiesController and return a list of cities in json format
  */
-class getCityInfoTestUrlSpeck extends Specification {
+class GetCityInfoTestUrlSpeck extends Specification {
 
 
     ICitiesRepository citiesRepository = Mock()

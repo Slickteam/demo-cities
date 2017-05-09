@@ -65,8 +65,6 @@ class CitiesController (var repository: ICitiesRepository){
             method = arrayOf(RequestMethod.GET),
             produces = arrayOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
     fun getCity(@RequestParam(value = "name") name: String) : City {
-        val cities = repository.filterCities(name)
-        if (cities.isEmpty()) throw CityNotFoundException(name)
-        return cities[0]
+        return repository.getCity(name)
     }
 }

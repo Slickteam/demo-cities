@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="fragments/headTag :: headTag (title='Error page')"></head>
+
+    <meta charset="utf-8"/>
+</head>
+<body>
+<div th:include="fragments/bodyHeader (tab='cities')" th:remove="tag"></div>
+
+<!--/*@thymesVar id="errorMessage" type="java.lang.String"*/-->
+<h1 th:text="${errorMessage}">Error</h1>
+
+<div th:include="fragments/bodyFooter" th:remove="tag"></div>
+
+</body>
+</html>

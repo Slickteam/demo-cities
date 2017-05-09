@@ -1,5 +1,6 @@
 package org.openclassrooms.cities.web
 
+import org.openclassrooms.cities.exceptions.CityNotFoundException
 import org.openclassrooms.cities.exceptions.GlobalExceptionHandler
 import org.openclassrooms.cities.model.City
 import org.openclassrooms.cities.repositories.ICitiesRepository
@@ -53,9 +54,7 @@ class HomeControllerSpec extends Specification {
     def "display city"() {
 
         given: "this cities : 'Paris' 'Rennes' 'Bordeaux' 'Reims' contains in the repository"
-        citiesRepository.filterCities("Rennes") >>
-                [new City("Rennes", 1, 1),
-                 new City("Reims", 1, 1)]
+        citiesRepository.getCity("Rennes") >> new City("Rennes", 100000, 20000)
 
 
         when: "I want to display the city of Rennes with url '/cities?name=Rennes'"
@@ -87,7 +86,7 @@ class HomeControllerSpec extends Specification {
     def "display city which does not exist"() {
 
         given: "this cities : 'Paris' 'Rennes' 'Bordeaux' 'Reims' contains in the repository"
-        citiesRepository.filterCities("Rennnes") >> []
+        citiesRepository.getCity("Rennnes") >> {throw new CityNotFoundException("Rennnes")}
 
 
         when: "I want to display the city of 'Rennnes' with url '/cities?name=Rennnes'"

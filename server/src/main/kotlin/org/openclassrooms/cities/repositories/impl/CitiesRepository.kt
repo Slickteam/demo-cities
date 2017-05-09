@@ -1,5 +1,6 @@
 package org.openclassrooms.cities.repositories.impl
 
+import org.openclassrooms.cities.exceptions.CityNotFoundException
 import org.openclassrooms.cities.model.City
 import org.openclassrooms.cities.repositories.ICitiesRepository
 import org.openclassrooms.cities.utils.loadFromClassPath
@@ -17,6 +18,7 @@ import javax.annotation.PostConstruct
  */
 @Repository
 class CitiesRepository : ICitiesRepository {
+
 
     final val filePath : String
 
@@ -54,4 +56,13 @@ class CitiesRepository : ICitiesRepository {
     }
 
 
+    override fun getCity(cityName: String): City {
+        val result = cities.filter { city -> city.name.toLowerCase() == cityName.toLowerCase()}
+        return when (result.size) {
+            0 -> throw CityNotFoundException(cityName)
+            1 -> result[0]
+            else -> throw InternalError("database is corrupted. a city name shoulp appear only one, but " +
+                    "$cityName appear ${result.size} times")
+        }
+    }
 }

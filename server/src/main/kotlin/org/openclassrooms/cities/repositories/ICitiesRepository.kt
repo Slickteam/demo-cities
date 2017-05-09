@@ -16,5 +16,15 @@ import org.openclassrooms.cities.model.City
     /**
      * to get all cities where city name start with the user input
      */
-    fun filterCities(cityNameStartWith: String): List<City>
+    fun filterCities( cityNameStartWith: String): List<City>
+
+    /**
+     * get a city with asking name
+     *
+     * @param cityName : the name of the city to search
+     * @return the wanted city
+     *
+     * @throws CityNotFoundException if the city is not found
+     */
+    fun getCity( cityName : String) : City
 }

@@ -26,10 +26,8 @@ class HomeController(var repository: ICitiesRepository) {
 
     @GetMapping("/cities")
     fun getCity(@RequestParam cityName: String, model: Model): String {
-        val cities = repository.filterCities(cityName)
-        if (cities.isEmpty()) throw CityNotFoundException(cityName)
-
-        model.addAttribute("city", City(cityName))
+        val city = repository.getCity(cityName)
+        model.addAttribute("city", city)
         return "displayCity"
     }
 

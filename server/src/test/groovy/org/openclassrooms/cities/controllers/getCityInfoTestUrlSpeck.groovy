@@ -1,6 +1,7 @@
 package org.openclassrooms.cities.controllers
 
 import groovy.json.JsonSlurper
+import org.openclassrooms.cities.exceptions.CityNotFoundException
 import org.openclassrooms.cities.model.City
 import org.openclassrooms.cities.repositories.ICitiesRepository
 import org.springframework.http.MediaType
@@ -35,9 +36,9 @@ class getCityInfoTestUrlSpeck extends Specification {
     def "ask for a city  from rest api '/cities/get with json result"() {
 
         given: "this city : 'Rennes' does not exist in the repository"
-        citiesRepository.filterCities("Rennes") >> [
+        citiesRepository.getCity("Rennes") >>
                 new City("Rennes", 1, 1)
-        ]
+
 
         when: "I ask for the rest api '/cities/get?name=Rennes'"
         URI url = UriComponentsBuilder.fromUriString("/cities/get").
@@ -57,7 +58,8 @@ class getCityInfoTestUrlSpeck extends Specification {
     def "ask for a city which does not existfrom rest api '/cities/get with json result"() {
 
         given: "this city : 'Guérande' does not exist in the repository"
-        citiesRepository.filterCities("Guérande") >> []
+        citiesRepository.getCity("Guérande") >>
+                {throw new CityNotFoundException("Guérande")}
 
         when: "I ask for the rest api '/cities/get?name=Guérande'"
         URI url = UriComponentsBuilder.fromUriString("/cities/get").

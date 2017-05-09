@@ -57,7 +57,7 @@ class getCityInfoTestUrlSpeck extends Specification {
     def "ask for a city which does not existfrom rest api '/cities/get with json result"() {
 
         given: "this city : 'Guérande' does not exist in the repository"
-        citiesRepository.filterCities("Guérande") >> []
+        citiesReposito-ry.filterCities("Guérande") >> []
 
         when: "I ask for the rest api '/cities/get?name=Guérande'"
         URI url = UriComponentsBuilder.fromUriString("/cities/get").

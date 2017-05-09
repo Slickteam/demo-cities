@@ -1,6 +1,5 @@
-package org.openclassrooms.cities.controlers
+package org.openclassrooms.cities.controllers
 
-import com.jayway.jsonpath.JsonPath
 import groovy.json.JsonSlurper
 import org.openclassrooms.cities.model.City
 import org.openclassrooms.cities.repositories.ICitiesRepository

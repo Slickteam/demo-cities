@@ -67,6 +67,8 @@ dependencies {
     implementation group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jre8', version: kotlin_version
     implementation "org.springframework.boot:spring-boot-starter-web"
     implementation "org.springframework.boot:spring-boot-starter-thymeleaf"
+    implementation group: 'com.google.guava', name: 'guava', version: '21.0'
+
 
     // assemble spock dependencies in a list
     def spockDependencies = ["org.spockframework:spock-core:$spock_version",

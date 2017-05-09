@@ -20,8 +20,8 @@
 
 <div id="bloc_page">
     <p id="logo">Thymeleaf example</p>
-    <form id="search_box" method="get" th:action="@{/cities}" th:object="${city}">
-        <input id="search" type="text" th:field="*{name}" autocomplete="off" autofocus="autofocus"/>
+    <form id="search_box" method="get" th:action="@{/cities}" >
+        <input id="search" type="text" name="cityName" autocomplete="off" autofocus="autofocus"/>
         <div id="results"></div>
         <input id="search-button" type="submit" value="Search" />
     </form>

@@ -1,4 +1,4 @@
-package org.openclassrooms.cities.controlers
+package org.openclassrooms.cities.controllers
 
 import groovy.json.JsonSlurper
 import org.openclassrooms.cities.model.City
@@ -57,7 +57,7 @@ class getCityInfoTestUrlSpeck extends Specification {
     def "ask for a city which does not existfrom rest api '/cities/get with json result"() {
 
         given: "this city : 'Guérande' does not exist in the repository"
-        citiesReposito-ry.filterCities("Guérande") >> []
+        citiesRepository.filterCities("Guérande") >> []
 
         when: "I ask for the rest api '/cities/get?name=Guérande'"
         URI url = UriComponentsBuilder.fromUriString("/cities/get").

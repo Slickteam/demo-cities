@@ -30,7 +30,7 @@ class GetCityControllerITSpeck extends AbstractMvcSpec{
 
 
         then: "the response request should have status 'not found'"
-        res.status == HttpStatus.NOT_FOUND
+        res.status == HttpStatus.INTERNAL_SERVER_ERROR
 
 
     }

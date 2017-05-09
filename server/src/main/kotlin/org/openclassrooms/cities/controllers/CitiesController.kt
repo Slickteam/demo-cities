@@ -1,11 +1,10 @@
-package org.openclassrooms.cities.controlers
+package org.openclassrooms.cities.controllers
 
 import org.openclassrooms.cities.exceptions.CityNotFoundException
 import org.openclassrooms.cities.model.City
 import org.openclassrooms.cities.repositories.ICitiesRepository
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
-import java.awt.PageAttributes
 
 
 /**

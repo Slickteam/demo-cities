@@ -1,19 +1,22 @@
 package org.openclassrooms.cities.web
 
+import org.openclassrooms.cities.exceptions.CityNotFoundException
 import org.openclassrooms.cities.model.City
+import org.openclassrooms.cities.repositories.ICitiesRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.ModelAttribute
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.*
 
 
 /**
  * Created by jguidoux on 05/05/2017.
  */
 @Controller
-class HomeController {
+class HomeController(var repository: ICitiesRepository) {
+
+    @Autowired
+
 
     @GetMapping("/")
     fun index(): String {
@@ -23,7 +26,15 @@ class HomeController {
 
     @GetMapping("/cities")
     fun getCity(@RequestParam cityName: String, model: Model): String {
+        val cities = repository.filterCities(cityName)
+        if (cities.isEmpty()) throw CityNotFoundException(cityName)
+
         model.addAttribute("city", City(cityName))
         return "displayCity"
     }
+
+//    @ExceptionHandler
+//    fun handleException(exception: CityNotFoundException): String {
+//        return "errorView"
+//    }
 }

@@ -20,10 +20,39 @@
     <div th:include="fragments/bodyHeader (tab='cities')" th:remove="tag"></div>
 
     <div id="bloc_page" th:object="${city}" class="site-content">
-        <p id="logo">Thymeleaf example</p>
-        <p th:text="|Name : *{name}|"></p>
-        <p th:text="|Population : *{population}|"></p>
-        <p th:text="|Revenu : *{revenuPerHabitants} €/hab|"></p>
+        <article class="display-pannel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Show City</h3>
+            </div>
+            <div class="panel-body">
+                <div class="line">
+                    <div class="line-title">
+                        <p>Name:</p>
+                    </div>
+                    <div class="line-content">
+                        <p th:text="*{name}"></p>
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="line-title">
+                        <p>Population:</p>
+                    </div>
+                    <div class="line-content">
+                        <p th:text="*{population}"></p>
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="line-title">
+                        <p>Revenu per habitant:</p>
+                    </div>
+                    <div class="line-content">
+                        <p th:text="|*{revenuPerHabitants} €/hab|"></p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="pannel-footer"></div>
+        </article>
     </div>
 
 

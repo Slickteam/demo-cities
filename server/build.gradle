@@ -50,9 +50,26 @@ if (targetCompatibility.isJava8Compatible()) {
 }
 
 // the main class to launch the app with spring-boot
+ext.kotlinMainClass = 'org.openclassrooms.cities.ApplicationKt'
 springBoot {
-    mainClass = 'org.openclassrooms.cities.ApplicationKt'
+    mainClass = kotlinMainClass
 //    addResources = true
+}
+
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin/'
+    test.java.srcDirs += 'src/test/kotlin/'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': project.kotlinMainClass
+    }
+
+    // This line of code recursively collects and copies all of a project's files
+    // and adds them to the JAR itself. One can extend this task, to skip certain
+    // files or particular types at will
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 }
 
 // I show here many way to add dependencies
@@ -64,11 +81,10 @@ springBoot {
 
 
 dependencies {
-    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jre8', version: kotlin_version
-    implementation "org.springframework.boot:spring-boot-starter-web"
-    implementation "org.springframework.boot:spring-boot-starter-thymeleaf"
-    implementation group: 'com.google.guava', name: 'guava', version: '21.0'
-
+    compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jre8', version: kotlin_version
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.boot:spring-boot-starter-thymeleaf"
+    compile group: 'com.google.guava', name: 'guava', version: '21.0'
 
     // assemble spock dependencies in a list
     def spockDependencies = ["org.spockframework:spock-core:$spock_version",

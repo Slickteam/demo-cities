@@ -49,7 +49,7 @@ task integrationTest(type: Test) {
 integrationTest.mustRunAfter test
 
 //gradle bootrun launch the integratinos test
-bootRun.dependsOn integrationTest
+check.dependsOn integrationTest
 
 /**
  * separate integration and unit test reports

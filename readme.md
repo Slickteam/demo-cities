@@ -45,7 +45,7 @@ the property `java_version` to '1.6'.
 
 To build the project with all test : 
 
-```./gradlew server:build```
+```./gradlew :server:build```
 
 Or you can go to the folder `server/` and launch :
 
@@ -53,7 +53,7 @@ Or you can go to the folder `server/` and launch :
 
 To run the project : 
 
-```./gradlew server:bootRun```
+```./gradlew :server:bootRun```
 
 Then go to the url `http://localhost:8080` to see the home page
 At this time, the web pages are very light.

@@ -28,13 +28,32 @@ The main fonctionalities are :
 * Thymeleaf, an html template pattern
 * Html, CSS3, JavaScripts
 
+## Prerequisite
+
+The project need you had the Jdk8 installed. 
+To check it, you can launch on a terminal :
+
+```javac -version```
+
+The project can also may work with a jdk6, but it has not be tested.
+To try with a jdk6 you have to change in the file 'server/gradle.properties
+the property `java_version` to '1.6'.
+
+```java_version=1.6```
+
 ## How to use it.
 
 To build the project with all test : 
-`./gradlew build`
+
+```./gradlew server:build```
+
+Or you can go to the folder `server/` and launch :
+
+```./gradlew build```
 
 To run the project : 
-`./gradlew bootRun`
+
+```./gradlew server:bootRun```
 
 Then go to the url `http://localhost:8080` to see the home page
 At this time, the web pages are very light.

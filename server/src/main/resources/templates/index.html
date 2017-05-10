@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <head th:replace="fragments/headTag :: headTag (title='Cities')"></head>
+<head th:replace="fragments/headTag :: headTag (title='Cities')">
     <meta charset="utf-8"/>
 
     <!--<title>Hello Spring Boot!</title>-->
@@ -13,24 +12,24 @@
 </head>
 <!--/*@thymesVar id="city" type="org.openclassrooms.cities.model.City"*/-->
 
-
 <body>
+<div class="site">
 
-<div th:include="fragments/bodyHeader (tab='cities')" th:remove="tag"></div>
+    <div th:include="fragments/bodyHeader (tab='cities')" th:remove="tag"></div>
 
-<div id="bloc_page">
-    <p id="logo">Thymeleaf example</p>
-    <form id="search_box" method="get" th:action="@{/cities}" >
-        <input id="search" type="text" name="cityName" autocomplete="off" autofocus="autofocus"/>
-        <div id="results"></div>
-        <input id="search-button" type="submit" value="Search" />
-    </form>
+    <div id="bloc_page" class="site-content">
+        <p id="logo">Thymeleaf example</p>
+        <form id="search_box" method="get" th:action="@{/cities}">
+            <input id="search" type="text" name="cityName" autocomplete="off" autofocus="autofocus"/>
+            <div id="results"></div>
+            <input id="search-button" type="submit" value="Search"/>
+        </form>
 
 
+    </div>
+
+
+    <div th:include="fragments/bodyFooter" th:remove="tag"></div>
 </div>
-
-
-<div th:include="fragments/bodyFooter" th:remove="tag"></div>
-
 </body>
 </html>

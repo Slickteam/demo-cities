@@ -1,17 +1,30 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en-US">
+<html xmlns:th="http://www.thymeleaf.org">
 <head></head>
-<body th:fragment="bodyHeader (tab)" id="example">
+<body>
+<header th:fragment="bodyHeader (tab)" id="header">
 
-<div class="ui menu teal inverted">
-    <a class="title item" href="/"><strong>Cities</strong></a>
-    <!--<a th:class="${tab == 'owners' }? 'active item' : 'item'" href="/owners/">Find Owners</a>-->
-    <!--<a th:class="${tab == 'vets' }? 'active item' : 'item'" href="/vets/">Veterinarians</a>-->
-    <!--<a th:class="${tab == 'specialities' }? 'active item' : 'item'" href="/specialities/">Specialities</a>-->
-    <!--<a th:class="${tab == 'petTypes' }? 'active item' : 'item'" href="/petTypes/">Pet Types</a>-->
-    <!--<a th:class="${tab == 'vets' }? 'active item' : 'item'" href="#">Veterinarians</a>-->
-    <!--<a class="right floated item">Sign in</a>-->
-</div>
+    <!--<div class="ui menu teal inverted">-->
+    <!--<a class="title item" href="/"><strong>Cities</strong></a>-->
+    <!--&lt;!&ndash;<a th:class="${tab == 'owners' }? 'active item' : 'item'" href="/owners/">Find Owners</a>&ndash;&gt;-->
+    <!--&lt;!&ndash;<a th:class="${tab == 'vets' }? 'active item' : 'item'" href="/vets/">Veterinarians</a>&ndash;&gt;-->
+    <!--&lt;!&ndash;<a th:class="${tab == 'specialities' }? 'active item' : 'item'" href="/specialities/">Specialities</a>&ndash;&gt;-->
+    <!--&lt;!&ndash;<a th:class="${tab == 'petTypes' }? 'active item' : 'item'" href="/petTypes/">Pet Types</a>&ndash;&gt;-->
+    <!--&lt;!&ndash;<a th:class="${tab == 'vets' }? 'active item' : 'item'" href="#">Veterinarians</a>&ndash;&gt;-->
+    <!--&lt;!&ndash;<a class="right floated item">Sign in</a>&ndash;&gt;-->
+    <!--</div>-->
 
+    <nav id="navbar">
+        <div class="icon icon-1">
+            <img width="250" height="74"
+                 src="http://slickteam.fr/wp-content/uploads/2017/02/cropped-Logo-Site-Web-4.png"
+                 class="custom-logo" alt="" itemprop="logo"/>
+        </div>
+        <div class="link">
+            <a href="/">Home</a>
+        </div>
+    </nav>
+
+</header>
 </body>
 </html>

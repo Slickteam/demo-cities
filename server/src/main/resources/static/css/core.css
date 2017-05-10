@@ -1,12 +1,58 @@
-#bloc_page {
+/**, *:before, *:after {*/
+    /*box-sizing: inherit;*/
+/*}*/
+
+html {
+    box-sizing: border-box;
+}
+
+.site {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    min-height: 95vh;
+
+    /*align-items: center;*/
     /*justify-content: center;*/
-    height: 300px;
-    padding-top: 50px;
+    /*height: 300px;*/
+    /*padding-top: 50px;*/
+    /*background-color: #F5F5F5;*/
+}
+
+.site-content {
+    display: flex;
+    flex-direction: column;
+    /*flex: 1;*/
+    align-items: center;
+    flex-grow:1;
+    /*min-height: 60%;*/
+    justify-content: center;
+    /*height: 300px;*/
+    /*padding-top: 50px;*/
     background-color: #F5F5F5;
 }
+
+
+#navbar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: #080A0B;
+    opacity: 0.8;
+    /*rgba(0, 0, 0, 0.5);*/
+
+    padding: 20px;
+}
+
+#navbar a {
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+
+
 
 #search_box {
     position: relative;
@@ -51,4 +97,16 @@
 .cityInfo {
     font-size: small;
     padding-left: 20px;
+}
+
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    /*justify-content: space-around;*/
+}
+
+.item {
+    font-size: 12px;
+    padding: 10px;
 }

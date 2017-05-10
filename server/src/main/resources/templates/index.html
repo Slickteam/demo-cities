@@ -17,12 +17,20 @@
 
     <div th:include="fragments/bodyHeader (tab='cities')" th:remove="tag"></div>
 
-    <div id="bloc_page" class="site-content">
-        <p id="logo">Thymeleaf example</p>
-        <form id="search_box" method="get" th:action="@{/cities}">
-            <input id="search" type="text" name="cityName" autocomplete="off" autofocus="autofocus"/>
-            <div id="results"></div>
-            <input id="search-button" type="submit" value="Search"/>
+    <div id="home-page" class="site-content">
+
+        <form class="search_box" method="get" th:action="@{/cities}">
+            <div class="logo-image">
+                <img width="250" height="74"
+                     th:src="@{/images/logo.png}"
+                     class="custom-logo" alt="logo" itemprop="logo"/>
+            </div>
+            <div class="form-line">
+                <input id="search" type="text" name="cityName" autocomplete="off" autofocus="autofocus"
+                       placeholder="search a city…"/>
+                <div id="results"></div>
+                <input id="search-button" type="submit" value="Search"/>
+            </div>
         </form>
 
 

@@ -34,7 +34,7 @@ html {
 
 #navbar {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     /*width: 100%;*/
     background: #080A0B;
     opacity: 0.8;
@@ -44,12 +44,15 @@ html {
 }
 
 #navbar a {
-    color: white;
+    color: grey;
     font-size: 25px;
     font-weight: bold;
     text-decoration: none;
 }
-
+#navbar a:hover {
+    color: whitesmoke;
+    font-size: 26px;
+}
 
 
 
@@ -117,9 +120,12 @@ html {
     margin-bottom: 20px;
     border: 1px solid grey;
     border-radius: 4px;
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    /*box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);*/
     width: 70vh;
+    box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
+    -webkit-box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
+
 }
 
 .panel-heading {

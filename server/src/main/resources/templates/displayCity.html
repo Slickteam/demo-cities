@@ -16,17 +16,19 @@
 <body>
 <!--/*@thymesVar id="city" type="org.openclassrooms.cities.model.City"*/-->
 
-<div th:include="fragments/bodyHeader (tab='cities')" th:remove="tag"></div>
+<div class="site">
+    <div th:include="fragments/bodyHeader (tab='cities')" th:remove="tag"></div>
 
-<div id="bloc_page" th:object="${city}">
-    <p id="logo">Thymeleaf example</p>
-    <p th:text="|Name : *{name}|"></p>
-    <p th:text="|Population : *{population}|"></p>
-    <p th:text="|Revenu : *{revenuPerHabitants} €/hab|"></p>
+    <div id="bloc_page" th:object="${city}" class="site-content">
+        <p id="logo">Thymeleaf example</p>
+        <p th:text="|Name : *{name}|"></p>
+        <p th:text="|Population : *{population}|"></p>
+        <p th:text="|Revenu : *{revenuPerHabitants} €/hab|"></p>
+    </div>
+
+
+    <div th:include="fragments/bodyFooter" th:remove="tag"></div>
 </div>
-
-
-<div th:include="fragments/bodyFooter" th:remove="tag"></div>
 
 </body>
 </html>

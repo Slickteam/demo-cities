@@ -35,7 +35,7 @@ html {
 #navbar {
     display: flex;
     align-items: center;
-    width: 100%;
+    /*width: 100%;*/
     background: #080A0B;
     opacity: 0.8;
     /*rgba(0, 0, 0, 0.5);*/

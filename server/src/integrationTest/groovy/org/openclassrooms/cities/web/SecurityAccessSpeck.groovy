@@ -12,7 +12,6 @@ import org.springframework.web.util.UriComponentsBuilder
 import spock.lang.Specification
 
 import static org.hamcrest.Matchers.containsInAnyOrder
-import static org.hamcrest.Matchers.hasItem
 import static org.hamcrest.Matchers.hasSize
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*

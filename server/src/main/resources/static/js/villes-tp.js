@@ -10,7 +10,7 @@
     var searchBox = document.getElementById('search');
     var resultsDiv = document.getElementById('results');
     var xhr = new XMLHttpRequest();
-    var url = 'http://localhost:8080/cities/filter?startWith=';
+    var url = 'http://localhost:8080/api/rest/cities/filter?startWith=';
 
     function getChildNumber(node) {
         return Array.prototype.indexOf.call(node.parentNode.childNodes, node);
@@ -25,6 +25,7 @@
         delete: 8
     };
 
+    console.log(getComputedStyle(resultsDiv).maxHeight)
     var maxResursPaneheight = parseInt(getComputedStyle(resultsDiv).maxHeight, 10);
 
     var currentSelectedCity;

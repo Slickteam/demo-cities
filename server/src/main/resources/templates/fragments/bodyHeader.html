@@ -4,24 +4,26 @@
 <body>
 <header th:fragment="bodyHeader (tab)" id="header">
 
-    <!--<div class="ui menu teal inverted">-->
-    <!--<a class="title item" href="/"><strong>Cities</strong></a>-->
-    <!--&lt;!&ndash;<a th:class="${tab == 'owners' }? 'active item' : 'item'" href="/owners/">Find Owners</a>&ndash;&gt;-->
-    <!--&lt;!&ndash;<a th:class="${tab == 'vets' }? 'active item' : 'item'" href="/vets/">Veterinarians</a>&ndash;&gt;-->
-    <!--&lt;!&ndash;<a th:class="${tab == 'specialities' }? 'active item' : 'item'" href="/specialities/">Specialities</a>&ndash;&gt;-->
-    <!--&lt;!&ndash;<a th:class="${tab == 'petTypes' }? 'active item' : 'item'" href="/petTypes/">Pet Types</a>&ndash;&gt;-->
-    <!--&lt;!&ndash;<a th:class="${tab == 'vets' }? 'active item' : 'item'" href="#">Veterinarians</a>&ndash;&gt;-->
-    <!--&lt;!&ndash;<a class="right floated item">Sign in</a>&ndash;&gt;-->
-    <!--</div>-->
 
     <nav id="navbar">
         <div class="icon icon-1">
             <img width="250" height="74"
                  src="http://slickteam.fr/wp-content/uploads/2017/02/cropped-Logo-Site-Web-4.png"
-                 class="custom-logo" alt="" itemprop="logo"/>
+                 class="custom-logo" alt="logo"/>
         </div>
-        <div class="link">
-            <a href="/">Home</a>
+        <div class="item-container">
+            <div class="start-items">
+                <div class="nav-item">
+                    <a href="/">Home</a>
+                </div>
+            </div>
+            <div class="end-items">
+                <div class="nav-item logout-button">
+                    <form th:action="@{/logout}" method="post">
+                        <input type="submit" value="Logout"/>
+                    </form>
+                </div>
+            </div>
         </div>
     </nav>
 

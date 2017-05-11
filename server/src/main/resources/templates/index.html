@@ -22,8 +22,8 @@
         <form class="search_box" method="get" th:action="@{/cities}">
             <div class="logo-image">
                 <img width="250" height="74"
-                     th:src="@{/images/logo.png}"
-                     class="custom-logo" alt="logo" itemprop="logo"/>
+                     th:src="@{/images/logo.png}" src="../static/images/logo.png"
+                     class="custom-logo" alt="logo"/>
             </div>
             <div class="form-line">
                 <input id="search" type="text" name="cityName" autocomplete="off" autofocus="autofocus"
@@ -39,5 +39,7 @@
 
     <div th:include="fragments/bodyFooter" th:remove="tag"></div>
 </div>
+<script th:src="@{/js/villes-tp.js}" src="../../static/js/villes-tp.js"></script>
+
 </body>
 </html>

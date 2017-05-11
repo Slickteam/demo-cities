@@ -20,25 +20,70 @@ html {
 
 #navbar {
     display: flex;
+    flex-direction: row;
     align-items: flex-end;
-    /*width: 100%;*/
     background: #080A0B;
     opacity: 0.8;
-    /*rgba(0, 0, 0, 0.5);*/
 
     padding: 20px;
 }
 
-#navbar a {
+#navbar .item-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /*flex: 0 0 100%;*/
+
+    flex-grow: 1;
+
+}
+
+#navbar .start-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-grow: 1;
+}
+
+#navbar .end-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+
+.nav-item {
+    padding: 5px;
     color: grey;
     font-size: 25px;
     font-weight: bold;
+}
+
+#navbar a {
+    color: grey;
     text-decoration: none;
 }
 
 #navbar a:hover {
     color: whitesmoke;
     font-size: 26px;
+}
+
+.logout-button input {
+    padding: 0;
+    border: none;
+    background: none;
+
+    color: grey;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    align-self: flex-end;
+}
+
+.logout-button input:hover {
+    color: whitesmoke;
+    font-size: 16px;
 }
 
 .site-content {
@@ -155,6 +200,9 @@ html {
 
 .panel-body {
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .line {
@@ -173,4 +221,9 @@ html {
     flex: 2;
     text-align: left;
     padding-left: 20px;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
 }

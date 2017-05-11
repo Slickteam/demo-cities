@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*
  * this controller produce rest api to access cities service
  */
 @RestController
-@RequestMapping("/cities")
+@RequestMapping("/api/rest/cities")
 @CrossOrigin(origins = arrayOf("http://localhost:63342"))
 class CitiesController (var repository: ICitiesRepository){
 

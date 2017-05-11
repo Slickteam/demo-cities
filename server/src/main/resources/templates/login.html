@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="fragments/headTag :: headTag (title='Login Page')"></head>
+    <meta charset="utf-8"/>
+
+    <!--<title>Hello Spring Boot!</title>-->
+    <!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>-->
+    <!--<link-->
+    <!--th:href="@{/css/core.css}"-->
+    <!--rel="stylesheet"/>-->
+</head>
+
+
+<body>
+<!--/*@thymesVar id="city" type="org.openclassrooms.cities.model.City"*/-->
+<!--/*@thymesVar id="loginError" type="java.lang.Boolean"*/-->
+
+<div class="site">
+    <div th:include="fragments/bodyHeader (tab='cities')" th:remove="tag"></div>
+
+    <div id="bloc_page" th:object="${city}" class="site-content">
+        <article class="display-pannel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Login</h3>
+            </div>
+            <div class="panel-body">
+                <p th:if="${loginError}" class="error">Wrong user or password</p>
+                <form th:action="@{/login}" method="post">
+                    <div class="line">
+                        <label class="line-title" for="username">Username</label>:
+                        <input class="line-content" type="text" id="username" name="username" autofocus="autofocus"/>
+                    </div>
+                    <div class="line">
+                        <label class="line-title" for="password">Password</label>:
+                        <input class="line-content" type="password" id="password" name="password"/>
+                    </div>
+                    <div class="line">
+                        <input class="line-content" type="submit" value="Log in"/>
+                    </div>
+                </form>
+            </div>
+            <div class="pannel-footer"></div>
+        </article>
+    </div>
+
+
+    <div th:include="fragments/bodyFooter" th:remove="tag"></div>
+</div>
+
+</body>
+</html>

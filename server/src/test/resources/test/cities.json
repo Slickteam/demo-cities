@@ -1,0 +1,22 @@
+[
+  [
+    "name":"Paris",
+    "population":100000,
+    "revenuPerHabitants":"20000"
+  ],
+  [
+    "name":"Rennes",
+    "population":100000,
+    "revenuPerHabitants":"20000"
+  ],
+  [
+    "name":"Bordeaux",
+    "population":100000,
+    "revenuPerHabitants":"20000"
+  ],
+  [
+    "name":"Reims",
+    "population":100000,
+    "revenuPerHabitants":"20000"
+  ]
+]

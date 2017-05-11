@@ -60,7 +60,7 @@ class LoginPageSpec extends Specification {
         request.andExpect(status().isFound())
 
         and: "the redirected url should be /login-error"
-        request.andExpect(redirectedUrl("/login"))
+        request.andExpect(redirectedUrl("/login-error"))
 
         and: "The user should be authenticated"
         request.andExpect(unauthenticated())

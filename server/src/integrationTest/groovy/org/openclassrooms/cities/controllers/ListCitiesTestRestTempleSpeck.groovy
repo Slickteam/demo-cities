@@ -27,7 +27,7 @@ class ListCitiesTestRestTempleSpeck extends  Specification{
         given:"this cities : 'Paris' 'Rennes' 'Bordeaux' 'Reims' contains in the repository"
 
         when: "I ask for the rest api '/cities/rest'"
-        def cities = this.restTemplate.getForObject("/cities/list", List)
+        def cities = this.restTemplate.getForObject("/api/rest/cities/list", List)
 
         then: "the result should  the cites 'Paris' 'Rennes' 'Bordeaux' 'Reims'"
         cities.collect{it.name}.size() == 4

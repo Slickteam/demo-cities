@@ -3,12 +3,14 @@ package org.openclassrooms.cities.utils
 import com.sun.jndi.toolkit.url.Uri
 import org.openclassrooms.cities.Application
 import org.springframework.test.context.ContextConfiguration
+import org.springframework.test.context.web.WebAppConfiguration
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.context.WebApplicationContext
 import org.springframework.web.util.UriComponentsBuilder
 import spockmvc.SpockMvcResult
 import spockmvc.SpockMvcSpec
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.*;
 
 /**
  * Created by jguidoux on 04/05/2017.
@@ -17,12 +19,15 @@ import spockmvc.SpockMvcSpec
        // loader = SpringApplicationContextLoader,
         classes = [Application]
 )
+@WebAppConfiguration
 class AbstractMvcSpec extends SpockMvcSpec{
 
     @Override
     MockMvc buildMockMvc(WebApplicationContext wac) {
 
-        MockMvcBuilders.webAppContextSetup(wac).build()
+        MockMvcBuilders.webAppContextSetup(wac)
+                .apply(springSecurity())
+                .build()
     }
 
     SpockMvcResult get(URI uri) {

@@ -5,6 +5,16 @@ import org.openclassrooms.cities.exceptions.CityNotFoundException
 import org.openclassrooms.cities.model.City
 import org.openclassrooms.cities.repositories.ICitiesRepository
 import org.springframework.http.MediaType
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
+import org.springframework.security.test.context.support.WithMockUser
+import org.springframework.test.context.ContextConfiguration
+import org.springframework.test.context.TestExecutionListeners
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener
+import org.springframework.test.context.support.DirtiesContextTestExecutionListener
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener
+import org.springframework.test.context.web.ServletTestExecutionListener
+import org.springframework.test.context.web.WebAppConfiguration
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.util.UriComponentsBuilder
@@ -21,6 +31,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
  * this unit test only show if the rest api /cities/list work
  *  call the CitiesController and return a list of cities in json format
  */
+
 class GetCityInfoTestUrlSpeck extends Specification {
 
 
@@ -30,9 +41,30 @@ class GetCityInfoTestUrlSpeck extends Specification {
     MockMvc mockMvc
 
     def setup() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(citiesController).build()
+        this.mockMvc = MockMvcBuilders.standaloneSetup(citiesController)
+        .build()
     }
 
+    def "check if the uls '/cities/get is valis"() {
+
+        given: "this city : 'Rennes' does not exist in the repository"
+        citiesRepository.getCity("Rennes") >>
+                new City("Rennes", 1, 1)
+
+
+        when: "I ask for the rest api '/api/rest/cities/get?name=Rennes'"
+        URI url = UriComponentsBuilder.fromUriString("/api/rest/cities/get").
+                queryParam("name", "Rennes").build().toUri()
+        def response = this.mockMvc.perform(get(url).
+                accept(MediaType.APPLICATION_JSON)).andReturn().response
+
+
+        then: "the request status should be 'ok'"
+        response.status == OK.value()
+
+    }
+
+    @WithMockUser
     def "ask for a city  from rest api '/cities/get with json result"() {
 
         given: "this city : 'Rennes' does not exist in the repository"
@@ -40,8 +72,8 @@ class GetCityInfoTestUrlSpeck extends Specification {
                 new City("Rennes", 1, 1)
 
 
-        when: "I ask for the rest api '/cities/get?name=Rennes'"
-        URI url = UriComponentsBuilder.fromUriString("/cities/get").
+        when: "I ask for the rest api '/api/rest/cities/get?name=Rennes'"
+        URI url = UriComponentsBuilder.fromUriString("/api/rest/cities/get").
                 queryParam("name", "Rennes").build().toUri()
         def response = this.mockMvc.perform(get(url).
                 accept(MediaType.APPLICATION_JSON)).andReturn().response
@@ -59,10 +91,10 @@ class GetCityInfoTestUrlSpeck extends Specification {
 
         given: "this city : 'Guérande' does not exist in the repository"
         citiesRepository.getCity("Guérande") >>
-                {throw new CityNotFoundException("Guérande")}
+                { throw new CityNotFoundException("Guérande") }
 
-        when: "I ask for the rest api '/cities/get?name=Guérande'"
-        URI url = UriComponentsBuilder.fromUriString("/cities/get").
+        when: "I ask for the rest api '/api/rest/cities/get?name=Guérande'"
+        URI url = UriComponentsBuilder.fromUriString("/api/rest/cities/get").
                 queryParam("name", "Guérande").build().toUri()
         def response = this.mockMvc.perform(get(url).
                 accept(MediaType.APPLICATION_JSON)).andReturn().response

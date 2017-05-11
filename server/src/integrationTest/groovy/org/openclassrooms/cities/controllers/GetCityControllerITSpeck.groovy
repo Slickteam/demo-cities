@@ -20,12 +20,27 @@ import org.springframework.test.context.TestPropertySource
 @TestPropertySource("classpath:/env-test.properties")
 class GetCityControllerITSpeck extends AbstractMvcSpec{
 
-    def "ask for a city  which does not exist from rest api '/cities/get with json result"() {
+
+    def "try access url '/api/rest/cities/get which not exist"() {
+
+
+        when: "I ask for the rest api '/api/rest/citiess/get?name=Rennes'"
+        def res = get('/api/rest/citiess/get', [ name: "Rennes"])
+
+
+
+        then: "The response status should be Forbidden'"
+        res.status == HttpStatus.NOT_FOUND
+
+
+    }
+
+    def "ask for a city  which does not exist from rest api '/api/rest/cities/get with json result"() {
 
         given: "this city : 'Guérande' does not exist in the repository"
 
-        when: "I ask for the rest api '/cities/get?name=Guérande'"
-        def res = get('/cities/get', [ name: "Guérande"])
+        when: "I ask for the rest api '/api/rest/cities/get?name=Guérande'"
+        def res = get('/api/rest/cities/get', [ name: "Guérande"])
 
 
 
@@ -36,12 +51,12 @@ class GetCityControllerITSpeck extends AbstractMvcSpec{
     }
 
 
-    def "ask for a city from rest api '/cities/get with json result"() {
+    def "ask for a city from rest api '/api/rest/cities/get with json result"() {
 
         given: "this city : 'Rennes' does not exist in the repository"
 
         when: "I ask for the rest api '/cities/get?name=Rennes'"
-        def res = get('/cities/get', [ name: "Rennes"])
+        def res = get('/api/rest/cities/get', [ name: "Rennes"])
 
 
 

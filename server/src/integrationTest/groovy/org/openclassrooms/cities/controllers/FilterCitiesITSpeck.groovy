@@ -29,7 +29,7 @@ class FilterCitiesITSpeck extends AbstractMvcSpec {
         given: "this cities : 'Paris' 'Rennes' 'Bordeaux' 'Reims' contains in the repository"
 
         when: "I ask for cities which name start with 'gué"
-        def res = get('/cities/filter', [ startWith: "gué"])
+        def res = get('/api/rest/cities/filter', [ startWith: "gué"])
         def cities = res.json
 
         then: "the result should be empty"
@@ -42,7 +42,7 @@ class FilterCitiesITSpeck extends AbstractMvcSpec {
         given: "this cities : 'Paris' 'Rennes' 'Bordeaux' 'Reims' contains in the repository"
 
         when: "I ask for cities which name start with 're"
-        def res = get('/cities/filter',  [ startWith: "re"])
+        def res = get('/api/rest/cities/filter',  [ startWith: "re"])
         def cities = res.json
 
         then: "the result should  the cites 'Paris' 'Rennes' 'Bordeaux' 'Reims'"

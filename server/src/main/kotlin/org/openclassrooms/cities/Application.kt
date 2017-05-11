@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.PropertySource
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
@@ -22,6 +23,7 @@ fun main(args: Array<String>) {
     SpringApplication.run(Application::class.java, *args)
 }
 
+@Configuration
 @EnableWebSecurity
 class SecurityConfig : WebSecurityConfigurerAdapter() {
 
@@ -29,7 +31,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
     override fun configure(http: HttpSecurity) {
         http
                 .authorizeRequests()
-                .antMatchers("/css/**", "/js/**", "/images/**","/cities",
+                .antMatchers("/css/**", "/js/**", "/images/**",
                         "/api/rest/**", "/login", "/login-error").permitAll()
                 .antMatchers("/", "/**").hasRole("USER")
                 .and()

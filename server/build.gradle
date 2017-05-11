@@ -82,6 +82,7 @@ dependencies {
             "org.springframework.boot:spring-boot-starter-test",
             spockDependencies)
     testImplementation(group: 'org.codehaus.groovy', name: 'groovy-json', version: groovy_version)
+    testImplementation group: 'org.springframework.security', name: 'spring-security-test'
 
     integrationTestCompile "com.geowarin:spring-spock-mvc:$spock_mock_version"
 

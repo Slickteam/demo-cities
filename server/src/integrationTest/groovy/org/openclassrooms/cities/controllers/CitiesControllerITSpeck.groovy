@@ -20,15 +20,15 @@ import org.springframework.test.context.TestPropertySource
 @TestPropertySource("classpath:/env-test.properties")
 class CitiesControllerITSpeck extends AbstractMvcSpec{
 
-    def "list cities from rest api '/citie/list with json result"() {
+    def "list cities from rest api '/api/rest/citie/list with json result"() {
 
         given:"this cities : 'Paris' 'Rennes' 'Bordeaux' 'Reims' contains in the repository"
 
-        when: "I ask for the rest api '/cities/list'"
-        def res = get('/cities/list')
+        when: "I ask for the rest api '/api/rest/cities/list'"
+        def res = get('/api/rest/cities/list')
 
         then: "the result should  the cites 'Paris' 'Rennes' 'Bordeaux' 'Reims'"
-        res.json.collect{it.name} == ["Paris", "Rennes", "Bordeaux", "Reims"]
         res.status == HttpStatus.OK
+        res.json.collect{it.name} == ["Paris", "Rennes", "Bordeaux", "Reims"]
     }
 }

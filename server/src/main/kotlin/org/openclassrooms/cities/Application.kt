@@ -32,7 +32,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
         http
                 .authorizeRequests()
                 .antMatchers("/css/**", "/js/**", "/images/**",
-                        "/api/rest/**", "/login", "/login-error").permitAll()
+                        "/api/rest/**", "/login", "/logout").permitAll()
                 .antMatchers("/", "/**").hasRole("USER")
                 .and()
                 .formLogin()

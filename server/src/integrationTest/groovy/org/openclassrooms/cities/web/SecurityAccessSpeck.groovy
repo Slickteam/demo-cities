@@ -13,7 +13,10 @@ import spock.lang.Specification
 
 import static org.hamcrest.Matchers.containsInAnyOrder
 import static org.hamcrest.Matchers.hasSize
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf
+import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated
+import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 
 /**
@@ -91,6 +94,57 @@ class SecurityAccessSpeck extends Specification {
         then: "the controller shoult return the 'login' page"
         request.andExpect(status().isOk())
         request.andExpect(view().name("index"))
+
+
+    }
+
+    @WithMockUser
+    def "test logout"() {
+
+        given: "I'm connected"
+        def auth = authenticated()
+
+        when: "I try to acces the url /login?logout"
+        def request = this.mockMvc.perform(post("/logout").with(csrf()))
+
+        then: "the  request status should be redirected"
+        request.andExpect(status().is3xxRedirection())
+
+        and: "the redirected url should be '/login?logout"
+        request.andExpect(redirectedUrl("/login?logout"))
+
+        and: "The user should not be authenticated"
+        request.andExpect(unauthenticated())
+
+
+
+
+
+    }
+
+    @WithMockUser
+    def "test withMockUser"() {
+
+        given: "I'm connected"
+
+        when: "I try to acces the url /t"
+        def request = this.mockMvc.perform(get("/"))
+
+        then: "The user should  be authenticated"
+        request.andExpect(authenticated())
+
+
+    }
+
+    def "test absence of annotation withMockUser"() {
+
+        given: "I'm note connected"
+
+        when: "I try to acces the url /"
+        def request = this.mockMvc.perform(get("/"))
+
+        then: "The user should not be authenticated"
+        request.andExpect(unauthenticated())
 
 
     }

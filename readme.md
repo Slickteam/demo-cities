@@ -58,6 +58,8 @@ To run the project : 
 Then go to the url `http://localhost:8080` to see the home page
 At this time, the web pages are very light.
 
+In the login page, type `user` as username and `password` for the password
+
 You can test the rest api with this urls : 
 * `http://localhost:8080/cities/list` to list all cities
 * `http://localhost:8080/cities/filter?startWith=[a city name]` to get all cities starting by…

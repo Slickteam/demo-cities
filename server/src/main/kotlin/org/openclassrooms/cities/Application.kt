@@ -37,8 +37,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/index")
-
+                .defaultSuccessUrl("/", true)
                 .failureUrl("/login-error")
 
 
@@ -46,10 +45,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
                 .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login")
-//        .logoutSuccessHandler(logoutSuccessHandler)
                 .invalidateHttpSession(true)
-//        .addLogoutHandler(logoutHandler)
-//        .deleteCookies(cookieNamesToClear)
                 .and()
     }
 

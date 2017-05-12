@@ -36,7 +36,10 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
                 .antMatchers("/", "/**").hasRole("USER")
                 .and()
                 .formLogin()
-                .loginPage("/login").failureUrl("/login-error")
+                .loginPage("/login")
+                .defaultSuccessUrl("/index")
+
+                .failureUrl("/login-error")
 
 
         http

@@ -21,27 +21,28 @@
     <div th:include="fragments/bodyHeader (tab='cities')" th:remove="tag"></div>
 
     <div id="bloc_page" class="site-content">
-        <article class="display-pannel">
-            <div class="panel-heading">
-                <h3 class="panel-title">Login</h3>
-            </div>
-            <div class="panel-body">
-                <p th:if="${loginError}" class="error">Wrong user or password</p>
-                <form th:action="@{/login}" method="post">
-                    <div class="line">
-                        <label class="line-title" for="username">Username</label>:
-                        <input class="line-content" type="text" id="username" name="username" autofocus="autofocus"/>
+        <article class="containerl">
+            <div class="logo">Slickteam</div>
+            <div class="login-item">
+                <form th:action="@{/login}" method="post" class="form form-login">
+                    <p th:if="${loginError}" class="error">Wrong user or password</p>
+                    <div class="form-field">
+                        <label class="user" for="username"><span class="hidden">Username</span></label>
+                        <input id="username" type="text" class="form-input" placeholder="Username"
+                               required="required" name="username"/>
                     </div>
-                    <div class="line">
-                        <label class="line-title" for="password">Password</label>:
-                        <input class="line-content" type="password" id="password" name="password"/>
+
+                    <div class="form-field">
+                        <label class="lock" for="password"><span class="hidden">Password</span></label>
+                        <input id="password" type="password" class="form-input" placeholder="Password"
+                               required="required" name="password"/>
                     </div>
-                    <div class="line">
-                        <input class="line-content" type="submit" value="Log in"/>
+
+                    <div class="form-field">
+                        <input type="submit" value="Log in"/>
                     </div>
                 </form>
             </div>
-            <div class="pannel-footer"></div>
         </article>
     </div>
 

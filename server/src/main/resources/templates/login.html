@@ -25,8 +25,12 @@
             <div class="logo">Slickteam</div>
             <div class="login-item">
                 <form th:action="@{/login}" method="post" class="form form-login">
-                    <p th:if="${loginError}" class="error">Wrong user or password</p>
-                    <div class="form-field">
+                    <div th:if="${param.error}" class="error">
+                        Invalid username and password.
+                    </div>
+                    <div th:if="${param.logout}" class="success">
+                        You have been logged out.
+                    </div>                    <div class="form-field">
                         <label class="user" for="username"><span class="hidden">Username</span></label>
                         <input id="username" type="text" class="form-input" placeholder="Username"
                                required="required" name="username"/>

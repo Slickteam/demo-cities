@@ -38,12 +38,12 @@ class HomeController(var repository: ICitiesRepository) {
         return "login"
     }
 
-    @RequestMapping("/login-error")
-    fun loginError(model: Model): String {
-        model.addAttribute("loginError", true)
-        println("Erreur de login")
-        return "login"
-    }
+//    @RequestMapping("/login-error")
+//    fun loginError(model: Model): String {
+//        model.addAttribute("loginError", true)
+//        println("Erreur de login")
+//        return "login"
+//    }
 
 //    @ExceptionHandler
 //    fun handleException(exception: CityNotFoundException): String {

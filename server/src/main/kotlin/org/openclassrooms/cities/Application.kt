@@ -38,15 +38,9 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
                 .formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/", true)
-                .failureUrl("/login-error")
 
 
-        http
-                .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/login")
-                .invalidateHttpSession(true)
-                .and()
+
     }
 
     @Autowired

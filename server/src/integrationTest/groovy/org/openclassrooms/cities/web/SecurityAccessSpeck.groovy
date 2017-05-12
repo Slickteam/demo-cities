@@ -16,11 +16,13 @@ import static org.hamcrest.Matchers.hasSize
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 
 /**
  * Created by jguidoux on 11/05/2017.
+ * test the security access
  */
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -102,7 +104,6 @@ class SecurityAccessSpeck extends Specification {
     def "test logout"() {
 
         given: "I'm connected"
-        def auth = authenticated()
 
         when: "I try to acces the url /login?logout"
         def request = this.mockMvc.perform(post("/logout").with(csrf()))

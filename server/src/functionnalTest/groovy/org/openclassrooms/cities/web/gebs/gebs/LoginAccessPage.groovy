@@ -2,6 +2,7 @@ package org.openclassrooms.cities.web.gebs.gebs
 
 import org.openclassrooms.cities.web.gebs.gebs.page.HomePage
 import org.openclassrooms.cities.web.gebs.gebs.page.LoginPage
+import spock.lang.Ignore
 
 /**
  * Created by jguidoux on 12/05/2017.
@@ -16,11 +17,7 @@ class LoginAccessPage extends BaseGebsSpec {
         at LoginPage
 
         when:
-        loginPage.with {
-            username = "user"
-            password = "password"
-            submitButton.click()
-        }
+        loginPage.login("user", "password")
 
         then:
         at HomePage
@@ -38,8 +35,8 @@ class LoginAccessPage extends BaseGebsSpec {
 
         when:
         loginPage.with {
-            username = "user"
-            password = "bad-password"
+            usernameInputField = "user"
+            passwordInputField = "bad-password"
             submitButton.click()
 
         }
@@ -60,5 +57,14 @@ class LoginAccessPage extends BaseGebsSpec {
         thrown AssertionError
         and:
         at LoginPage
+    }
+
+
+    @Ignore
+    def "try to access home page when I'm logged"() {
+        when:
+        to HomePage
+        then:
+        at HomePage
     }
 }

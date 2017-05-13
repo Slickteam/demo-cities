@@ -15,8 +15,8 @@ class LoginPage extends Page {
 
     static content = {
         loginForm { $("#login-form") }
-        username { loginForm.username() }
-        password { loginForm.password() }
+        usernameInputField { loginForm.username() }
+        passwordInputField { loginForm.password() }
         submitButton {
             loginForm.find("input", type: "submit")
         }
@@ -30,11 +30,12 @@ class LoginPage extends Page {
 
         }
     }
-//    Page login(String userName, String password) {
-//        nameField.value(userName)
-//        passwordField.value(password)
-//        loginButton.click()
-//
-//        return Browser.page
-//    }
+
+
+    void login(String username, String password) {
+        usernameInputField << username
+        passwordInputField << password
+        submitButton.click()
+
+    }
 }

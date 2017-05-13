@@ -51,6 +51,14 @@ class LoginAccessPage extends BaseGebsSpec {
             invalidUsernameOrPasswordError.present
         }
 
+    }
 
+    def "try to access home page without being logged"() {
+        when:
+        to HomePage
+        then:
+        thrown AssertionError
+        and:
+        at LoginPage
     }
 }

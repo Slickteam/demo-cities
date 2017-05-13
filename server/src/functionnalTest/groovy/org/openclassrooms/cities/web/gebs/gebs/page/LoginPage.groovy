@@ -20,8 +20,16 @@ class LoginPage extends Page {
         submitButton {
             loginForm.find("input", type: "submit")
         }
-    }
 
+
+        errors(required: false) { $(".error") }
+
+        invalidUsernameOrPasswordError(required: false) {
+
+            errors.filter(text: contains("Invalid username or password"))
+
+        }
+    }
 //    Page login(String userName, String password) {
 //        nameField.value(userName)
 //        passwordField.value(password)

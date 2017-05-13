@@ -41,10 +41,15 @@ class LoginAccessPage extends BaseGebsSpec {
             username = "user"
             password = "bad-password"
             submitButton.click()
+
         }
 
         then:
         at LoginPage
+        loginPage.with {
+            errors.size() == 1
+            invalidUsernameOrPasswordError.present
+        }
 
 
     }

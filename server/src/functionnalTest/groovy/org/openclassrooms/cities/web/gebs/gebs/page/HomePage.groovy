@@ -18,13 +18,7 @@ class HomePage extends Page {
             loginForm.find("input", type: "submit")
         }
 
-        successes(required: false) { $(".success") }
 
-        SuccessLogoutMessage(required: false) {
-
-            successes.filter(text: contains("You have been successful logged out"))
-
-        }
     }
 
     void logout() {

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments/headTag :: headTag (title='Home page')">
     <meta charset="utf-8"/>
 
@@ -19,7 +19,7 @@
 
     <div id="home-page" class="site-content">
 
-        <form class="search_box" method="get" th:action="@{/cities}">
+        <form id="search-form" class="search_box" method="get" th:action="@{/cities}">
             <div class="logo-image">
                 <img width="250" height="74"
                      th:src="@{/images/logo.png}" src="../static/images/logo.png"

@@ -5,20 +5,22 @@ import org.openclassrooms.cities.web.gebs.gebs.page.LoginPage
 
 /**
  * Created by jguidoux on 12/05/2017.
+ * this is functionnal test to check login/logout
+ * and security functionalies
  */
 class LoginAccessPage extends BaseGebsSpec {
 
     def "login with valid user in the login page"() {
 
-        when:
+        when: "I try to to go the login page"
         LoginPage loginPage = to(LoginPage)
-        then:
+        then: "I should be to the login page"
         at LoginPage
 
-        when:
+        when: "I log in with valid identifiers user:password"
         loginPage.login("user", "password")
 
-        then:
+        then: "I should be on the home page"
         at HomePage
 
 
@@ -27,47 +29,53 @@ class LoginAccessPage extends BaseGebsSpec {
 
     def "login with invalid user in the login page"() {
 
-        when:
+        when: "I try to to go the login page"
         LoginPage loginPage = to(LoginPage)
-        then:
+        then: "I should be to the login page"
         at LoginPage
 
-        when:
+        when: "I log in with invalid identifiers user:bad-password"
         loginPage.login("user", "bad-password")
 
-        then:
+        then: "I still should still be on the login page"
         at LoginPage
         loginPage.with {
+            and: "there should be 1 error message"
             errors.size() == 1
+            and: "the message should say me that my username or my password is wrong"
             invalidUsernameOrPasswordError.present
         }
 
     }
 
     def "try to access home page without being logged"() {
-        when:
-        to HomePage
-        then:
-        thrown AssertionError
-        and:
+        when: "I access to the '/' url without being logged"
+        go "/"
+        then: "I should be on the login page"
         at LoginPage
     }
 
 
     def "try to logout"() {
-        when:
+        when: "I access to the '/' url without being logged"
         go "/"
-        and:
+        and: "I should first go to the login page to connect"
         at LoginPage
-        and:
+        and: "I enter valid identifiers"
         login("user", "password")
-        then:
-        at HomePage
+        then: "I should be on the home page"
+        def homePage = at HomePage
 
-        when:
-        logout()
+        when: "I click on the logout button"
+        homePage.logout()
 
-        then:
-        at LoginPage
+        then: "I should be on back on the login page"
+        def loginPage = at LoginPage
+        loginPage.with {
+            and: "there should be 1 success message"
+            successes.size() == 1
+            and: "the message should say me that I'm successful logout"
+            SuccessLogoutMessage.present
+        }
     }
 }

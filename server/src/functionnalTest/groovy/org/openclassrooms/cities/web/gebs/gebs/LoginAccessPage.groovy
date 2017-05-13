@@ -16,9 +16,11 @@ class LoginAccessPage extends BaseGebsSpec {
         at LoginPage
 
         when:
-        loginPage.username = "user"
-        loginPage.password = "password"
-        loginPage.submitButton.click()
+        loginPage.with {
+            username = "user"
+            password = "password"
+            submitButton.click()
+        }
 
         then:
         at HomePage
@@ -27,4 +29,23 @@ class LoginAccessPage extends BaseGebsSpec {
     }
 
 
+    def "login with invalid user in the login page"() {
+
+        when:
+        LoginPage loginPage = to(LoginPage)
+        then:
+        at LoginPage
+
+        when:
+        loginPage.with {
+            username = "user"
+            password = "bad-password"
+            submitButton.click()
+        }
+
+        then:
+        at LoginPage
+
+
+    }
 }

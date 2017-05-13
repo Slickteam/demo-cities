@@ -15,8 +15,8 @@ class LoginPage extends Page {
 
     static content = {
         loginForm { $("#login-form") }
-        username { $("#username") }
-        password { $("#password") }
+        username { loginForm.username() }
+        password { loginForm.password() }
         submitButton(to: HomePage) {
             loginForm.find("input", type: "submit")
         }

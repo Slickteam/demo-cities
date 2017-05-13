@@ -17,7 +17,7 @@ class LoginPage extends Page {
         loginForm { $("#login-form") }
         username { loginForm.username() }
         password { loginForm.password() }
-        submitButton(to: HomePage) {
+        submitButton {
             loginForm.find("input", type: "submit")
         }
     }

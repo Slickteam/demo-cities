@@ -1,0 +1,40 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
+apply from: "plugins/functionnal-test.gradle"
+apply from: "plugins/osSpecificDownloads.gradle"
+
+ext.drivers = ["chrome"]
+
+drivers.each { driver ->
+    task "${driver}FuncTest"(type: Test) {
+
+        dependsOn build
+
+        testClassesDir = sourceSets.functionnalTest.output.classesDir
+        classpath = sourceSets.functionnalTest.runtimeClasspath
+//        reports {
+//            html.destination = reporting.file("$name/tests")
+//            junitXml.destination = file("$buildDir/test-results/$name")
+//        }
+//
+//        outputs.upToDateWhen { false }  // Always run tests
+
+        systemProperty "geb.build.reportsDir", reporting.file("$name/geb")
+        systemProperty "geb.env", driver
+
+        // If you wanted to set the baseUrl in your build…
+        // systemProperty "geb.build.baseUrl", "http://myapp.com"
+    }
+}
+
+chromeFuncTest {
+    dependsOn unzipChromeDriver
+
+    def chromedriverFilename = Os.isFamily(Os.FAMILY_WINDOWS) ? "chromedriver.exe" : "chromedriver"
+    systemProperty "webdriver.chrome.driver", new File(unzipChromeDriver.outputs.files.singleFile, chromedriverFilename).absolutePath
+}
+
+functionalTest {
+    dependsOn drivers.collect { tasks["${it}FuncTest"] }
+    enabled = false
+}

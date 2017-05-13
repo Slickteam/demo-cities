@@ -1,3 +1,6 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
+
 buildscript {
 
     repositories {
@@ -22,6 +25,7 @@ apply plugin: "kotlin-spring"
 apply plugin: "groovy"
 apply plugin: "project-report"
 apply from: "plugins/integration-test.gradle"
+apply from: "plugins/geb-gradleConfig.gradle"
 
 
 
@@ -56,7 +60,6 @@ springBoot {
 //    addResources = true
 }
 
-
 // I show here many way to add dependencies
 // we can configure a lot of more
 // see https://docs.gradle.org/current/userguide/dependency_management.html#sub:module_dependencies
@@ -64,6 +67,16 @@ springBoot {
 // this plugin les us use new configuration dependencies 'implementation', 'ap', 'testImplémentation'
 // see https://docs.gradle.org/current/userguide/java_library_plugin.html
 
+
+configurations.all {
+    resolutionStrategy {
+        eachDependency { DependencyResolveDetails details ->
+            if (details.requested.group == 'org.seleniumhq.selenium') {
+                details.useVersion seleniumVersion
+            }
+        }
+    }
+}
 
 dependencies {
     compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jre8', version: kotlin_version
@@ -85,6 +98,16 @@ dependencies {
     testImplementation group: 'org.springframework.security', name: 'spring-security-test'
 
     integrationTestCompile "com.geowarin:spring-spock-mvc:$spock_mock_version"
+
+
+    functionnalTestCompile "org.gebish:geb-spock:${gebVersion}"
+    functionnalTestCompile "org.seleniumhq.selenium:selenium-chrome-driver:${seleniumVersion}"
+//    integrationTestCompile "org.seleniumhq.selenium:selenium-firefox-driver:${seleniumVersion}"
+
+    // For downloading browser-specific drivers that browsers like Chrome and IE require
+//    integrationTestCompile("io.github.bonigarcia:webdrivermanager:1.5.0") {
+//        exclude group: 'org.seleniumhq.selenium'
+//    }
 
     // the 'dev' profile is the default profile
     // to change the profile, use in the commandLine
@@ -117,3 +140,6 @@ dependencies {
 
 
 }
+
+
+

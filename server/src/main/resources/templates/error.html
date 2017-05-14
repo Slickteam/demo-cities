@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <head th:replace="fragments/headTag :: headTag (title='Error page')"></head>
 
@@ -15,7 +15,7 @@
 
     <div class="site-content">
         <!--/*@thymesVar id="errorMessage" type="java.lang.String"*/-->
-        <h1 th:text="${errorMessage}">Error</h1>
+        <h1 id="errorMessage" th:text="${errorMessage}">Error</h1>
 
     </div>
 

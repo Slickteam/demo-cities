@@ -1,11 +1,13 @@
 package org.openclassrooms.cities.web.gebs.gebs
 
 import org.openclassrooms.cities.web.gebs.gebs.page.DisplayCityPage
+import org.openclassrooms.cities.web.gebs.gebs.page.ErrorPage
 import org.openclassrooms.cities.web.gebs.gebs.page.HomePage
 import org.openclassrooms.cities.web.gebs.gebs.page.LoginPage
 
 /**
  * Created by jguidoux on 14/05/2017.
+ * This test check if the search city works well
  */
 class SearchCitySpec extends BaseGebsSpec {
 
@@ -52,6 +54,28 @@ class SearchCitySpec extends BaseGebsSpec {
         displaypage.population == 100000
         and: " The average revenue par habitants should be 20000€/hab"
         displaypage.revenue == "20000 €/hab"
+
+    }
+
+
+    def "try to display an not existing city"() {
+
+        given: "I am at home page"
+        def homePage = at HomePage
+        and: "this cities : 'Paris' 'Rennes' 'Bordeaux' 'Reims' contains in the repository"
+
+
+        when: "I write 'Re' on the input field"
+        homePage.setCityName('Guérande')
+
+        and: "I click on she search button"
+        homePage.search()
+
+        then: "I should be on the error page"
+        def errorPage = at ErrorPage
+        and: "The error message should be : City 'Guérande' not found"
+        errorPage.errorMessage == "City 'Guérande' not found."
+
 
     }
 }

@@ -1,16 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <head th:replace="fragments/headTag :: headTag (title='Login Page')"></head>
-    <meta charset="utf-8"/>
 
-    <!--<title>Hello Spring Boot!</title>-->
-    <!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>-->
-    <!--<link-->
-    <!--th:href="@{/css/core.css}"-->
-    <!--rel="stylesheet"/>-->
-</head>
+<head th:replace="fragments/headTag :: headTag (title='Login Page')"></head>
 
 
 <body>
@@ -30,7 +22,8 @@
                     </div>
                     <div th:if="${param.logout}" class="success">
                         You have been successful logged out.
-                    </div>                    <div class="form-field">
+                    </div>
+                    <div class="form-field">
                         <label class="user" for="username"><span class="hidden">Username</span></label>
                         <input id="username" type="text" class="form-input" placeholder="Username"
                                required="required" name="username"/>

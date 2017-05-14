@@ -1,13 +1,10 @@
 package org.openclassrooms.cities.web.gebs.gebs.page
-
-import geb.Page
-
 /**
  * class to manipulate the login page with Gebs
  *
  * Created by jguidoux on 12/05/2017.
  */
-class HomePage extends Page {
+class HomePage extends TemplatePage {
 
     static url = "/"
 

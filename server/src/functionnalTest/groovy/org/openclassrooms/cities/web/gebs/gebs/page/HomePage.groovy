@@ -39,5 +39,9 @@ class HomePage extends Page {
 
     }
 
+    void search() {
+        submitSearchButton.click()
+    }
+
 
 }

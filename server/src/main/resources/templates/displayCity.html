@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <head th:replace="fragments/headTag :: headTag (title='Cities')"></head>
+    <head th:replace="fragments/headTag :: headTag (title='Display city')"></head>
     <meta charset="utf-8"/>
 
     <!--<title>Hello Spring Boot!</title>-->
@@ -30,7 +30,7 @@
                         <p>Name:</p>
                     </div>
                     <div class="line-content">
-                        <p th:text="*{name}"></p>
+                        <p id="cityName" th:text="*{name}"></p>
                     </div>
                 </div>
                 <div class="line">
@@ -38,7 +38,7 @@
                         <p>Population:</p>
                     </div>
                     <div class="line-content">
-                        <p th:text="*{population}"></p>
+                        <p id="population" th:text="*{population}"></p>
                     </div>
                 </div>
                 <div class="line">
@@ -46,7 +46,7 @@
                         <p>Revenu per habitant:</p>
                     </div>
                     <div class="line-content">
-                        <p th:text="|*{revenuPerHabitants} €/hab|"></p>
+                        <p id="revenue" th:text="|*{revenuPerHabitants} €/hab|"></p>
                     </div>
                 </div>
 

@@ -1,11 +1,8 @@
 package org.openclassrooms.cities.web.gebs.gebs.page
-
-import geb.Page
-
 /**
  * Created by jguidoux on 14/05/2017.
  */
-class DisplayCityPage extends Page {
+class DisplayCityPage extends TemplatePage {
 
     static url = "/cities?cityName=Rennes"
 

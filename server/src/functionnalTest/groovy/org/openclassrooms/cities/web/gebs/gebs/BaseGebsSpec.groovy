@@ -10,7 +10,7 @@ import org.springframework.test.context.TestPropertySource
 /**
  * Created by jguidoux on 12/05/2017.
  */
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @AutoConfigureMockMvc
 @TestPropertySource("classpath:/env-test.properties")
 class BaseGebsSpec extends GebReportingSpec {

@@ -57,6 +57,7 @@ class LoginAccessPage extends BaseGebsSpec {
 
 
     def "try to logout"() {
+
         when: "I access to the '/' url without being logged"
         go "/"
         and: "I should first go to the login page to connect"
@@ -65,6 +66,8 @@ class LoginAccessPage extends BaseGebsSpec {
         login("user", "password")
         then: "I should be on the home page"
         def homePage = at HomePage
+
+
 
         when: "I click on the logout button"
         homePage.logout()
@@ -77,5 +80,9 @@ class LoginAccessPage extends BaseGebsSpec {
             and: "the message should say me that I'm successful logout"
             SuccessLogoutMessage.present
         }
+    }
+
+    def connectAndGoHomePage() {
+
     }
 }

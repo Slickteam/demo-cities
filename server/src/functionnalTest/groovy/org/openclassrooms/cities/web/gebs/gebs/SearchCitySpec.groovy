@@ -10,19 +10,16 @@ import org.openclassrooms.cities.web.gebs.gebs.page.LoginPage
 class SearchCitySpec extends BaseGebsSpec {
 
 
+    def setup() {
+        def loginPage = to LoginPage
+        loginPage.login("user", "password")
+    }
+
     def "check the autocompletion system when looking for a city"() {
 
-        given: "the database contains these cities : 'Paris' 'Rennes' 'Bordeaux' 'Reims'"
-
-        when: "I access to the '/' url without being logged"
-        go "/"
-        and: "I should first go to the login page to connect"
-        at LoginPage
-        and: "I enter valid identifiers"
-        login("user", "password")
-        then: "I should be on the home page"
+        given: "I am at home page"
         def homePage = at HomePage
-
+        and: "this cities : 'Paris' 'Rennes' 'Bordeaux' 'Reims' contains in the repository"
 
         when: "I write 'Re' on the input field"
         homePage.setCityName('Re')
@@ -36,14 +33,10 @@ class SearchCitySpec extends BaseGebsSpec {
 
     def "try to display an existing city"() {
 
-        when: "I access to the '/' url without being logged"
-        go "/"
-        and: "I should first go to the login page to connect"
-        at LoginPage
-        and: "I enter valid identifiers"
-        login("user", "password")
-        then: "I should be on the home page"
+        given: "I am at home page"
         def homePage = at HomePage
+        and: "this cities : 'Paris' 'Rennes' 'Bordeaux' 'Reims' contains in the repository"
+
 
         when: "I write 'Re' on the input field"
         homePage.setCityName('Rennes')

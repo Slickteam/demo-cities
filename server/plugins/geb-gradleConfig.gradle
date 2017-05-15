@@ -1,23 +1,22 @@
 import org.apache.tools.ant.taskdefs.condition.Os
 
+
 apply from: "plugins/functionnal-test.gradle"
 apply from: "plugins/osSpecificDownloads.gradle"
 
+//you can find a nice exemple on this site
+//"https://github.com/codeborne/selenide/blob/master/build.gradle
+// I didn't manage to use firefox for now
 ext.drivers = ["chrome"]
 
 drivers.each { driver ->
-    task "${driver}FuncTest"(type: Test) {
+    task ("${driver}FuncTest", type: Test) {
 
         dependsOn build
 
         testClassesDir = sourceSets.functionnalTest.output.classesDir
         classpath = sourceSets.functionnalTest.runtimeClasspath
-//        reports {
-//            html.destination = reporting.file("$name/tests")
-//            junitXml.destination = file("$buildDir/test-results/$name")
-//        }
-//
-//        outputs.upToDateWhen { false }  // Always run tests
+
 
         systemProperty "geb.build.reportsDir", reporting.file("$name/geb")
         systemProperty "geb.env", driver
@@ -32,6 +31,14 @@ chromeFuncTest {
 
     def chromedriverFilename = Os.isFamily(Os.FAMILY_WINDOWS) ? "chromedriver.exe" : "chromedriver"
     systemProperty "webdriver.chrome.driver", new File(unzipChromeDriver.outputs.files.singleFile, chromedriverFilename).absolutePath
+}
+
+firefoxFuncTest {
+    dependsOn unzipGeckoDriver
+    systemProperties['selenide.browser'] = 'firefox'
+    def geckoDriverFileName = Os.isFamily(Os.FAMILY_WINDOWS) ? "geckoDriver.exe" : "geckoDriver"
+    systemProperty "webdriver.gecko.driver", new File(unzipGeckoDriver.outputs.files.singleFile, geckoDriverFileName).absolutePath
+
 }
 
 functionalTest {

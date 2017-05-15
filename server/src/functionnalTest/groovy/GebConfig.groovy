@@ -1,3 +1,4 @@
+
 /*
 	This is the Geb configuration file.
 	
@@ -7,10 +8,10 @@
 
 import org.openqa.selenium.chrome.ChromeDriver
 
-
 waiting {
     timeout = 2
 }
+
 
 environments {
 

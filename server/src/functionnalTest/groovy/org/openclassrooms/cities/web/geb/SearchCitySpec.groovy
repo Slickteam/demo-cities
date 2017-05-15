@@ -15,11 +15,19 @@ class SearchCitySpec extends BaseGebsSpec {
     def setup() {
         def loginPage = to LoginPage
         loginPage.login("user", "password")
+
+    }
+
+    def cleanup() {
+        def homePage = to HomePage
+        homePage.logout()
     }
 
     def "check the autocompletion system when looking for a city"() {
 
-        given: "I am at home page"
+        given: "I am connected"
+        and: "I am at home page"
+        to HomePage
         def homePage = at HomePage
         and: "this cities : 'Paris' 'Rennes' 'Bordeaux' 'Reims' contains in the repository"
 
@@ -29,13 +37,15 @@ class SearchCitySpec extends BaseGebsSpec {
         then: "the autocompletions system should show 2 cities"
         homePage.citiesDiv.size() == 2
         and: "These cities should be 'Rennes' and 'Reims'"
-        waitFor { homePage.citiesNameDiv == ['Rennes', 'Reims'] }
+        homePage.citiesNameDiv == ['Rennes', 'Reims']
 
     }
 
     def "try to display an existing city"() {
 
-        given: "I am at home page"
+        given: "I am connected"
+        and: "I am at home page"
+        to HomePage
         def homePage = at HomePage
         and: "this cities : 'Paris' 'Rennes' 'Bordeaux' 'Reims' contains in the repository"
 
@@ -60,7 +70,9 @@ class SearchCitySpec extends BaseGebsSpec {
 
     def "try to display an not existing city"() {
 
-        given: "I am at home page"
+        given: "I am connected"
+        and: "I am at home page"
+        to HomePage
         def homePage = at HomePage
         and: "this cities : 'Paris' 'Rennes' 'Bordeaux' 'Reims' contains in the repository"
 

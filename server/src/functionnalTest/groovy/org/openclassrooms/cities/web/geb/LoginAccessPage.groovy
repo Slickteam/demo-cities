@@ -10,6 +10,7 @@ import org.openclassrooms.cities.web.geb.page.LoginPage
  */
 class LoginAccessPage extends BaseGebsSpec {
 
+
     def "login with valid user in the login page"() {
 
         when: "I try to to go the login page"
@@ -19,7 +20,7 @@ class LoginAccessPage extends BaseGebsSpec {
 
         when: "I log in with valid identifiers user:password"
         loginPage.login("user", "password")
-
+        to HomePage
         then: "I should be on the home page"
         at HomePage
 
@@ -36,6 +37,7 @@ class LoginAccessPage extends BaseGebsSpec {
 
         when: "I log in with invalid identifiers user:bad-password"
         loginPage.login("user", "bad-password")
+
 
         then: "I still should still be on the login page"
         at LoginPage
@@ -82,7 +84,5 @@ class LoginAccessPage extends BaseGebsSpec {
         }
     }
 
-    def connectAndGoHomePage() {
 
-    }
 }

@@ -7,9 +7,12 @@ buildscript {
     }
     dependencies {
         classpath "commons-io:commons-io:2.5"
+        classpath 'de.undercouch:gradle-download-task:3.2.0'
     }
 }
 
+
+///////////// chrome ///////////////
 task downloadChromeDriver {
 
     shouldRunAfter build
@@ -19,7 +22,7 @@ task downloadChromeDriver {
 
     doLast {
         def driverOsFilenamePart
-        if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+            if (Os.isFamily(Os.FAMILY_WINDOWS)) {
             driverOsFilenamePart = "win32"
         } else if (Os.isFamily(Os.FAMILY_MAC)) {
             driverOsFilenamePart = "mac64"
@@ -31,8 +34,8 @@ task downloadChromeDriver {
 }
 
 task unzipChromeDriver(type: Copy) {
-    def outputDir = file("$buildDir/webdriver/chromedriver")
     dependsOn downloadChromeDriver
+    def outputDir = file("$buildDir/webdriver/chromedriver")
     outputs.dir(outputDir)
 
     from(zipTree(downloadChromeDriver.outputs.files.singleFile))
@@ -40,3 +43,49 @@ task unzipChromeDriver(type: Copy) {
 }
 
 
+///////////// firefox  ///////////////
+
+
+task downloadGeckoDriver {
+
+    shouldRunAfter build
+    def outputFile = file("$buildDir/webdriver/geckodriver.zip")
+    inputs.property("geckoDriverVersion", geckoDriverVersion)
+    outputs.file(outputFile)
+
+    doLast {
+        def driverOsFilenamePart
+        if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+            driverOsFilenamePart = "win32"
+        } else if (Os.isFamily(Os.FAMILY_MAC)) {
+            driverOsFilenamePart = "mac64"
+        } else if (Os.isFamily(Os.FAMILY_UNIX)) {
+            driverOsFilenamePart = Os.isArch("amd64") ? "linux64" : "linux32"
+        }
+        FileUtils.copyURLToFile(
+                new URL("https://github.com/mozilla/geckodriver/releases/download/" +
+                        "${geckoDriverVersion}/geckodriver-${geckoDriverVersion}-${driverOsFilenamePart}.zip"), outputFile)
+    }
+}
+
+task unzipGeckoDriver(type: Copy) {
+    dependsOn downloadGeckoDriver
+    def outputDir = file("$buildDir/webdriver/geckodriver")
+    outputs.dir(outputDir)
+
+    from(zipTree(downloadGeckoDriver.outputs.files.singleFile))
+    into(outputDir)
+}
+
+
+//task ('marionette', type: Test, dependsOn: downloadAndUnzipGeckoDriver) {
+//    String extension = Os.isFamily(Os.FAMILY_WINDOWS) ? '.exe' : ''
+//    File geckoDriver = new File(buildDir, 'geckodriver' + extension);
+//    systemProperties['webdriver.gecko.driver'] = geckoDriver
+//    systemProperties['selenide.browser'] = 'marionette'
+//    include 'integration/**/*'
+//    exclude 'com/codeborne/selenide/**/*'
+//    doFirst {
+//        println "Use Gecko driver: $geckoDriver"
+//    }
+//}

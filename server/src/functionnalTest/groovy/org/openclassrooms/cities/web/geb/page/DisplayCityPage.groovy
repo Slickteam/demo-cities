@@ -1,4 +1,4 @@
-package org.openclassrooms.cities.web.gebs.gebs.page
+package org.openclassrooms.cities.web.geb.page
 /**
  * Created by jguidoux on 14/05/2017.
  */

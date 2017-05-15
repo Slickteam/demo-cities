@@ -1,4 +1,4 @@
-package org.openclassrooms.cities.web.gebs.gebs
+package org.openclassrooms.cities.web.geb
 
 import geb.spock.GebReportingSpec
 import org.springframework.beans.factory.annotation.Value

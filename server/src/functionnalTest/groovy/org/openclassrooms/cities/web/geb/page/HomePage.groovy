@@ -1,4 +1,4 @@
-package org.openclassrooms.cities.web.gebs.gebs.page
+package org.openclassrooms.cities.web.geb.page
 /**
  * class to manipulate the login page with Gebs
  *

@@ -1,7 +1,7 @@
-package org.openclassrooms.cities.web.gebs.gebs
+package org.openclassrooms.cities.web.geb
 
-import org.openclassrooms.cities.web.gebs.gebs.page.HomePage
-import org.openclassrooms.cities.web.gebs.gebs.page.LoginPage
+import org.openclassrooms.cities.web.geb.page.HomePage
+import org.openclassrooms.cities.web.geb.page.LoginPage
 
 /**
  * Created by jguidoux on 12/05/2017.

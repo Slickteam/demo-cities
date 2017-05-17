@@ -77,15 +77,3 @@ task unzipGeckoDriver(type: Copy) {
     into(outputDir)
 }
 
-
-//task ('marionette', type: Test, dependsOn: downloadAndUnzipGeckoDriver) {
-//    String extension = Os.isFamily(Os.FAMILY_WINDOWS) ? '.exe' : ''
-//    File geckoDriver = new File(buildDir, 'geckodriver' + extension);
-//    systemProperties['webdriver.gecko.driver'] = geckoDriver
-//    systemProperties['selenide.browser'] = 'marionette'
-//    include 'integration/**/*'
-//    exclude 'com/codeborne/selenide/**/*'
-//    doFirst {
-//        println "Use Gecko driver: $geckoDriver"
-//    }
-//}

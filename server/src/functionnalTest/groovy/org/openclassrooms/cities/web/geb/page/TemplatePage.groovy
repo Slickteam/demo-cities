@@ -11,7 +11,7 @@ class TemplatePage extends Page {
         homeLink(required: false) { $("#go-home") }
         logoutForm(required: false) { $("#form-logout") }
         submitLogoutLink(required: false) { logoutForm.find("input", type: "submit") }
-
+        username(required: false) { $("#user-name") }
     }
 
     void goHome() {

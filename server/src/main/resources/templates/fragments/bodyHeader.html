@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="end-items" sec:authorize="isAuthenticated()">
-                <div class="nav-infos">Welcome <span sec:authentication="name"></span>
+                <div id="user-name" class="nav-infos">Welcome <span sec:authentication="name"></span>
                 </div>
                 <div class="nav-item logout-button">
                     <form id="form-logout" th:action="@{/logout}" method="post">

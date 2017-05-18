@@ -9,9 +9,16 @@ class TemplatePage extends Page {
 
     static content = {
         homeLink(required: false) { $("#go-home") }
+        logoutForm(required: false) { $("#form-logout") }
+        submitLogoutLink(required: false) { logoutForm.find("input", type: "submit") }
+
     }
 
     void goHome() {
         homeLink.click()
+    }
+
+    void logout() {
+        submitLogoutLink.click()
     }
 }

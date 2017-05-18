@@ -10,8 +10,7 @@ class HomePage extends TemplatePage {
 
     static at = { title == "Home page" }
     static content = {
-        logoutForm { $("#form-logout") }
-        submitLogoutButton { logoutForm.find("input", type: "submit") }
+
 
         searchForm { $("#search-form") }
         cityInput { searchForm.cityName() }
@@ -26,9 +25,6 @@ class HomePage extends TemplatePage {
 
     }
 
-    void logout() {
-        submitLogoutButton.click()
-    }
 
     void setCityName(String cityName) {
         cityInput << cityName

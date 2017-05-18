@@ -102,16 +102,20 @@
         return cityNode.firstChild.firstChild.textContent;
     }
 
+    function getElelementtotalHeight(node) {
+        var paddingTop = parseFloat(getComputedStyle(node).paddingTop);
+        var currentHeight = parseFloat(getComputedStyle(node).height);
+        var paddingBottom = parseFloat(getComputedStyle(node).paddingBottom);
+        return paddingTop + currentHeight + paddingBottom;
+    }
+
     function getHeightPosInParentContainer(node) {
 
-        var height = parseFloat(getComputedStyle(node).height);
+        var height = getElelementtotalHeight(node);
         var tempNode = node;
         while (tempNode.previousSibling) {
             tempNode = tempNode.previousSibling;
-            var paddingTop = parseFloat(getComputedStyle(tempNode).paddingTop);
-            var currentHeight = parseFloat(getComputedStyle(tempNode).height);
-            var paddingBottom = parseFloat(getComputedStyle(tempNode).paddingBottom);
-            height += paddingTop + currentHeight + paddingBottom;
+            height += getElelementtotalHeight(tempNode);
         }
         return height;
     }
@@ -155,6 +159,7 @@
     function displayResults(cities) {
         if (cities) {
             resultsDiv.style.display = 'block';
+            resultsDiv.style.top = getElelementtotalHeight(searchBox) + "px";
             resultsDiv.innerHTML = '';
             var nbResponses = cities.length;
             for (var i = 0; i < nbResponses; i++) {

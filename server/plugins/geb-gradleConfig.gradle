@@ -7,10 +7,22 @@ apply from: "plugins/osSpecificDownloads.gradle"
 //you can find a nice exemple on this site
 //"https://github.com/codeborne/selenide/blob/master/build.gradle
 // I didn't manage to use firefox for now
-ext.drivers = ["chrome"]
+
+enum Browser {
+    CHROME("chrome"),
+    FIREFOX("firefox")
+
+    Browser(String value) {this.value = value}
+
+    private final String value
+
+    String getValue() {value}
+}
+
+ext.drivers = [Browser.CHROME]
 
 drivers.each { driver ->
-    task("${driver}FuncTest", type: Test) {
+    task("${driver.getValue()}FuncTest", type: Test) {
 
         dependsOn build
 
@@ -26,27 +38,29 @@ drivers.each { driver ->
     }
 }
 
-if (drivers.contains("chrome")) {
+if (drivers.contains(Browser.CHROME)) {
     chromeFuncTest {
         dependsOn unzipChromeDriver
 
         def chromedriverFilename = Os.isFamily(Os.FAMILY_WINDOWS) ? "chromedriver.exe" : "chromedriver"
         systemProperty "webdriver.chrome.driver", new File(unzipChromeDriver.outputs.files.singleFile, chromedriverFilename).absolutePath
+        systemProperty "geb.env", Browser.CHROME.getValue()
     }
 }
 
-if (drivers.contains("firefox")) {
+if (drivers.contains(Browser.FIREFOX)) {
 
     firefoxFuncTest {
         dependsOn unzipGeckoDriver
-        systemProperties['selenide.browser'] = 'firefox'
+//        systemProperties['selenide.browser'] = 'marionette'
         def geckoDriverFileName = Os.isFamily(Os.FAMILY_WINDOWS) ? "geckoDriver.exe" : "geckoDriver"
         systemProperty "webdriver.gecko.driver", new File(unzipGeckoDriver.outputs.files.singleFile, geckoDriverFileName).absolutePath
+        systemProperty "geb.env", Browser.FIREFOX.getValue()
     }
 }
 
 
 functionalTest {
-    dependsOn drivers.collect { tasks["${it}FuncTest"] }
+    dependsOn drivers.collect { tasks["${it.getValue()}FuncTest"] }
     enabled = false
 }

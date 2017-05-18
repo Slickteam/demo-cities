@@ -3,7 +3,6 @@ package org.openclassrooms.cities.web.geb
 import org.openclassrooms.cities.web.geb.page.DisplayCityPage
 import org.openclassrooms.cities.web.geb.page.ErrorPage
 import org.openclassrooms.cities.web.geb.page.HomePage
-import org.openclassrooms.cities.web.geb.page.LoginPage
 
 /**
  * Created by jguidoux on 14/05/2017.
@@ -13,14 +12,12 @@ class SearchCitySpec extends BaseGebsSpec {
 
 
     def setup() {
-        def loginPage = to LoginPage
-        loginPage.login("user", "password")
+        login()
 
     }
 
     def cleanup() {
-        def homePage = to HomePage
-        homePage.logout()
+        logout()
     }
 
     def "check the autocompletion system when looking for a city"() {

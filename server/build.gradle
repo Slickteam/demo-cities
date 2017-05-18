@@ -78,6 +78,9 @@ configurations.all {
     }
 }
 
+
+
+
 dependencies {
     compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jre8', version: kotlin_version
     compile "org.springframework.boot:spring-boot-starter-web"
@@ -108,6 +111,10 @@ dependencies {
     functionnalTestCompile "org.gebish:geb-spock:${gebVersion}"
     functionnalTestCompile "org.seleniumhq.selenium:selenium-chrome-driver:${seleniumVersion}"
     integrationTestCompile "org.seleniumhq.selenium:selenium-firefox-driver:${seleniumVersion}"
+//    integrationTestCompile('info.novatec.testit:webtester-support-marionette:2.0.4') {
+//        transitive = true
+//    }
+
 
     // For downloading browser-specific drivers that browsers like Chrome and IE require
 //    integrationTestCompile("io.github.bonigarcia:webdrivermanager:1.5.0") {

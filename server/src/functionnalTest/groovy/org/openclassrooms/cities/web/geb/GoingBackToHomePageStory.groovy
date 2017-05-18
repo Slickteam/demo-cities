@@ -2,7 +2,6 @@ package org.openclassrooms.cities.web.geb
 
 import org.openclassrooms.cities.web.geb.page.DisplayCityPage
 import org.openclassrooms.cities.web.geb.page.HomePage
-import org.openclassrooms.cities.web.geb.page.LoginPage
 import org.openclassrooms.cities.web.geb.page.TemplatePage
 import spock.lang.Unroll
 
@@ -12,8 +11,7 @@ import spock.lang.Unroll
 class GoingBackToHomePageStory extends BaseGebsSpec {
 
     def setup() {
-        def loginPage = to LoginPage
-        loginPage.login("user", "password")
+        login()
     }
 
     @Unroll

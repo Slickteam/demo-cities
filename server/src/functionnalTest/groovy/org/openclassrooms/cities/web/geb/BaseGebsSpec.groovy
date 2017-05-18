@@ -1,6 +1,8 @@
 package org.openclassrooms.cities.web.geb
 
 import geb.spock.GebReportingSpec
+import org.openclassrooms.cities.web.geb.page.HomePage
+import org.openclassrooms.cities.web.geb.page.LoginPage
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
@@ -20,5 +22,16 @@ class BaseGebsSpec extends GebReportingSpec {
 
     def setup() {
         browser.setBaseUrl("http://localhost:$port")
+    }
+
+    def login() {
+        def loginPage = to LoginPage
+        loginPage.login("user", "password")
+
+    }
+
+    def logout() {
+        def homePage = to HomePage
+        homePage.logout()
     }
 }

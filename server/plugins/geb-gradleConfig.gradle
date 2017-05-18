@@ -4,7 +4,7 @@ import org.apache.tools.ant.taskdefs.condition.Os
 apply from: "plugins/functionnal-test.gradle"
 apply from: "plugins/osSpecificDownloads.gradle"
 
-//you can find a nice exemple on this site
+//you can find a nice example on this site
 //"https://github.com/codeborne/selenide/blob/master/build.gradle
 // I didn't manage to use firefox for now
 

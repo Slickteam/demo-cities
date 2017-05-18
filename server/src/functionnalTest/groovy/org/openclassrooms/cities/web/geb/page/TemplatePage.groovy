@@ -8,7 +8,7 @@ import geb.Page
 class TemplatePage extends Page {
 
     static content = {
-        homeLink { $("#go-home") }
+        homeLink(required: false) { $("#go-home") }
     }
 
     void goHome() {

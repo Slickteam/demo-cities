@@ -1,0 +1,154 @@
+buildscript {
+
+    repositories {
+        jcenter()
+    }
+
+    // to let gradle to use kotlin, spring boot, and kotlin-allopen
+    // kotlin-allopen let spring use kotlin classes without the need to add the keyword 'open'
+    // see https://blog.jetbrains.com/kotlin/2016/12/kotlin-1-0-6-is-here/
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$spring_boot_version"
+        classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version"
+    }
+}
+
+
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+apply plugin: 'org.springframework.boot'
+apply plugin: "kotlin-spring"
+apply plugin: "groovy"
+apply plugin: "project-report"
+apply from: "plugins/integration-test.gradle"
+apply from: "plugins/geb-gradleConfig.gradle"
+
+
+
+repositories {
+    // dependencies com from the https://bintray.com/bintray/jcenter
+    jcenter()
+}
+
+// set java version (here java8)
+sourceCompatibility = java_version
+targetCompatibility = java_version
+
+if (targetCompatibility.isJava8Compatible()) {
+    // kotlin classes are compile in java8
+    logger.info("compile kotlin classes in java8")
+    compileKotlin {
+        sourceCompatibility = java_version
+        targetCompatibility = java_version
+
+        kotlinOptions {
+            jvmTarget = java_version
+            apiVersion = "1.1"
+            languageVersion = "1.1"
+        }
+    }
+}
+
+// the main class to launch the app with spring-boot
+ext.kotlinMainClass = 'org.openclassrooms.cities.ApplicationKt'
+springBoot {
+    mainClass = kotlinMainClass
+//    addResources = true
+}
+
+// I show here many way to add dependencies
+// we can configure a lot of more
+// see https://docs.gradle.org/current/userguide/dependency_management.html#sub:module_dependencies
+// I also use the plugin 'java-library'
+// this plugin les us use new configuration dependencies 'implementation', 'ap', 'testImplémentation'
+// see https://docs.gradle.org/current/userguide/java_library_plugin.html
+
+
+configurations.all {
+    resolutionStrategy {
+        eachDependency { DependencyResolveDetails details ->
+            if (details.requested.group == 'org.seleniumhq.selenium') {
+                details.useVersion seleniumVersion
+            }
+        }
+    }
+}
+
+
+
+
+dependencies {
+    compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jre8', version: kotlin_version
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.boot:spring-boot-starter-thymeleaf"
+    compile group: 'com.google.guava', name: 'guava', version: '21.0'
+    compile group: 'org.springframework.security', name: 'spring-security-web'
+    compile 'org.springframework.security:spring-security-config:4.2.2.RELEASE'
+    compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4:2.1.2.RELEASE'
+    compile "org.hibernate:hibernate-validator"
+
+    // assemble spock dependencies in a list
+    def spockDependencies = ["org.spockframework:spock-core:$spock_version",
+                             "org.spockframework:spock-spring:$spock_version"]
+
+    testImplementation("org.codehaus.groovy:groovy-all:$groovy_version",
+            "org.springframework.boot:spring-boot-starter-test",
+            spockDependencies)
+    testImplementation(group: 'org.codehaus.groovy', name: 'groovy-json', version: groovy_version)
+    testImplementation group: 'org.springframework.security', name: 'spring-security-test'
+
+    testImplementation('com.athaydes:spock-reports:1.3.0') {
+        transitive = false // this avoids affecting your version of Groovy/Spock
+    }
+
+    integrationTestCompile "com.geowarin:spring-spock-mvc:$spock_mock_version"
+
+
+
+    functionnalTestCompile "org.gebish:geb-spock:${gebVersion}"
+    functionnalTestCompile "org.seleniumhq.selenium:selenium-chrome-driver:${seleniumVersion}"
+    integrationTestCompile "org.seleniumhq.selenium:selenium-firefox-driver:${seleniumVersion}"
+//    integrationTestCompile('info.novatec.testit:webtester-support-marionette:2.0.4') {
+//        transitive = true
+//    }
+
+    // For downloading browser-specific drivers that browsers like Chrome and IE require
+//    integrationTestCompile("io.github.bonigarcia:webdrivermanager:1.5.0") {
+//        exclude group: 'org.seleniumhq.selenium'
+//    }
+
+    // the 'dev' profile is the default profile
+    // to change the profile, use in the commandLine
+    // gradlew -Pprofile='test' for example
+    if (profile == "dev") {
+        logger.info(" ==== developement configuration ====")
+        // spring-boot-devtools let developper the possibility to modify the application
+        // even the application is running. The result will be directly apply by the server.
+        // to use it, launch
+        // 'gradlew springRun'
+        //
+        // be careful spring-boo-devtools do not read filse in the src/ folder but in the build/ folder
+        // for some IDE the Compilations and copy resources files is automatic
+        // for others you have to launch it manually.
+        // For example in Intellij to 'recompile' a file is 'ctrl+shif+F9' or with 'Build -> Recompile'
+        // or 'build project' with a 'ctrl+F9' or with 'Build -> Build Project'
+        //
+        // you can also use gradle to compile sources and resources the command line
+        // 'gradlew classes'
+        // But in this case, the 'liveReload' will not work, only the 'liveRestart'
+        // You can also use the continious build from gradle
+        // 'gradlew classes -t' ou 'gradlew test -t'
+        //
+        // see https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html
+        //
+        // You can also use the liveReload plugin in your browser to automatically reload the webpage
+        // http://livereload.com/extensions/
+        runtimeOnly("org.springframework.boot:spring-boot-devtools")
+    }
+
+
+}
+
+
+

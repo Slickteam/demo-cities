@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <head th:replace="fragments/headTag :: headTag (title='Display city')"></head>
+    <meta charset="utf-8"/>
+
+    <!--<title>Hello Spring Boot!</title>-->
+    <!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>-->
+    <!--<link-->
+    <!--th:href="@{/css/core.css}"-->
+    <!--rel="stylesheet"/>-->
+</head>
+
+
+<body>
+<!--/*@thymesVar id="city" type="org.openclassrooms.cities.model.City"*/-->
+
+<div class="site">
+    <div th:include="fragments/bodyHeader (tab='cities')" th:remove="tag"></div>
+
+    <div id="bloc_page" th:object="${city}" class="site-content">
+        <article class="display-pannel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Show City</h3>
+            </div>
+            <div class="panel-body">
+                <div class="line">
+                    <div class="line-title">
+                        <p>Name:</p>
+                    </div>
+                    <div class="line-content">
+                        <p id="cityName" th:text="*{name}"></p>
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="line-title">
+                        <p>Population:</p>
+                    </div>
+                    <div class="line-content">
+                        <p id="population" th:text="*{population}"></p>
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="line-title">
+                        <p>Revenu per habitant:</p>
+                    </div>
+                    <div class="line-content">
+                        <p id="revenue" th:text="|*{revenuPerHabitants} €/hab|"></p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="pannel-footer"></div>
+        </article>
+    </div>
+
+
+    <div th:include="fragments/bodyFooter" th:remove="tag"></div>
+</div>
+
+</body>
+</html>

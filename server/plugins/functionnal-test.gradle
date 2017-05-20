@@ -1,0 +1,63 @@
+/**
+ * This file add integration test to the build
+ *
+ * integration test source file can be add in 'src/integrationTest/java' or 'src/integrationTest/groovy'
+ *
+ * to launch it :
+ * 'gradle integrationTest'
+ *
+ * 'gradle build' don't launch integration tests
+ *
+ * 'gradle BootRun' launch integration tests
+ */
+
+sourceSets {
+    functionnalTest {
+
+
+        if (plugins.withType(org.gradle.api.plugins.GroovyPlugin)) {
+            groovy {
+                compileClasspath += main.output + test.output + integrationTest.output
+                runtimeClasspath += main.output + test.output + integrationTest.output
+            }
+        }
+        if (plugins.withType(org.gradle.api.plugins.JavaPlugin)) {
+            java {
+                compileClasspath += main.output + test.output + integrationTest.output
+                runtimeClasspath += main.output + test.output + integrationTest.output
+            }
+        }
+
+    }
+
+}
+
+
+// funcional test can use all dependencies of intagration test
+configurations {
+    functionnalTestCompile.extendsFrom integrationTestCompile
+}
+
+
+// create the functional test task
+task functionalTest(type: Test) {
+    testClassesDir = sourceSets.functionnalTest.output.classesDir
+    classpath = sourceSets.functionnalTest.runtimeClasspath
+}
+
+
+//integration test are run
+functionalTest.mustRunAfter test
+
+//gradle bootrun launch the integratinos test
+//check.dependsOn integrationTest
+
+/**
+ * separate integration and unit test reports
+ * unit tests is in 'build/reports/tests'
+ * integration tests report is in 'build/reports/integrationtests'
+ */
+tasks.withType(Test) {
+    reports.html.destination = file("${reporting.baseDir}/${name}s")
+}
+

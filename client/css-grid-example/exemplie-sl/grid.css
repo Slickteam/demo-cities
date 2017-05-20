@@ -1,0 +1,45 @@
+
+body {
+    text-align: center;
+    font-family: "Dosis", serif;
+
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 0.33fr 0.33fr 0.33fr;
+    grid-template-rows: auto;
+    grid-column-gap: 15px;
+    grid-row-gap: 10px;
+    min-height: 97vh;
+}
+
+.grid-element {
+    background-color: #444;
+    color: #fff;
+    padding: 20px;
+    font-size: 2em;
+
+    /* text au centre des blocs*/
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+}
+
+.colone1 {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    background: #69F;
+}
+
+.colone2 {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    background: #6F9;
+}
+
+.colone3 {
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+    background: #F69;
+}

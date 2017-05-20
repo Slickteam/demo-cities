@@ -1,0 +1,53 @@
+
+body {
+    text-align: center;
+    font-family: "Dosis", serif;
+
+}
+
+.grid-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: 97vh;
+}
+
+.grid-element {
+    background-color: #444;
+    color: #fff;
+    font-size: 2em;
+    padding: 2rem;
+
+    flex-grow: 1;
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+}
+
+.colone1 {
+
+    background: #69F;
+}
+
+.colone2 {
+
+    background: #6F9;
+}
+
+.colone3 {
+
+    background: #F69;
+}
+
+@media screen and (max-width: 500px) {
+
+    .grid-container {
+        flex-direction: column;
+    }
+
+    .grid-element {
+        height: 30%;
+        width: inherit;
+    }
+
+}

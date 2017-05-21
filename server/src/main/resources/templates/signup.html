@@ -20,69 +20,89 @@
 <div class="site">
     <div th:include="fragments/bodyHeader :: header" th:remove="tag"></div>
 
-    <div id="bloc_page" class="site-content page-form-grid">
-        <article class="page-form-grid-form">
-            <div class="main-center">
-                <img width="250" height="74"
-                     th:src="@{/images/Logo web noir.png}" src="../static/images/logo.png"
-                     class="custom-logo" alt="logo"/>
-            </div>
-            <div class="main-login main-center">
-                <!--/*@thymesVar id="user" type="org.openclassrooms.cities.model.User"*/-->
-                <form id="form" class="form-horizontal" th:action="@{/signup}" method="post" th:object="${user}">
+    <div id="bloc_page" class="site-content container-fluid">
+        <div class="row">
+            <article class="col-sm-4 col-sm-push-4 ">
+                <div class="main-center">
+                    <img width="250" height="74"
+                         th:src="@{/images/Logo web noir.png}" src="../static/images/logo.png"
+                         class="custom-logo" alt="logo"/>
+                </div>
+                <div class="main-login">
+                    <!--/*@thymesVar id="user" type="org.openclassrooms.cities.model.User"*/-->
+                    <form id="form" class="" th:action="@{/signup}" method="post"
+                          th:object="${user}"
+                          data-toggle="validator">
 
-                    <div class="form-group">
-                        <label for="login" class="cols-sm-2 control-label">Your Username</label>
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                            <input id="login" type="text" class="form-control" name="login"
-                                   placeholder="Enter your Username" th:field="*{login}" minlength="3"/>
+                        <div class="help-block with-errors"></div>
+
+                        <div class="form-group has-feedback">
+                            <label for="login" class="cols-sm-2 control-label">Your Username</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input id="login" type="text" class="form-control" name="login"
+                                       placeholder="Enter your Username" th:field="*{login}" minlength="3"/>
+                            </div>
                         </div>
-                    </div>
 
 
-                    <div class="form-group">
-                        <label for="email" class="cols-sm-2 control-label">Your Email</label>
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                            <input id="email" type="email" class="form-control" name="email"
-                                   placeholder="Enter your Email" th:field="*{email}"/>
+                        <div class="form-group has-feedback">
+                            <label for="email" class="cols-sm-2 control-label">Your Email</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input id="email" type="email" class="form-control" name="email"
+                                       placeholder="Enter your Email" th:field="*{email}"/>
+                            </div>
+                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <div class="help-block with-errors"></div>
                         </div>
-                    </div>
 
 
-                    <div class="form-group">
-                        <label for="password" class="cols-sm-2 control-label">Password</label>
-                        <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-lock fa-lg"
-                                                                   aria-hidden="true"></i></span>
-                            <input type="password" class="form-control" name="password" id="password"
-                                   placeholder="Enter your Password" th:field="*{password}" minlength="5"/>
+                        <div class="form-group">
+                            <label for="password" class="cols-sm-2 control-label">Password</label>
+                            <div class="form-inline row">
+                                <div class="form-group col-sm-6">
+                                    <!--<span class="input-group-addon"><i class="fa fa-lock fa-lg"-->
+                                    <!--aria-hidden="true"></i></span>-->
+                                    <input type="password" class="form-control" name="password" id="password"
+                                           placeholder="Enter your Password" th:field="*{password}" minlength="6"/>
+                                    <div class="help-block">Minimum of 6 characters</div>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <input type="password" class="form-control" name="confirm" id="confirm"
+                                           placeholder="Confirm your Password"
+                                           data-match="#password" data-match-error="Whoops, these don't match"/>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
-                        <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-lock fa-lg"
-                                                                   aria-hidden="true"></i></span>
-                            <input type="password" class="form-control" name="confirm" id="confirm"
-                                   placeholder="Confirm your Password"/>
+
+                        <div class="form-group ">
+                            <button type="button" class="btn btn-primary btn-lg btn-block login-button">Register
+                            </button>
                         </div>
-                    </div>
+
+                    </form>
 
 
-                    <div class="form-group ">
-                        <button type="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>
-                    </div>
-
-                </form>
-            </div>
-        </article>
+                </div>
+            </article>
+        </div>
     </div>
 
 
-    <div th:include="fragments/bodyFooter" th:remove="tag"></div>
+    <div th:replace="fragments/bodyFooter" th:remove="tag">
+
+        <script
+                src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+                crossorigin="anonymous"></script>
+
+        <script src="https://use.fontawesome.com/c9013f5c4c.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.js"></script>
+
+    </div>
 </div>
 
 </body>

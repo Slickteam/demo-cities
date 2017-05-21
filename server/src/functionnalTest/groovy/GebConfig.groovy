@@ -27,6 +27,9 @@ environments {
     // See: http://code.google.com/p/selenium/wiki/FirefoxDriver
     firefox {
         driver = { new FirefoxDriver() }
+
+        //don't know why but without that firefox test don't work :(
+        atCheckWaiting = 1
     }
 
 }

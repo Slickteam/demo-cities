@@ -8,8 +8,8 @@ import javax.validation.constraints.Size
  * Created by jguidoux on 19/05/2017.
  */
 data class User(
-        @NotNull
-        @Size(min = 2, max = 12)
+        @get:NotNull
+        @get:Size(min = 3, max = 12)
         var login: String = "",
         @NotNull
         @Email

@@ -48,6 +48,7 @@ class HomeController(val repository: ICitiesRepository) {
 
     @PostMapping("/signup")
     fun signup(@Valid user: User, results: BindingResult): String {
+        println(user)
         if (results.hasErrors()) {
             return "signup";
         }

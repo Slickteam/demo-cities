@@ -19,7 +19,7 @@ enum Browser {
     String getValue() {value}
 }
 
-ext.drivers = [Browser.CHROME]
+ext.drivers = [Browser.CHROME, Browser.FIREFOX]
 
 drivers.each { driver ->
     task("${driver.getValue()}FuncTest", type: Test) {

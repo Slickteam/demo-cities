@@ -51,7 +51,7 @@ class HomeController(val repository: ICitiesRepository) {
         if (results.hasErrors()) {
             return "signup";
         }
-        return "redirect:/login"
+        return "redirect:/login?signupSuccess"
     }
 
 

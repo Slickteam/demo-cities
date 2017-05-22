@@ -82,9 +82,8 @@ dependencies {
     compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jre8', version: kotlin_version
     compile "org.springframework.boot:spring-boot-starter-web"
     compile "org.springframework.boot:spring-boot-starter-thymeleaf"
+    compile "org.springframework.boot:spring-boot-starter-security"
     compile group: 'com.google.guava', name: 'guava', version: '21.0'
-    compile group: 'org.springframework.security', name: 'spring-security-web'
-    compile 'org.springframework.security:spring-security-config:4.2.2.RELEASE'
     compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4:2.1.2.RELEASE'
     compile "org.hibernate:hibernate-validator"
 

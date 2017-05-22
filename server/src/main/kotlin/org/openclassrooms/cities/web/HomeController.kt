@@ -2,6 +2,7 @@ package org.openclassrooms.cities.web
 
 import org.openclassrooms.cities.model.User
 import org.openclassrooms.cities.repositories.ICitiesRepository
+import org.openclassrooms.cities.repositories.IUserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -16,7 +17,8 @@ import javax.validation.Valid
  * Created by jguidoux on 05/05/2017.
  */
 @Controller
-class HomeController(val repository: ICitiesRepository) {
+class HomeController(val repository: ICitiesRepository,
+                     val userRepositrory: IUserRepository) {
 
     @Autowired
 
@@ -52,8 +54,11 @@ class HomeController(val repository: ICitiesRepository) {
         if (results.hasErrors()) {
             return "signup";
         }
+        userRepositrory.addNewUser(user)
         return "redirect:/login?signupSuccess"
     }
 
 
 }
+
+

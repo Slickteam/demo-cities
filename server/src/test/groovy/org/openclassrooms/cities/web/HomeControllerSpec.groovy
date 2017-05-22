@@ -4,21 +4,16 @@ import org.openclassrooms.cities.exceptions.CityNotFoundException
 import org.openclassrooms.cities.exceptions.GlobalExceptionHandler
 import org.openclassrooms.cities.model.City
 import org.openclassrooms.cities.repositories.ICitiesRepository
-import org.spockframework.compiler.model.Spec
+import org.openclassrooms.cities.repositories.IUserRepository
 import org.springframework.http.HttpStatus
 import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.ResultActions
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers
-import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.util.UriComponentsBuilder
 import spock.lang.Specification
 
-import static org.hamcrest.Matchers.*;
-import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
+import static org.hamcrest.Matchers.*
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 /**
  * Created by jguidoux on 09/05/2017.
@@ -26,7 +21,8 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 class HomeControllerSpec extends Specification {
 
     ICitiesRepository citiesRepository = Mock()
-    HomeController homeController = new HomeController(citiesRepository)
+    IUserRepository userRepository = Mock()
+    HomeController homeController = new HomeController(citiesRepository, userRepository)
 
     MockMvc mockMvc
 
@@ -86,7 +82,7 @@ class HomeControllerSpec extends Specification {
     def "display city which does not exist"() {
 
         given: "this cities : 'Paris' 'Rennes' 'Bordeaux' 'Reims' contains in the repository"
-        citiesRepository.getCity("Rennnes") >> {throw new CityNotFoundException("Rennnes")}
+        citiesRepository.getCity("Rennnes") >> { throw new CityNotFoundException("Rennnes") }
 
 
         when: "I want to display the city of 'Rennnes' with url '/cities?name=Rennnes'"

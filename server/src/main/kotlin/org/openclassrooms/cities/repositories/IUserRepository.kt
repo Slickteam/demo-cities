@@ -8,5 +8,6 @@ import org.openclassrooms.cities.model.User
 interface IUserRepository {
 	fun addNewUser(user: User)
 	fun findByUsername(username: String?): User?
-	fun containUsername(login: String?): Boolean
+	fun containUsername(login: String): Boolean
+	fun containEmal(email: String): Boolean
 }

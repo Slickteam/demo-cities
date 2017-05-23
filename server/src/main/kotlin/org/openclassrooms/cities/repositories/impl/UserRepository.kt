@@ -15,7 +15,7 @@ class UserRepository : IUserRepository {
 	val users = mutableListOf<User>()
 
 	init {
-		users.add(User(login = "user", password = "password"))
+		users.add(User(login = "user", email = "foo@toto.fr", password = "password"))
 	}
 
 	override fun addNewUser(user: User) {
@@ -25,6 +25,10 @@ class UserRepository : IUserRepository {
 	override fun findByUsername(username: String?): User?
 			= users.find { user -> user.login.equals(username) }
 
-	override fun containUsername(login: String?): Boolean
+
+	override fun containUsername(login: String): Boolean
 			= findByUsername(login) != null
+
+	override fun containEmal(email: String): Boolean
+			= users.find { user -> user.email.equals(email) } != null
 }

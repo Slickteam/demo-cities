@@ -34,15 +34,14 @@
                           th:object="${user}"
                           data-toggle="validator">
 
-                        <ul>
-                            <li th:each="e : ${#fields.detailedErrors()}" th:class="${e.global}? globalerr : fielderr">
+                        <ul th:if="${#fields.hasErrors()}" class="alert alert-danger">
+                            <li th:each="e : ${#fields.detailedErrors()}" th:class="${e.global}?  globalerr : fielderr">
                                 <span th:text="${e.global}? '*' : ${e.fieldName}">The field name</span> |
                                 <span th:text="${e.message}">The error message</span>
                             </li>
                         </ul>
 
-                        <div class="form-group has-feedback"
-                             th:class="(${#fields.hasErrors('login')}? 'form-group has-feedback a': 'form-group has-feedback has-error b')">
+                        <div class="form-group has-feedback">
                             <label for="login" class="cols-sm-2 control-label">Your Username</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>

@@ -15,6 +15,6 @@ class UniqueEmailValidator(val userRepository: UserRepository) : ConstraintValid
 	}
 
 	override fun isValid(email: String?, context: ConstraintValidatorContext?): Boolean {
-		return email != null && !userRepository.containEmal(email);
+		return email != null && !userRepository.containEmail(email);
 	}
 }

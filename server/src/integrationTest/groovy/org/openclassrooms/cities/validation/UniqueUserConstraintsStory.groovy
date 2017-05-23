@@ -15,18 +15,18 @@ import javax.validation.Validator
  */
 @SpringBootTest
 @AutoConfigureMockMvc
-class RegisterNewUserStory extends Specification {
+class UniqueUserConstraintsStory extends Specification {
 
 
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository userRepository
     @Autowired
-    private Validator validator;
+    private Validator validator
 
 
     def "I can't add a user with an existing login"() {
         given: "The contain a user with login 'robert"
-        String login = "robert";
+        String login = "robert"
         User predefinedUser = new User(login, "robert.martin@gmail.com", "pass-word")
         userRepository.addNewUser(predefinedUser)
 
@@ -41,7 +41,7 @@ class RegisterNewUserStory extends Specification {
 
     def "I can't add a user with an existing email"() {
         given: "The contain a user with login 'robert.martin@gmail.com"
-        String email = "robert.martin@gmail.com";
+        String email = "robert.martin@gmail.com"
         User predefinedUser = new User("robert", email, "pass-word")
         userRepository.addNewUser(predefinedUser)
 

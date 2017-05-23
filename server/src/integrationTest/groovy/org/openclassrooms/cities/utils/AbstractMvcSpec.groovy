@@ -1,6 +1,5 @@
 package org.openclassrooms.cities.utils
 
-import com.sun.jndi.toolkit.url.Uri
 import org.openclassrooms.cities.Application
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.web.WebAppConfiguration
@@ -10,7 +9,8 @@ import org.springframework.web.context.WebApplicationContext
 import org.springframework.web.util.UriComponentsBuilder
 import spockmvc.SpockMvcResult
 import spockmvc.SpockMvcSpec
-import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.*;
+
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
 /**
  * Created by jguidoux on 04/05/2017.

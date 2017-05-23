@@ -47,7 +47,8 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                                 <input id="login" type="text" class="form-control" name="login"
-                                       placeholder="Enter your Username" th:field="*{login}" minlength="1"/>
+                                       placeholder="Enter your Username" th:field="*{login}" minlength="1"
+                                       autofocus="autofocus"/>
                             </div>
                             <span class="help-block with-errors" th:if="${#fields.hasErrors('login')}"
                                   th:errors="*{login}">Incorrect password</span>

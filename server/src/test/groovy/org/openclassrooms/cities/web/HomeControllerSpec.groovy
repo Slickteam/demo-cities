@@ -32,19 +32,7 @@ class HomeControllerSpec extends Specification {
                 .build()
     }
 
-    def "go to home page"() {
 
-        when: "I request the '/'"
-        def perform = mockMvc.perform(get("/"))
-        def response = perform.andReturn().response
-
-
-        then: "the request status should be OK (200)"
-        response.status == HttpStatus.OK.value()
-
-        and: "the retun view name should be 'index"
-        perform.andExpect(view().name("index"))
-    }
 
 
     def "display city"() {

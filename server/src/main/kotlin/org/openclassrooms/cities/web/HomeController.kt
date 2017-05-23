@@ -3,7 +3,6 @@ package org.openclassrooms.cities.web
 import org.openclassrooms.cities.model.User
 import org.openclassrooms.cities.repositories.ICitiesRepository
 import org.openclassrooms.cities.repositories.IUserRepository
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.validation.BindingResult
@@ -20,26 +19,14 @@ import javax.validation.Valid
 class HomeController(val repository: ICitiesRepository,
                      val userRepositrory: IUserRepository) {
 
-    @Autowired
 
-
-    @GetMapping("/")
-    fun index(): String {
-        return "index"
-    }
-
-
-    @GetMapping("/cities")
+	@GetMapping("/cities")
     fun getCity(@RequestParam cityName: String, model: Model): String {
         val city = repository.getCity(cityName)
         model.addAttribute("city", city)
         return "displayCity"
     }
 
-    @GetMapping("/login")
-    fun login(): String {
-        return "login"
-    }
 
 
     @GetMapping("/signup")

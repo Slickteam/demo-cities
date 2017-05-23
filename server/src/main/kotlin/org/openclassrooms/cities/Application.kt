@@ -9,6 +9,10 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
+
+
 
 
 /**
@@ -69,5 +73,15 @@ class SecurityConfig(val userDetailsService: AuthenticationService) : WebSecurit
 //	fun encoder(): PasswordEncoder {
 //		return BCryptPasswordEncoder(11)
 //	}
+
+}
+
+@Configuration
+class MvcConfig : WebMvcConfigurerAdapter() {
+
+	override fun addViewControllers(registry: ViewControllerRegistry) {
+		registry.addViewController("/").setViewName("index")
+		registry.addViewController("/login").setViewName("login")
+	}
 
 }

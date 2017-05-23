@@ -5,16 +5,7 @@ import org.openclassrooms.cities.exceptions.CityNotFoundException
 import org.openclassrooms.cities.model.City
 import org.openclassrooms.cities.repositories.ICitiesRepository
 import org.springframework.http.MediaType
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.test.context.support.WithMockUser
-import org.springframework.test.context.ContextConfiguration
-import org.springframework.test.context.TestExecutionListeners
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener
-import org.springframework.test.context.support.DirtiesContextTestExecutionListener
-import org.springframework.test.context.transaction.TransactionalTestExecutionListener
-import org.springframework.test.context.web.ServletTestExecutionListener
-import org.springframework.test.context.web.WebAppConfiguration
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.util.UriComponentsBuilder

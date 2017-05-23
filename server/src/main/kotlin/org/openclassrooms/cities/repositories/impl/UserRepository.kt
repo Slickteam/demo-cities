@@ -27,8 +27,8 @@ class UserRepository : IUserRepository {
 
 
 	override fun containUsername(login: String): Boolean
-			= findByUsername(login) != null
+			= users.any { user -> user.login.equals(login) }
 
 	override fun containEmail(email: String): Boolean
-			= users.find { user -> user.email.equals(email) } != null
+			= users.any { user -> user.email.equals(email) }
 }

@@ -51,10 +51,10 @@ class HomeController(val repository: ICitiesRepository,
     @PostMapping("/signup")
     fun signup(@Valid user: User, results: BindingResult): String {
         println(user)
+        userRepositrory.addNewUser(user)
         if (results.hasErrors()) {
             return "signup";
         }
-        userRepositrory.addNewUser(user)
         return "redirect:/login?signupSuccess"
     }
 

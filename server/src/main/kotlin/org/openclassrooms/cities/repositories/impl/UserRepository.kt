@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository
 class UserRepository : IUserRepository {
 
 
+
 	val users = mutableListOf<User>()
 
 	init {
@@ -23,4 +24,7 @@ class UserRepository : IUserRepository {
 
 	override fun findByUsername(username: String?): User?
 			= users.find { user -> user.login.equals(username) }
+
+	override fun containUsername(login: String?): Boolean
+			= findByUsername(login) != null
 }

@@ -47,8 +47,9 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                                 <input id="login" type="text" class="form-control" name="login"
-                                       placeholder="Enter your Username" th:field="*{login}" minlength="1"
-                                       autofocus="autofocus"/>
+                                       placeholder="Enter your Username" th:field="*{login}" minlength="4"
+                                       maxlength="12"
+                                       autofocus="autofocus" required="required"/>
                             </div>
                             <span class="help-block with-errors" th:if="${#fields.hasErrors('login')}"
                                   th:errors="*{login}">The login is not correct</span>
@@ -62,9 +63,11 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                                 <input id="email" type="email" class="form-control" name="email"
-                                       placeholder="Enter your Email" th:field="*{email}"/>
+                                       placeholder="Enter your Email" th:field="*{email}"
+                                       required="required" minlength="4" maxlength="40"/>
                             </div>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <span class="glyphicon form-control-feedback"
+                                  th:aria-hidden="${#fields.hasErrors('email')}? 'false' : 'true'"></span>
                             <span class="help-block with-errors" th:if="${#fields.hasErrors('email')}"
                                   th:errors="*{email}"></span>
                         </div>
@@ -78,13 +81,15 @@
                                     <!--<span class="input-group-addon"><i class="fa fa-lock fa-lg"-->
                                     <!--aria-hidden="true"></i></span>-->
                                     <input type="password" class="form-control" name="password" id="password"
-                                           placeholder="Enter your Password" th:field="*{password}" minlength="6"/>
+                                           placeholder="Enter your Password" th:field="*{password}" minlength="6"
+                                           maxlength="40" required="required"/>
                                     <div class="help-block">Minimum of 6 characters</div>
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <input type="password" class="form-control" name="confirm" id="confirm"
                                            placeholder="Confirm your Password"
-                                           data-match="#password" data-match-error="Whoops, these don't match"/>
+                                           data-match="#password" data-match-error="Whoops, these don't match"
+                                           required="required" maxlength="40"/>
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>

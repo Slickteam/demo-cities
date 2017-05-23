@@ -94,7 +94,6 @@ dependencies {
             spockDependencies)
     testImplementation(group: 'org.codehaus.groovy', name: 'groovy-json', version: groovy_version)
     testImplementation group: 'org.springframework.security', name: 'spring-security-test'
-
     testImplementation('com.athaydes:spock-reports:1.3.0') {
         transitive = false // this avoids affecting your version of Groovy/Spock
     }

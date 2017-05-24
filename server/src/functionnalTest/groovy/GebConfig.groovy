@@ -10,29 +10,33 @@ import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 
 waiting {
-    timeout = 2
+    atCheckWaiting = true
+    includeCauseInMessage = true
+    timeout = 30
+    retryInterval = 5.0
 }
 
 
 environments {
 
-    // run via “./gradlew chromeTest”
+    // run via “./gradlew chromeFuncTest”
     // See: http://code.google.com/p/selenium/wiki/ChromeDriver
     chrome {
 
         driver = { new ChromeDriver() } //"chrome"
     }
 
-    // run via “./gradlew firefoxTest”
+    // run via “./gradlew firefoxFuncTest”
     // See: http://code.google.com/p/selenium/wiki/FirefoxDriver
     firefox {
-        println("%%%%%%%%%%%%%%%%%")
         driver = { new FirefoxDriver() }
+
+        //don't know why but without that firefox test don't work :(
+        atCheckWaiting = 1
     }
 
 }
 
-// To run the tests with all browsers just run “./gradlew test”
+// To run the tests with all browsers just run “./gradlew functionalTests”
 
-baseUrl = "http://localhost:8080"
-reportsDir = new File("build/runtime_reports_dir")
+//baseUrl = "http://localhost:8080"

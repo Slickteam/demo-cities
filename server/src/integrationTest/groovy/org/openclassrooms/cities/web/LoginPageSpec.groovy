@@ -29,6 +29,7 @@ class LoginPageSpec extends Specification {
 
     def "write valid login and password in login page"() {
 
+
         given: "the user 'user' with password 'password"
         def user = "user"
         def password = "password"

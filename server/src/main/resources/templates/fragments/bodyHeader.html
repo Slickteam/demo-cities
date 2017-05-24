@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head></head>
 <body>
-<header th:fragment="bodyHeader (tab)" id="header">
+<header th:fragment="bodyHeader" id="header" class="site-header">
 
 
     <nav id="navbar">
@@ -26,6 +26,17 @@
                     <form id="form-logout" th:action="@{/logout}" method="post">
                         <input type="submit" value="Logout"/>
                     </form>
+                </div>
+            </div>
+            <div class="end-items" sec:authorize="!isAuthenticated()">
+                <div class="nav-item important-button">
+                    <a id="go-login" href="/login">Log in</a>
+                </div>
+                <div class="nav-item important-button">
+                    <a id="go-signin" th:href="@{/signup}">Sign up</a>
+                    <!--<form id="form-signin" th:action="@{/signin}" method="post">-->
+                    <!--<input type="submit" value="Sign in"/>-->
+                    <!--</form>-->
                 </div>
             </div>
         </div>

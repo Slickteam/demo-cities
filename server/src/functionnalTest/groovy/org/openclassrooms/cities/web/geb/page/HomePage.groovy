@@ -14,7 +14,7 @@ class HomePage extends TemplatePage {
 
         searchForm { $("#search-form") }
         cityInput { searchForm.cityName() }
-        submitSearchButton { searchForm.find("input", type: "submit") }
+        submitSearchButton { searchForm.find("button", type: "submit") }
         citiesDiv(wait: true) { $("#results>div") }
         citiesNameDiv(wait: true) {
             citiesDiv.find("div", class: "cityName")

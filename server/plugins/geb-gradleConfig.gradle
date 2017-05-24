@@ -19,7 +19,7 @@ enum Browser {
     String getValue() {value}
 }
 
-ext.drivers = [Browser.CHROME]
+ext.drivers = [Browser.CHROME, Browser.FIREFOX]
 
 drivers.each { driver ->
     task("${driver.getValue()}FuncTest", type: Test) {
@@ -30,11 +30,9 @@ drivers.each { driver ->
         classpath = sourceSets.functionnalTest.runtimeClasspath
 
 
-        systemProperty "geb.build.reportsDir", reporting.file("$name/geb")
+        systemProperty "geb.build.reportsDir", "${reports.html.destination}/geb-report"
         systemProperty "geb.env", driver
 
-        // If you wanted to set the baseUrl in your build…
-        // systemProperty "geb.build.baseUrl", "http://myapp.com"
     }
 }
 

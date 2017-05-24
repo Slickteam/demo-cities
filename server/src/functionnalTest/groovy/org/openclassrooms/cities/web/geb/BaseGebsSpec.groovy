@@ -27,7 +27,7 @@ class BaseGebsSpec extends GebReportingSpec {
     def login() {
         def loginPage = to LoginPage
         loginPage.login("user", "password")
-
+//        sleep(3000)
     }
 
     def logout() {

@@ -21,13 +21,13 @@ class LoginPage extends TemplatePage {
         }
 
 
-        errors(required: false) { $(".error") }
+        errors(required: false) { $(".alert-danger") }
 
         invalidUsernameOrPasswordError(required: false) {
             errors.filter(text: contains("Invalid username or password"))
         }
 
-        successes(required: false) { $(".success") }
+        successes(required: false) { $(".alert-success") }
         SuccessLogoutMessage(required: false) {
             successes.filter(text: contains("You have been successful logged out"))
         }
@@ -40,6 +40,10 @@ class LoginPage extends TemplatePage {
         usernameInputField << username
         passwordInputField << password
         submitButton.click()
+
+        // timeout for firefox since we add password security
+        // security take a little time
+        sleep(100)
 
     }
 }

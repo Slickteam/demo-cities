@@ -2,42 +2,71 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml">
 
-<head th:replace="fragments/headTag :: headTag (title='Login Page')"></head>
+<head th:replace="fragments/headTag :: headTag (title='Login Page')">
+    <link th:href="@{/css/core.css}" href="/static/css/core.css" rel="stylesheet"/>
+
+    <link th:href="@{/css/pageforme.css}" href="/static/css/pageforme.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+    <title>Login page</title>
+</head>
 
 
 <body>
+
 <!--/*@thymesVar id="city" type="org.openclassrooms.cities.model.City"*/-->
 <!--/*@thymesVar id="loginError" type="java.lang.Boolean"*/-->
 
 <div class="site">
-    <div th:include="fragments/bodyHeader(tab='cities')" th:remove="tag"></div>
 
-    <div id="bloc_page" class="site-content">
-        <article class="containerl">
-            <div class="logo">Slickteam</div>
-            <div class="login-item">
-                <form id="login-form" th:action="@{/login}" method="post" class="form form-login">
-                    <div th:if="${param.error}" class="error">
-                        Invalid username or password.
+    <div th:replace="fragments/bodyHeader :: header" th:remove="tag"></div>
+
+    <div id="bloc_page" class="site-content page-form-grid">
+        <article class="page-form-grid-form">
+            <div class="main-center">
+                <img width="250" height="74"
+                     th:src="@{/images/Logo web noir.png}" src="../static/images/logo.png"
+                     class="custom-logo" alt="logo"/>
+            </div>
+            <div class="main-login main-center">
+                <!--/*@thymesVar id="user" type="org.openclassrooms.cities.dto.User"*/-->
+                <form id="login-form" th:action="@{/login}" method="post">
+
+                    <div th:if="${param.error}" class="alert alert-danger">
+                        <strong>Oh snap!</strong> Invalid username or password.
                     </div>
-                    <div th:if="${param.logout}" class="success">
-                        You have been successful logged out.
+                    <div th:if="${param.logout}" class="alert alert-success" role="alert">
+                        <strong>Well done!</strong> You have been successful logged out.
                     </div>
-                    <div class="form-field">
-                        <label class="user" for="username"><span class="hidden">Username</span></label>
-                        <input id="username" type="text" class="form-input" placeholder="Username"
-                               required="required" name="username"/>
+                    <div th:if="${param.signupSuccess}" class="alert alert-success" role="alert">
+                        <strong>Well done!</strong> Your account have been successful created.
                     </div>
 
-                    <div class="form-field">
-                        <label class="lock" for="password"><span class="hidden">Password</span></label>
-                        <input id="password" type="password" class="form-input" placeholder="Password"
-                               required="required" name="password"/>
+                    <div class="form-group">
+                        <label for="username" class="cols-sm-2 control-label">Your Username</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            <input id="username" type="text" class="form-control" name="username"
+                                   placeholder="Enter your Username" minlength="3" autofocus="autofocus"/>
+                        </div>
                     </div>
 
-                    <div class="form-field">
-                        <input id="login-button" type="submit" value="Log in"/>
+                    <div class="form-group">
+                        <label for="password" class="cols-sm-2 control-label">Password</label>
+                        <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg"
+                                                                   aria-hidden="true"></i></span>
+                            <input type="password" class="form-control" name="password" id="password"
+                                   placeholder="Enter your Password" minlength="5"/>
+                        </div>
                     </div>
+
+                    <div class="form-group ">
+                        <input type="submit" class="btn btn-primary btn-lg btn-block login-button"/>
+                    </div>
+
                 </form>
             </div>
         </article>

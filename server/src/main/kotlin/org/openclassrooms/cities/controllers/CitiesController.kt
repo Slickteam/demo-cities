@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/api/rest/cities")
 @CrossOrigin(origins = arrayOf("http://localhost:63342"))
-class CitiesController (var repository: ICitiesRepository){
+class CitiesController(val repository: ICitiesRepository) {
 
 
     /**

@@ -1,12 +1,13 @@
 package org.openclassrooms.cities.web
 
-import org.openclassrooms.cities.model.User
+import org.openclassrooms.cities.dto.Account
 import org.openclassrooms.cities.repositories.ICitiesRepository
-import org.openclassrooms.cities.repositories.IUserRepository
+import org.openclassrooms.cities.service.IUserService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
 import javax.validation.Valid
@@ -17,7 +18,7 @@ import javax.validation.Valid
  */
 @Controller
 class HomeController(val repository: ICitiesRepository,
-                     val userRepositrory: IUserRepository) {
+                     val userService: IUserService) {
 
 
 	@GetMapping("/cities")
@@ -31,16 +32,16 @@ class HomeController(val repository: ICitiesRepository,
 
     @GetMapping("/signup")
     fun signup(model: Model): String {
-        model.addAttribute("user", User())
+        model.addAttribute("user", Account())
         return "signup"
     }
 
     @PostMapping("/signup")
-    fun signup(@Valid user: User, results: BindingResult): String {
+    fun signup(@Valid @ModelAttribute("user") user: Account, results: BindingResult): String {
         if (results.hasErrors()) {
             return "signup";
         }
-	    userRepositrory.addNewUser(user)
+        userService.registerNewUserAccount(user)
         return "redirect:/login?signupSuccess"
     }
 

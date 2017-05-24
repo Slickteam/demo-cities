@@ -1,7 +1,7 @@
 package org.openclassrooms.cities.validation
 
-import org.openclassrooms.cities.model.User
-import org.openclassrooms.cities.repositories.impl.UserRepository
+import org.openclassrooms.cities.dto.Account
+import org.openclassrooms.cities.service.IUserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
@@ -19,7 +19,7 @@ class UniqueUserConstraintsStory extends Specification {
 
 
     @Autowired
-    private UserRepository userRepository
+    private IUserService userService
     @Autowired
     private Validator validator
 
@@ -27,12 +27,12 @@ class UniqueUserConstraintsStory extends Specification {
     def "I can't add a user with an existing login"() {
         given: "The contain a user with login 'robert"
         String login = "robert"
-        User predefinedUser = new User(login, "robert.martin@gmail.com", "pass-word")
-        userRepository.addNewUser(predefinedUser)
+        Account predefinedUser = new Account(login, "robert.martin@gmail.com", "pass-word")
+        userService.registerNewUserAccount(predefinedUser)
 
         when: "I try to add a user with same login"
-        User newUser = new User(login, "robert.d.junior@gmail.com", "123456")
-        Set<ConstraintViolation<User>> violations = validator.validate(newUser)
+        Account newUser = new Account(login, "robert.d.junior@gmail.com", "123456")
+        Set<ConstraintViolation<Account>> violations = validator.validate(newUser)
 
         then: "it should be 1 constraint violations"
         violations.size() == 1
@@ -42,12 +42,12 @@ class UniqueUserConstraintsStory extends Specification {
     def "I can't add a user with an existing email"() {
         given: "The contain a user with login 'robert.martin@gmail.com"
         String email = "robert.martin@gmail.com"
-        User predefinedUser = new User("robert", email, "pass-word")
-        userRepository.addNewUser(predefinedUser)
+        Account predefinedUser = new Account("robert", email, "pass-word")
+        userService.registerNewUserAccount(predefinedUser)
 
         when: "I try to add a user with same email"
-        User newUser = new User("roby", email, "123456")
-        Set<ConstraintViolation<User>> violations = validator.validate(newUser)
+        Account newUser = new Account("roby", email, "123456")
+        Set<ConstraintViolation<Account>> violations = validator.validate(newUser)
 
         then: "it should be 1 constraint violations"
         violations.size() == 1
@@ -60,8 +60,8 @@ class UniqueUserConstraintsStory extends Specification {
 
 
         when: "I try to add a user with same email"
-        User newUser = new User("roby", "robert.c.martin@gmail.com", "123456")
-        Set<ConstraintViolation<User>> violations = validator.validate(newUser)
+        Account newUser = new Account("roby", "robert.c.martin@gmail.com", "123456")
+        Set<ConstraintViolation<Account>> violations = validator.validate(newUser)
 
         then: "it should be 1 constraint violations"
         violations.size() == 0

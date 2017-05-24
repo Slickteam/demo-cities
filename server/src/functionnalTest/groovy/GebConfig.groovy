@@ -10,7 +10,10 @@ import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 
 waiting {
-    timeout = 2
+    atCheckWaiting = true
+    includeCauseInMessage = true
+    timeout = 30
+    retryInterval = 5.0
 }
 
 

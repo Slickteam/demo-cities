@@ -57,7 +57,7 @@ class SecurityAccessSpeck extends Specification {
         when: "I try to access to this url without being connected"
         def request = this.mockMvc.perform(get(url))
 
-        then: "the controller shoult return the 'login' page"
+        then: "the controller should return the 'login' page"
         request.andExpect(status().is3xxRedirection())
         request.andExpect(redirectedUrl("http://localhost/login"))
 

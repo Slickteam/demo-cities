@@ -4,7 +4,7 @@ import org.openclassrooms.cities.exceptions.CityNotFoundException
 import org.openclassrooms.cities.exceptions.GlobalExceptionHandler
 import org.openclassrooms.cities.model.City
 import org.openclassrooms.cities.repositories.ICitiesRepository
-import org.openclassrooms.cities.repositories.IUserRepository
+import org.openclassrooms.cities.service.IUserService
 import org.springframework.http.HttpStatus
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.web.util.UriComponentsBuilder
@@ -21,8 +21,8 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 class HomeControllerSpec extends Specification {
 
     ICitiesRepository citiesRepository = Mock()
-    IUserRepository userRepository = Mock()
-    HomeController homeController = new HomeController(citiesRepository, userRepository)
+    IUserService userService = Mock()
+    HomeController homeController = new HomeController(citiesRepository, userService)
 
     MockMvc mockMvc
 

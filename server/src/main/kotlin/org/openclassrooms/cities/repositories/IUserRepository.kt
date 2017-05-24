@@ -2,6 +2,7 @@ package org.openclassrooms.cities.repositories
 
 import org.openclassrooms.cities.model.User
 
+
 /**
  * Created by jguidoux on 22/05/2017.
  */

@@ -14,9 +14,6 @@ class UserRepository : IUserRepository {
 
 	val users = mutableListOf<User>()
 
-	init {
-		users.add(User(login = "user", email = "foo@toto.fr", password = "password"))
-	}
 
 	override fun addNewUser(user: User) {
 		users.add(user)

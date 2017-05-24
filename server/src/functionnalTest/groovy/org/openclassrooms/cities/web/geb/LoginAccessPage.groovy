@@ -42,14 +42,12 @@ class LoginAccessPage extends BaseGebsSpec {
 
 
         then: "I still should still be on the login page"
-        at LoginPage
-        and:
-//        loginPage.with {
-//            and: "there should be 1 error message"
-            errors.size() == 1
-//            and: "the message should say me that my username or my password is wrong"
-            invalidUsernameOrPasswordError.present
-//        }
+        def resultPage = at LoginPage
+
+        and: "there should be 1 error message"
+        resultPage.errors.size() == 1
+        and: "the message should say me that my username or my password is wrong"
+        resultPage.invalidUsernameOrPasswordError.present
 
     }
 
@@ -77,12 +75,11 @@ class LoginAccessPage extends BaseGebsSpec {
 
         then: "I should be on back on the login page"
         def resultPage = at LoginPage
-        resultPage.with {
-            and: "there should be 1 success message"
-            successes.size() == 1
-            and: "the message should say me that I'm successful logout"
-            SuccessLogoutMessage.present
-        }
+        and: "there should be 1 success message"
+        resultPage.successes.size() == 1
+        and: "the message should say me that I'm successful logout"
+        resultPage.SuccessLogoutMessage.present
+
     }
 
 

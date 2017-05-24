@@ -35,7 +35,7 @@ class MyUserPrincipal(val user: User) : UserDetails {
 	}
 
 	override fun getPassword(): String {
-		return user.password
+		return user.encodedPassword
 	}
 
 	override fun isAccountNonExpired(): Boolean {

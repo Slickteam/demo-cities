@@ -41,5 +41,9 @@ class LoginPage extends TemplatePage {
         passwordInputField << password
         submitButton.click()
 
+        // timeout for firefox since we add password security
+        // security take a little time
+        sleep(100)
+
     }
 }

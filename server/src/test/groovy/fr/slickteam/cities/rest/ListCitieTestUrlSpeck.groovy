@@ -1,4 +1,4 @@
-package fr.slickteam.cities.controllers
+package fr.slickteam.cities.rest
 
 import fr.slickteam.cities.model.City
 import fr.slickteam.cities.repositories.ICitiesRepository

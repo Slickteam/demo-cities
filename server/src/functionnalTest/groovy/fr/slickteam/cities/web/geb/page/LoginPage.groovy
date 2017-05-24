@@ -43,7 +43,7 @@ class LoginPage extends TemplatePage {
 
         // timeout for firefox since we add password security
         // security take a little time
-        sleep(100)
+        sleep(200)
 
     }
 }

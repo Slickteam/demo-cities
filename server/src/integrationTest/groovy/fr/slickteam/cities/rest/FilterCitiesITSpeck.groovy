@@ -1,4 +1,4 @@
-package fr.slickteam.cities.controllers
+package fr.slickteam.cities.rest
 
 import fr.slickteam.cities.utils.AbstractMvcSpec
 import org.springframework.http.HttpStatus

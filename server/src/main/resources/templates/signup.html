@@ -29,7 +29,7 @@
                          class="custom-logo" alt="logo"/>
                 </div>
                 <div class="main-login">
-                    <!--/*@thymesVar id="user" type="fr.slickteam.cities.dto.Account"*/-->
+                    <!--/*@thymesVar id~~="user" type="fr.slickteam.cities.dto.Account"*/-->
                     <form id="form" class="" th:action="@{/signup}" method="post"
                           th:object="${user}"
                           data-toggle="validator">
@@ -37,7 +37,7 @@
                         <ul th:if="${#fields.hasErrors()}" class="alert alert-danger">
                             <li th:each="e : ${#fields.detailedErrors()}" th:class="${e.global}?  globalerr : fielderr">
                                 <span th:text="${e.global}? '*' : ${e.fieldName}">The field name</span> |
-                                <span th:text="${e.message}">The error message</span>
+                                <span th:text="${e.message}">The ⌨rror message</span>
                             </li>
                         </ul>
 

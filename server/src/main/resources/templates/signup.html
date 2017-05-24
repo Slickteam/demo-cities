@@ -14,7 +14,7 @@
 </head>
 
 <body>
-<!--/*@thymesVar id="city" type="org.openclassrooms.cities.model.City"*/-->
+<!--/*@thymesVar id="city" type="fr.slickteam.cities.model.City"*/-->
 <!--/*@thymesVar id="loginError" type="java.lang.Boolean"*/-->
 
 <div class="site">
@@ -29,7 +29,7 @@
                          class="custom-logo" alt="logo"/>
                 </div>
                 <div class="main-login">
-                    <!--/*@thymesVar id="user" type="org.openclassrooms.cities.dto.User"*/-->
+                    <!--/*@thymesVar id="user" type="fr.slickteam.cities.dto.Account"*/-->
                     <form id="form" class="" th:action="@{/signup}" method="post"
                           th:object="${user}"
                           data-toggle="validator">

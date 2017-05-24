@@ -52,7 +52,7 @@ if (targetCompatibility.isJava8Compatible()) {
 
 // the main class to launch the app with spring-boot
 springBoot {
-    mainClass = 'org.openclassrooms.cities.ApplicationKt'
+    mainClass = 'fr.slickteam.cities.ApplicationKt'
 }
 
 // I show here many way to add dependencies

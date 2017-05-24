@@ -4,7 +4,6 @@ import fr.slickteam.cities.exceptions.CityNotFoundException
 import fr.slickteam.cities.exceptions.GlobalExceptionHandler
 import fr.slickteam.cities.model.City
 import fr.slickteam.cities.repositories.ICitiesRepository
-import fr.slickteam.cities.service.IUserService
 import org.springframework.http.HttpStatus
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.web.util.UriComponentsBuilder
@@ -21,8 +20,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 class HomeControllerSpec extends Specification {
 
     ICitiesRepository citiesRepository = Mock()
-    IUserService userService = Mock()
-    HomeController homeController = new HomeController(citiesRepository, userService)
+    HomeController homeController = new HomeController(citiesRepository)
 
     MockMvc mockMvc
 

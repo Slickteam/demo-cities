@@ -85,6 +85,8 @@ dependencies {
     compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4:2.1.2.RELEASE'
     compile "org.hibernate:hibernate-validator"
 
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+
     // assemble spock dependencies in a list
     def spockDependencies = ["org.spockframework:spock-core:$spock_version",
                              "org.spockframework:spock-spring:$spock_version"]

@@ -88,7 +88,7 @@ dependencies {
     compile "org.hibernate:hibernate-validator"
 
 
-    runtime("com.h2database:h2")
+    compile("com.h2database:h2")
     runtime("org.springframework.boot:spring-boot-starter-actuator")
 
 

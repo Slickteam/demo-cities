@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fr.slickteam.cities.mappers.IUserMapper">
+
+
+    <select id="findByUsername" resultType="User">
+        select id, login, email, encodedPassword from users WHERE login=#{username}
+    </select>
+    <select id="findByEmail" resultType="User">
+        select id, login, email, encodedPassword from users WHERE email=#{email}
+    </select>
+
+    <insert id="addNewUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        insert into users(login,email, encodedPassword) values(#{login},#{email}, #{encodedPassword})
+    </insert>
+
+    <delete id="deleteUser">
+        delete from users where login = #{login}
+    </delete>
+</mapper>

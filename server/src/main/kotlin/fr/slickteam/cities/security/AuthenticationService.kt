@@ -1,7 +1,7 @@
 package fr.slickteam.cities.security
 
+import fr.slickteam.cities.mappers.IUserMapper
 import fr.slickteam.cities.model.User
-import fr.slickteam.cities.repositories.IUserRepository
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service
  * Created by jguidoux on 22/05/2017.
  */
 @Service
-class AuthenticationService(val userRepository: IUserRepository) : UserDetailsService {
+class AuthenticationService(val userRepository: IUserMapper) : UserDetailsService {
 
 
 	override fun loadUserByUsername(username: String?): UserDetails {

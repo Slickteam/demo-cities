@@ -4,6 +4,7 @@ import fr.slickteam.cities.validation.UniqueEmail
 import fr.slickteam.cities.validation.UniqueLogin
 import org.hibernate.validator.constraints.Email
 import org.hibernate.validator.constraints.NotEmpty
+import java.io.Serializable
 import javax.validation.constraints.Size
 
 /**
@@ -11,7 +12,7 @@ import javax.validation.constraints.Size
  */
 data class User(
 
-		val id: Long,
+		val id: Int? = null,
 
 		@get:NotEmpty
 		@get:Size(min = 3, max = 12)
@@ -26,4 +27,4 @@ data class User(
 
 		@get:NotEmpty
 		@get:Size(min = 5, max = 40)
-		val encodedPassword: String)
+		val encodedPassword: String) : Serializable

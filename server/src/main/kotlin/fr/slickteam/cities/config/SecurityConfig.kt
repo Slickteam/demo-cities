@@ -24,13 +24,15 @@ class SecurityConfig(val userDetailsService: AuthenticationService) : WebSecurit
 		http
 				.authorizeRequests()
 				.antMatchers("/css/**", "/js/**", "/images/**",
-						"/api/rest/**", "/login", "/signup", "/logout").permitAll()
+						"/api/rest/**", "/login", "/signup", "/logout", "/myconsole/**").permitAll()
 				.antMatchers("/", "/**").hasRole("USER")
 				.and()
 				.formLogin()
 				.loginPage("/login")
 				.defaultSuccessUrl("/", true)
 
+		http.csrf().disable();
+		http.headers().frameOptions().disable();
 
 	}
 

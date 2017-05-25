@@ -3,7 +3,6 @@ package fr.slickteam.cities.repositories.impl
 import fr.slickteam.cities.exceptions.CityNotFoundException
 import fr.slickteam.cities.model.City
 import fr.slickteam.cities.repositories.ICitiesRepository
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.core.io.ClassPathResource
 import org.springframework.stereotype.Repository
@@ -17,10 +16,9 @@ import javax.annotation.PostConstruct
  * this repository can read cities database to get information on it
  */
 @Repository
-class CitiesRepository//---------------------------------------------------------------------------------------
-//MARK: - Constructors
-//---------------------------------------------------------------------------------------
-@Autowired constructor(@Value("\${base_path}") databaseFilePath: String) : ICitiesRepository {
+class CitiesRepository(
+		@Value("\${base_path}")
+		databaseFilePath: String) : ICitiesRepository {
 
 
     final val filePath: String = databaseFilePath

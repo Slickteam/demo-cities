@@ -1,6 +1,5 @@
 package fr.slickteam.cities.validation
 
-import fr.slickteam.cities.repositories.impl.UserRepository
 import javax.validation.ConstraintValidator
 import javax.validation.ConstraintValidatorContext
 

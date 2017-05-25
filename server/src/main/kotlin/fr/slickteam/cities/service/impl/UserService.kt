@@ -2,7 +2,6 @@ package fr.slickteam.cities.service.impl
 
 import fr.slickteam.cities.dto.Account
 import fr.slickteam.cities.model.User
-import fr.slickteam.cities.repositories.impl.UserRepository
 import fr.slickteam.cities.service.IUserService
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service

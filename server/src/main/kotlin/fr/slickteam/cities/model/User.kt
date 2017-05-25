@@ -9,7 +9,9 @@ import javax.validation.constraints.Size
 /**
  * Created by jguidoux on 24/05/2017.
  */
-class User(
+data class User(
+
+		val id: Long,
 
 		@get:NotEmpty
 		@get:Size(min = 3, max = 12)

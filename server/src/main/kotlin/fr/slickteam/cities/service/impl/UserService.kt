@@ -17,6 +17,7 @@ class UserService(val userMapper: IUserMapper,
                   val passwordEncoder: PasswordEncoder) : IUserService {
 
 
+	@Throws(UserAlreadyExisteException::class)
 	override fun registerNewUserAccount(user: Account) {
 
 

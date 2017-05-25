@@ -49,13 +49,14 @@ class CitiesRepository(
     }
 
 
-    override fun getCity(cityName: String): City {
-        val result = cities.filter { city -> city.name.toLowerCase() == cityName.toLowerCase() }
-        return when (result.size) {
-            0 -> throw CityNotFoundException(cityName)
-            1 -> result[0]
-            else -> throw InternalError("database is corrupted. a city name shoulp appear only one, but " +
-                    "$cityName appear ${result.size} times")
-        }
-    }
+	@Throws(CityNotFoundException::class, InternalError::class)
+	override fun getCity(cityName: String): City {
+		val result = cities.filter { city -> city.name.toLowerCase() == cityName.toLowerCase() }
+		return when (result.size) {
+			0 -> throw CityNotFoundException(cityName)
+			1 -> result[0]
+			else -> throw InternalError("database is corrupted. a city name shoulp appear only one, but " +
+					"$cityName appear ${result.size} times")
+		}
+	}
 }

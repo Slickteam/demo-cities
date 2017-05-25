@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service
 class AuthenticationService(val userRepository: IUserMapper) : UserDetailsService {
 
 
+	@Throws(UsernameNotFoundException::class)
 	override fun loadUserByUsername(username: String?): UserDetails {
 
 		val user = userRepository.findByUsername(username) ?: throw UsernameNotFoundException(username)

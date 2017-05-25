@@ -5,9 +5,9 @@ import fr.slickteam.cities.model.City
 import fr.slickteam.cities.repositories.ICitiesRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.core.io.ClassPathResource
 import org.springframework.stereotype.Repository
 import java.io.BufferedReader
-import java.io.FileNotFoundException
 import java.io.InputStreamReader
 import javax.annotation.PostConstruct
 
@@ -31,9 +31,8 @@ class CitiesRepository//--------------------------------------------------------
     @PostConstruct
     fun setup() {
         cities = listOf()
-
-        val inputStream = Thread.currentThread().contextClassLoader.getResourceAsStream(filePath) ?:
-                throw FileNotFoundException("file '$filePath' does not exist!")
+        val resource = ClassPathResource(filePath)
+        val inputStream = resource.getInputStream()
 
         BufferedReader(InputStreamReader(inputStream)).use {
             it.lines().forEach() { cityName -> cities += City(cityName) }

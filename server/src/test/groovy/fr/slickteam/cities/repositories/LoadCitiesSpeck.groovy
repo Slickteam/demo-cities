@@ -22,7 +22,7 @@ class LoadCitiesSpeck extends Specification {
 
         then: "a file not found exception should be launch"
         def ex = thrown(FileNotFoundException)
-        ex.message == "file '$filePath' does not exist!"
+        ex.message == "class path resource [villes-faux.txt] cannot be opened because it does not exist"
 
     }
 

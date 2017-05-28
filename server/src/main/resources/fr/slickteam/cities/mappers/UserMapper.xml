@@ -6,19 +6,32 @@
 <mapper namespace="fr.slickteam.cities.mappers.IUserMapper">
 
 
-    <select id="findByUsername" resultType="User">
-        select id, login, email, encodedPassword from our_users WHERE login=#{username}
+    <resultMap id="userResultMap" type="User">
+        <!--<constructor>-->
+        <!--<idArg column="id_user" javaType="int" name="id"/>-->
+        <!--<arg column="login" javaType="String" name="login"/>-->
+        <!--<arg column="email" javaType="String" name="email"/>-->
+        <!--<arg column="encoded_password" javaType="String" name="encodedPassword"/>-->
+        <!--</constructor>-->
+        <id property="id" column="id_user"/>
+        <result property="login" column="login"/>
+        <result property="email" column="email"/>
+        <result property="encodedPassword" column="encoded_password"/>
+    </resultMap>
+
+    <select id="findByUsername" resultMap="userResultMap">
+        select id_user, login, email, encoded_password from our_users WHERE login=#{username}
     </select>
-    <select id="findByEmail" resultType="User">
-        select id, login, email, encodedPassword from our_users WHERE email=#{email}
+    <select id="findByEmail" resultMap="userResultMap">
+        select id_user, login, email, encoded_password from our_users WHERE email=#{email}
     </select>
     <select id="countUsers" resultType="int">
-        select count(*) encodedPassword from our_users
+        select count(*) id from our_users
     </select>
 
 
-    <insert id="addNewUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
-        insert into our_users(login,email, encodedPassword) values(#{login},#{email}, #{encodedPassword})
+    <insert id="addNewUser" parameterType="user" useGeneratedKeys="true" keyProperty="id">
+        insert into our_users(login,email, encoded_password) values(#{login},#{email}, #{encodedPassword})
     </insert>
 
     <delete id="deleteUser">

@@ -12,7 +12,7 @@ import javax.validation.constraints.Size
  */
 data class User(
 
-		val id: Int? = null,
+		var id: Int? = null,
 
 		@get:NotEmpty
 		@get:Size(min = 3, max = 12)
@@ -27,4 +27,10 @@ data class User(
 
 		@get:NotEmpty
 		@get:Size(min = 5, max = 40)
-		val encodedPassword: String) : Serializable
+		val encodedPassword: String
+
+//		val roles: List<Role> = listOf()
+) : Serializable
+
+
+data class Role(val id: Int, val roleName: String) : Serializable

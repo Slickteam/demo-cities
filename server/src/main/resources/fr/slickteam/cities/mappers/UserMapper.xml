@@ -12,6 +12,10 @@
     <select id="findByEmail" resultType="User">
         select id, login, email, encodedPassword from users WHERE email=#{email}
     </select>
+    <select id="countUsers" resultType="int">
+        select count(*) encodedPassword from users
+    </select>
+
 
     <insert id="addNewUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
         insert into users(login,email, encodedPassword) values(#{login},#{email}, #{encodedPassword})

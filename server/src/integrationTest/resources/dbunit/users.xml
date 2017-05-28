@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <user id="1" login="charlie" email="charlie@slickteam.fr" encodedPassword="123456"/>
+    <user id="2" login="charliee" email="charliee@slickteam.fr" encodedPassword="123456"/>
+    <user id="3" login="charliee" email="charliee@slickteam.fr" encodedPassword="123456"/>
+</dataset

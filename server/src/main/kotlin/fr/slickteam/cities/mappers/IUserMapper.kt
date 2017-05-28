@@ -13,4 +13,5 @@ interface IUserMapper {
 	fun findByUsername(username: String?): User?
 	fun findByEmail(email: String): User?
 	fun deleteUser(login: String)
+	fun countUsers(): Int
 }

@@ -1,6 +1,9 @@
 package fr.slickteam.cities.repositories
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener
+import com.github.springtestdbunit.annotation.DatabaseTearDown
+import com.github.springtestdbunit.annotation.DbUnitConfiguration
+import com.github.springtestdbunit.dataset.FlatXmlDataSetLoader
 import fr.slickteam.cities.IntegrationTestBase
 import org.springframework.test.context.TestExecutionListeners
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener
@@ -12,9 +15,13 @@ import org.springframework.transaction.annotation.Transactional
  * Created by jguidoux on 28/05/2017.
  */
 @Transactional
+@DbUnitConfiguration(dataSetLoader = FlatXmlDataSetLoader.class)
 @TestExecutionListeners([DependencyInjectionTestExecutionListener.class,
         DirtiesContextTestExecutionListener.class,
         TransactionalTestExecutionListener.class,
         DbUnitTestExecutionListener.class])
+@DatabaseTearDown
 class DbUnitIntegratonTestBase extends IntegrationTestBase {
+
+//    static final COLUMN_FILTER_ID = DefaultColumnFilter.excludeColumn("id*")
 }

@@ -3,4 +3,5 @@
     <our_users login="charlie" email="charlie@slickteam.fr" encodedPassword="123456"/>
     <our_users login="halyna" email="halyna@slickteam.fr" encodedPassword="123456"/>
     <our_users login="morgane" email="morgane@slickteam.fr" encodedPassword="123456"/>
+    <our_users login="baghera" email="baghera@slickteam.fr" encodedPassword="123456"/>
 </dataset>

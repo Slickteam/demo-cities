@@ -7,21 +7,21 @@
 
 
     <select id="findByUsername" resultType="User">
-        select id, login, email, encodedPassword from users WHERE login=#{username}
+        select id, login, email, encodedPassword from our_users WHERE login=#{username}
     </select>
     <select id="findByEmail" resultType="User">
-        select id, login, email, encodedPassword from users WHERE email=#{email}
+        select id, login, email, encodedPassword from our_users WHERE email=#{email}
     </select>
     <select id="countUsers" resultType="int">
-        select count(*) encodedPassword from users
+        select count(*) encodedPassword from our_users
     </select>
 
 
     <insert id="addNewUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
-        insert into users(login,email, encodedPassword) values(#{login},#{email}, #{encodedPassword})
+        insert into our_users(login,email, encodedPassword) values(#{login},#{email}, #{encodedPassword})
     </insert>
 
     <delete id="deleteUser">
-        delete from users where login = #{login}
+        delete from our_users where login = #{login}
     </delete>
 </mapper>

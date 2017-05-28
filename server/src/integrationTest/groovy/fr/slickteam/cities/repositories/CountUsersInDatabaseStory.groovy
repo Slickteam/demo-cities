@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired
 /**
  * Created by jguidoux on 28/05/2017.
  */
-
 class CountUsersInDatabaseStory extends DbUnitIntegratonTestBase {
 
     @Autowired

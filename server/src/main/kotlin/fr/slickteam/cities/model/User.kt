@@ -17,20 +17,24 @@ data class User(
 		@get:NotEmpty
 		@get:Size(min = 3, max = 12)
 		@get:UniqueLogin
-		val login: String,
+		val login: String = "",
 
 		@get:NotEmpty
 		@get:Email
 		@get:Size(max = 40)
 		@get:UniqueEmail
-		val email: String,
+		val email: String = "",
 
 		@get:NotEmpty
 		@get:Size(min = 5, max = 40)
-		val encodedPassword: String
+		val encodedPassword: String = "",
 
-//		val roles: List<Role> = listOf()
-) : Serializable
+		val roles: MutableList<Role> = mutableListOf()) {
+
+	constructor(id: Int, login: String, email: String, encodedPassword: String)
+			: this(id, login, email, encodedPassword, mutableListOf())
 
 
-data class Role(val id: Int, val roleName: String) : Serializable
+}
+
+data class Role(var id: Int? = null, var roleName: String) : Serializable

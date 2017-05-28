@@ -24,7 +24,7 @@ class InsertUserInDatabaseStory extends DbUnitIntegratonTestBase {
     def "insert a non existing user un database"() {
 
         given: "the database does not contains a user baghera"
-        User newUser = new User(null, "baghera", "baghera@slickteam.fr", "123456")
+        User newUser = new User(null, "baghera", "baghera@slickteam.fr", "123456", [])
         and: "the given users already in base number"
         def nb = userMapper.countUsers()
 
@@ -43,7 +43,7 @@ class InsertUserInDatabaseStory extends DbUnitIntegratonTestBase {
 
         given: "the database does not contains a user halyna0"
         and: "halyna id is 1"
-        User newUser = new User(1, "halyna", "halyna@slickteam.fr", "123456")
+        User newUser = new User(1, "halyna", "halyna@slickteam.fr", "123456", [])
 
 
         when: "I want to insert halyna in the database"
@@ -59,7 +59,7 @@ class InsertUserInDatabaseStory extends DbUnitIntegratonTestBase {
 
         given: "the database does not contains a user halyna"
         and: "halyna id is 1"
-        User newUser = new User(null, "halyna", "halyna2@slickteam.fr", "123456")
+        User newUser = new User(null, "halyna", "halyna2@slickteam.fr", "123456", [])
 
 
         when: "I want to insert halyna in the database"
@@ -76,7 +76,7 @@ class InsertUserInDatabaseStory extends DbUnitIntegratonTestBase {
 
         given: "the database does not contains a email halyna@slickteam.fr"
         and: "halyna id is 1"
-        User newUser = new User(null, "halyna2", "halyna@slickteam.fr", "123456")
+        User newUser = new User(null, "halyna2", "halyna@slickteam.fr", "123456", [])
 
 
         when: "I want to insert halyna in the database"
@@ -96,7 +96,7 @@ class InsertUserInDatabaseStory extends DbUnitIntegratonTestBase {
 
         given: "the database does not contains a user halyna0"
         and: "halyna id is 1"
-        User newUser = new User(28, "baghera", "baghera@slickteam.fr", "123456")
+        User newUser = new User(28, "baghera", "baghera@slickteam.fr", "123456", [])
 
 
         when: "I want to insert halyna in the database"

@@ -1,3 +1,3 @@
--- INSERT INTO role VALUES ("role_user")
--- INSERT INTO role VALUES ("role_admin")
--- INSERT INTO role VALUES ("role_actuator")
+INSERT INTO role VALUES (default, 'role_user')
+INSERT INTO ROLE VALUES ( DEFAULT, 'role_admin')
+INSERT INTO ROLE VALUES ( DEFAULT, 'role_actuator')

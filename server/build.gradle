@@ -107,6 +107,7 @@ dependencies {
 
     integrationTestCompile "com.geowarin:spring-spock-mvc:$spock_mock_version"
     integrationTestCompile 'com.github.springtestdbunit:spring-test-dbunit:1.3.0'
+    integrationTestCompile 'org.dbunit:dbunit:2.5.3'
 
 
 

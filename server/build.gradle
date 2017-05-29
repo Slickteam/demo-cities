@@ -14,10 +14,12 @@ buildscript {
     }
 }
 
+plugins {
+    id 'org.springframework.boot' version '1.5.3.RELEASE'
+}
 
 apply plugin: 'java-library'
 apply plugin: 'kotlin'
-apply plugin: 'org.springframework.boot'
 apply plugin: "kotlin-spring"
 apply plugin: "groovy"
 apply plugin: "project-report"
@@ -54,7 +56,20 @@ if (targetCompatibility.isJava8Compatible()) {
 // the main class to launch the app with spring-boot
 springBoot {
     mainClass = 'fr.slickteam.cities.ApplicationKt'
+
+
 }
+
+if (System.properties["spring.profiles.active"] == null) {
+    System.setProperty "spring.profiles.active", "default"
+}
+
+bootRun {
+    addResources = true
+    systemProperties = System.properties
+}
+
+// the default spring boot active profile is default
 
 // I show here many way to add dependencies
 // we can configure a lot of more
@@ -126,24 +141,13 @@ dependencies {
     // the 'dev' profile is the default profile
     // to change the profile, use in the commandLine
     // gradlew -Pprofile='test' for example
-    if (profile == "dev") {
-        logger.info(" ==== developement configuration ====")
+    if (System.properties["spring.profiles.active"] != 'production') {
+        logger.info(" ==== default configuration ====")
         // spring-boot-devtools let developper the possibility to modify the application
         // even the application is running. The result will be directly apply by the server.
         // to use it, launch
         // 'gradlew springRun'
         //
-        // be careful spring-boo-devtools do not read filse in the src/ folder but in the build/ folder
-        // for some IDE the Compilations and copy resources files is automatic
-        // for others you have to launch it manually.
-        // For example in Intellij to 'recompile' a file is 'ctrl+shif+F9' or with 'Build -> Recompile'
-        // or 'build project' with a 'ctrl+F9' or with 'Build -> Build Project'
-        //
-        // you can also use gradle to compile sources and resources the command line
-        // 'gradlew classes'
-        // But in this case, the 'liveReload' will not work, only the 'liveRestart'
-        // You can also use the continious build from gradle
-        // 'gradlew classes -t' ou 'gradlew test -t'
         //
         // see https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html
         //
@@ -155,5 +159,8 @@ dependencies {
 
 }
 
+task printActiveProfile{
+    println("active profile = ${bootRun.systemProperties['spring.profiles.active']}")
+}
 
 

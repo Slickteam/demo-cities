@@ -3,6 +3,7 @@ package fr.slickteam.cities.config
 import fr.slickteam.cities.security.AuthenticationService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.core.env.Environment
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -17,7 +18,9 @@ import org.springframework.security.crypto.password.PasswordEncoder
  */
 @Configuration
 @EnableWebSecurity
-class SecurityConfig(val userDetailsService: AuthenticationService) : WebSecurityConfigurerAdapter() {
+class SecurityConfig(val userDetailsService: AuthenticationService, var env: Environment)
+	: WebSecurityConfigurerAdapter() {
+
 
 	@Throws(Exception::class)
 	override fun configure(http: HttpSecurity) {
@@ -31,14 +34,17 @@ class SecurityConfig(val userDetailsService: AuthenticationService) : WebSecurit
 				.loginPage("/login")
 				.defaultSuccessUrl("/", true)
 
-		http.csrf().disable();
-		http.headers().frameOptions().disable();
+		if (!env.activeProfiles.contains("production")) {
+			// we are not in a production environment
+			http.csrf().disable()
+			http.headers().frameOptions().disable()
+		}
 
 	}
 
 	@Throws(Exception::class)
 	override fun configure(auth: AuthenticationManagerBuilder) {
-		auth.authenticationProvider(authProvider());
+		auth.authenticationProvider(authProvider())
 		auth.inMemoryAuthentication()
 				.withUser("user").password("password").roles("USER")
 	}

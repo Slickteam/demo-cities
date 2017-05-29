@@ -1,7 +1,7 @@
 package fr.slickteam.cities.rest
 
 import fr.slickteam.cities.model.City
-import fr.slickteam.cities.repositories.ICitiesRepository
+import fr.slickteam.cities.service.ICityService
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/api/rest/cities")
 @CrossOrigin(origins = arrayOf("http://localhost:63342"))
-class CitiesController(val repository: ICitiesRepository) {
+class CitiesController(val repository: ICityService) {
 
 
     /**

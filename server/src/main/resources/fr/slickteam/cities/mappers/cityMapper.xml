@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fr.slickteam.cities.mappers.ICityMapper">
+
+
+    <resultMap id="cityResultMap" type="City">
+        <id property="id" column="id_city"/>
+        <result property="name" column="city_name"/>
+        <result property="population" column="population"/>
+        <result property="revenuPerHabitants" column="revenu_per_habitants"/>
+    </resultMap>
+
+
+    <select id="listCities" resultMap="cityResultMap">
+        SELECT *
+        FROM city
+    </select>
+    <select id="filterCities" resultMap="cityResultMap">
+        SELECT *
+        FROM city
+        WHERE LOWER(city_name) LIKE LOWER(#{cityNameStartWith} || '%')
+    </select>
+
+
+    <select id="getCity" resultMap="cityResultMap">
+        SELECT *
+        FROM city
+        WHERE city_name = #{cityName}
+    </select>
+
+
+    <insert id="insertCity" parameterType="City" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO city (city_name, population, revenu_per_habitants)
+        VALUES (#{name}, #{population}, #{revenuPerHabitants});
+    </insert>
+
+</mapper>

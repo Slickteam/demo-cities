@@ -1,6 +1,6 @@
 package fr.slickteam.cities.utils
 
-import fr.slickteam.cities.repositories.ICitiesRepository
+import fr.slickteam.cities.mappers.ICityMapper
 import spock.lang.Specification
 import spock.lang.Unroll
 
@@ -61,7 +61,7 @@ class TestSpockSpeck extends Specification {
     def "test mock2"() {
 
         given:
-        ICitiesRepository repo = Mock() {
+        ICityMapper repo = Mock() {
             listCities() >> []
         }
 

@@ -3,7 +3,7 @@ package fr.slickteam.cities.web
 import fr.slickteam.cities.exceptions.CityNotFoundException
 import fr.slickteam.cities.exceptions.GlobalExceptionHandler
 import fr.slickteam.cities.model.City
-import fr.slickteam.cities.repositories.ICitiesRepository
+import fr.slickteam.cities.service.ICityService
 import org.springframework.http.HttpStatus
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.web.util.UriComponentsBuilder
@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
  */
 class HomeControllerSpec extends Specification {
 
-    ICitiesRepository citiesRepository = Mock()
+    ICityService citiesRepository = Mock()
     HomeController homeController = new HomeController(citiesRepository)
 
     MockMvc mockMvc
@@ -36,7 +36,7 @@ class HomeControllerSpec extends Specification {
     def "display city"() {
 
         given: "this cities : 'Paris' 'Rennes' 'Bordeaux' 'Reims' contains in the repository"
-        citiesRepository.getCity("Rennes") >> new City("Rennes", 100000, 20000)
+        citiesRepository.getCity("Rennes") >> new City(null, "Rennes", 100000, 20000)
 
 
         when: "I want to display the city of Rennes with url '/cities?name=Rennes'"

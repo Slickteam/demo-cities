@@ -8,4 +8,7 @@ import fr.slickteam.cities.dto.Account
 interface IUserService {
 
 	fun registerNewUserAccount(user: Account)
+	fun containUsername(login: String): Boolean
+	fun containEmail(email: String): Boolean
+	fun deleteUser(User: Account): Unit
 }

@@ -37,6 +37,9 @@ class UniqueUserConstraintsStory extends Specification {
         then: "it should be 1 constraint violations"
         violations.size() == 1
 
+        cleanup: "delete the user"
+        userService.deleteUser(predefinedUser)
+
     }
 
     def "I can't add a user with an existing email"() {
@@ -52,10 +55,13 @@ class UniqueUserConstraintsStory extends Specification {
         then: "it should be 1 constraint violations"
         violations.size() == 1
 
+        cleanup: "delete the user"
+        userService.deleteUser(predefinedUser)
+
     }
 
 
-    def "I can't add a user "() {
+    def "I can add a user "() {
         given: "The contain no added user"
 
 
@@ -63,7 +69,7 @@ class UniqueUserConstraintsStory extends Specification {
         Account newUser = new Account("roby", "robert.c.martin@gmail.com", "123456")
         Set<ConstraintViolation<Account>> violations = validator.validate(newUser)
 
-        then: "it should be 1 constraint violations"
+        then: "it should be 0 constraint violations"
         violations.size() == 0
 
     }

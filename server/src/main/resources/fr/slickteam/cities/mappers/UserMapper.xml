@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fr.slickteam.cities.mappers.IUserMapper">
+
+
+    <resultMap id="userResultMap" type="User">
+        <!--<constructor>-->
+        <!--<idArg column="id_user" javaType="int" />-->
+        <!--<arg column="login" javaType="String" />-->
+        <!--<arg column="email" javaType="String" />-->
+        <!--<arg column="encoded_password" javaType="String" />-->
+        <!--<arg resultMap="roleResultMap" javaType="java.util.ArrayList" />-->
+        <!--</constructor>-->
+        <id property="id" column="id_user"/>
+        <result property="login" column="login"/>
+        <result property="email" column="email"/>
+        <result property="encodedPassword" column="encoded_password"/>
+        <collection property="roles" ofType="Role"
+                    select="selectRolesOfUser" column="id_user"/>
+    </resultMap>
+
+    <resultMap id="roleResultMap" type="Role">
+        <id property="id" column="id_role"/>
+        <result property="roleName" column="role_name"/>
+    </resultMap>
+
+    <select id="selectRolesOfUser" resultMap="roleResultMap">
+        SELECT
+            R.id_role,
+            R.role_name
+        FROM role R NATURAL JOIN our_users_role UR
+        WHERE UR.id_user = #{id}
+    </select>
+
+    <select id="findByUsername" resultMap="userResultMap">
+        SELECT *
+        FROM our_users
+        WHERE login = #{username}
+    </select>
+    <select id="findByEmail" resultMap="userResultMap">
+        SELECT
+        id_user,
+        login,
+        email,
+        encoded_password
+        FROM our_users
+        WHERE email = #{email}
+    </select>
+
+
+    <select id="countUsers" resultType="int">
+        SELECT count(*) id
+        FROM our_users
+    </select>
+
+    <select id="getRole" resultMap="roleResultMap">
+        SELECT
+            id_role,
+            role_name
+        FROM role
+        WHERE role_name = #{roleName}
+    </select>
+
+    <insert id="addNewUser" parameterType="user" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO our_users (login, email, encoded_password) VALUES (#{login}, #{email}, #{encodedPassword});
+    </insert>
+
+    <insert id="attacheUser" parameterType="map" useGeneratedKeys="false">
+        INSERT INTO our_users_role (id_user, id_role) VALUES (#{user.id}, #{role.id});
+    </insert>
+
+    <delete id="deleteUser">
+        DELETE FROM our_users
+        WHERE login = #{login}
+    </delete>
+</mapper>

@@ -2,7 +2,7 @@ package fr.slickteam.cities.rest
 
 import fr.slickteam.cities.exceptions.CityNotFoundException
 import fr.slickteam.cities.model.City
-import fr.slickteam.cities.repositories.ICitiesRepository
+import fr.slickteam.cities.service.ICityService
 import groovy.json.JsonSlurper
 import org.springframework.http.MediaType
 import org.springframework.security.test.context.support.WithMockUser
@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 class GetCityInfoTestUrlSpeck extends Specification {
 
 
-    ICitiesRepository citiesRepository = Mock()
+    ICityService citiesRepository = Mock()
     CitiesController citiesController = new CitiesController(citiesRepository)
 
     MockMvc mockMvc
@@ -40,7 +40,7 @@ class GetCityInfoTestUrlSpeck extends Specification {
 
         given: "this city : 'Rennes' does not exist in the repository"
         citiesRepository.getCity("Rennes") >>
-                new City("Rennes", 1, 1)
+                new City(null, "Rennes", 1, 1)
 
 
         when: "I ask for the rest api '/api/rest/cities/get?name=Rennes'"
@@ -60,7 +60,7 @@ class GetCityInfoTestUrlSpeck extends Specification {
 
         given: "this city : 'Rennes' does not exist in the repository"
         citiesRepository.getCity("Rennes") >>
-                new City("Rennes", 1, 1)
+                new City(null, "Rennes", 1, 1)
 
 
         when: "I ask for the rest api '/api/rest/cities/get?name=Rennes'"

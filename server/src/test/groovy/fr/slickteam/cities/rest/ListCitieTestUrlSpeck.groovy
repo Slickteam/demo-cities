@@ -1,7 +1,7 @@
 package fr.slickteam.cities.rest
 
 import fr.slickteam.cities.model.City
-import fr.slickteam.cities.repositories.ICitiesRepository
+import fr.slickteam.cities.service.ICityService
 import groovy.json.JsonSlurper
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
@@ -10,7 +10,7 @@ import spock.lang.Specification
 
 import static org.springframework.http.HttpStatus.OK
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 /**
  * Created by jguidoux on 03/05/2017.
@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class ListCitieTestUrlSpeck extends Specification {
 
 
-    ICitiesRepository citiesRepository = Mock()
+    ICityService citiesRepository = Mock()
     CitiesController citiesController = new CitiesController(citiesRepository)
 
     MockMvc mockMvc
@@ -50,10 +50,10 @@ class ListCitieTestUrlSpeck extends Specification {
 
 
         given:"this cities : 'Paris' 'Rennes' 'Bordeaux' 'Reims' contains in the repository"
-        citiesRepository.listCities() >> [new City("Paris", 1, 1),
-                                          new City("Rennes", 1, 1),
-                                          new City("Bordeaux", 1, 1),
-                                          new City("Reims", 1, 1)]
+        citiesRepository.listCities() >> [new City(null, "Paris", 1, 1),
+                                          new City(null, "Rennes", 1, 1),
+                                          new City(null, "Bordeaux", 1, 1),
+                                          new City(null, "Reims", 1, 1)]
 
         when: "I ask for the rest api '/api/rest/cities/rest'"
         def response = this.mockMvc.perform(get("/api/rest/cities/list").

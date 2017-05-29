@@ -8,8 +8,8 @@ import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.PropertySource
+import org.springframework.core.io.ClassPathResource
 import java.io.BufferedReader
-import java.io.FileNotFoundException
 import java.io.InputStreamReader
 
 
@@ -34,8 +34,7 @@ class Application {
 		println()
 		println()
 		println()
-		val inputStream = Thread.currentThread().contextClassLoader.getResourceAsStream(filePath) ?:
-				throw FileNotFoundException("file '$filePath' does not exist!")
+		val inputStream = ClassPathResource(filePath).inputStream
 
 		BufferedReader(InputStreamReader(inputStream)).use {
 			it.lines().forEach() { cityName -> cityService.insertCity(City(name = cityName)) }

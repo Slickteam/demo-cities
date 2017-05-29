@@ -2,7 +2,6 @@ package fr.slickteam.cities.rest
 
 import fr.slickteam.cities.utils.AbstractMvcSpec
 import org.springframework.http.HttpStatus
-import org.springframework.test.context.TestPropertySource
 
 /**
  * Created by jguidoux on 02/05/2017.
@@ -17,7 +16,6 @@ import org.springframework.test.context.TestPropertySource
  * this library contains the groovy json libray which is a nice library to manipulate json
  * this is my prefer way to test rese api
  */
-@TestPropertySource("classpath:/env-test.properties")
 class FilterCitiesITSpeck extends AbstractMvcSpec {
 
 

@@ -1,10 +1,7 @@
 package fr.slickteam.cities.rest
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
-import org.springframework.test.context.TestPropertySource
-import spock.lang.Specification
 
 /**
  * Created by jguidoux on 02/05/2017.
@@ -15,9 +12,7 @@ import spock.lang.Specification
  *
  * this test show the use of the TestRestTemplate provided by Spring-boot
  */
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@TestPropertySource("classpath:/env-test.properties")
-class ListCitiesTestRestTempleSpeck extends  Specification{
+class ListCitiesTestRestTempleSpeck extends RestIntegrationTestBase {
 
     @Autowired
     private TestRestTemplate restTemplate

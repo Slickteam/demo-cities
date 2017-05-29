@@ -7,14 +7,14 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
-import org.springframework.test.context.TestPropertySource
+import org.springframework.test.context.ActiveProfiles
 
 /**
  * Created by jguidoux on 12/05/2017.
  */
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @AutoConfigureMockMvc
-@TestPropertySource("classpath:/env-test.properties")
+@ActiveProfiles("test")
 class BaseGebsSpec extends GebReportingSpec {
 
     @Value('${local.server.port}')

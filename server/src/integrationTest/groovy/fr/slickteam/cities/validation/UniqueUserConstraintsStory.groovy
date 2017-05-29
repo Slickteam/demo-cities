@@ -1,11 +1,10 @@
 package fr.slickteam.cities.validation
 
+import fr.slickteam.cities.IntegrationTestBase
 import fr.slickteam.cities.dto.Account
 import fr.slickteam.cities.service.IUserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
-import org.springframework.boot.test.context.SpringBootTest
-import spock.lang.Specification
 
 import javax.validation.ConstraintViolation
 import javax.validation.Validator
@@ -13,9 +12,9 @@ import javax.validation.Validator
 /**
  * Created by jguidoux on 23/05/2017.
  */
-@SpringBootTest
+
 @AutoConfigureMockMvc
-class UniqueUserConstraintsStory extends Specification {
+class UniqueUserConstraintsStory extends IntegrationTestBase {
 
 
     @Autowired

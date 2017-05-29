@@ -1,28 +1,24 @@
 package fr.slickteam.cities.web
 
+import fr.slickteam.cities.IntegrationTestBase
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
-import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.security.test.context.support.WithMockUser
-import org.springframework.test.context.TestPropertySource
 import org.springframework.test.web.servlet.MockMvc
-import spock.lang.Specification
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 /**
  * Created by jguidoux on 12/05/2017.
  * test if the login works well
  */
-@SpringBootTest
 @AutoConfigureMockMvc
-@TestPropertySource("classpath:/env-test.properties")
 @WithMockUser
-class LoginPageSpec extends Specification {
+class LoginPageSpec extends IntegrationTestBase {
 
     @Autowired
     private MockMvc mockMvc

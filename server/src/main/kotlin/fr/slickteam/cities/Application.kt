@@ -7,7 +7,6 @@ import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.PropertySource
 import org.springframework.core.io.ClassPathResource
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -17,20 +16,19 @@ import java.io.InputStreamReader
  * Created by jguidoux on 21/04/2017.
  */
 @SpringBootApplication
-@PropertySource("classpath:/env.properties")
 class Application {
 
 
 	@Bean
-	fun init(cityService: ICityService, @Value("\${base_path}") filePath: String)
+	fun init(cityService: ICityService, @Value("\${app.base_path}") filePath: String)
 			= CommandLineRunner {
 
 		println()
 		println()
 		println()
-		println("============================")
+		println("=================================")
 		println("initialisation of the application")
-		println("============================")
+		println("=================================")
 		println()
 		println()
 		println()

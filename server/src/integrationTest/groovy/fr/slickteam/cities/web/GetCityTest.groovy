@@ -1,13 +1,11 @@
 package fr.slickteam.cities.web
 
+import fr.slickteam.cities.IntegrationTestBase
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
-import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.security.test.context.support.WithMockUser
-import org.springframework.test.context.TestPropertySource
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.web.util.UriComponentsBuilder
-import spock.lang.Specification
 
 import static org.hamcrest.Matchers.hasProperty
 import static org.hamcrest.Matchers.is
@@ -19,11 +17,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  *
  * I test the mvc to get a city
  */
-@SpringBootTest
 @AutoConfigureMockMvc
-@TestPropertySource("classpath:/env-test.properties")
 @WithMockUser
-class GetCityTest extends Specification {
+class GetCityTest extends IntegrationTestBase {
 
     @Autowired
     private MockMvc mockMvc

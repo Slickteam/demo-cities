@@ -1,10 +1,9 @@
 package fr.slickteam.cities.web
 
+import fr.slickteam.cities.IntegrationTestBase
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
-import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.web.servlet.MockMvc
-import spock.lang.Specification
 import spock.lang.Stepwise
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin
@@ -17,10 +16,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Created by jguidoux on 12/05/2017.
  * test if the login works well
  */
-@SpringBootTest
 @AutoConfigureMockMvc
 @Stepwise
-class RegiserNewUserStory extends Specification {
+class RegiserNewUserStory extends IntegrationTestBase {
 
     @Autowired
     private MockMvc mockMvc

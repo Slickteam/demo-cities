@@ -2,7 +2,6 @@ package fr.slickteam.cities.rest
 
 import fr.slickteam.cities.utils.AbstractMvcSpec
 import org.springframework.http.HttpStatus
-import org.springframework.test.context.TestPropertySource
 
 /**
  * Created by jguidoux on 02/05/2017.
@@ -17,18 +16,17 @@ import org.springframework.test.context.TestPropertySource
  * this library contains the groovy json libray which is a nice library to manipulate json
  * this is my prefer way to test rest api
  */
-@TestPropertySource("classpath:/env-test.properties")
-class CitiesControllerITSpeck extends AbstractMvcSpec{
+class CitiesControllerITSpeck extends AbstractMvcSpec {
 
     def "list cities from rest api '/api/rest/citie/list with json result"() {
 
-        given:"this cities : 'Paris' 'Rennes' 'Bordeaux' 'Reims' contains in the repository"
+        given: "this cities : 'Paris' 'Rennes' 'Bordeaux' 'Reims' contains in the repository"
 
         when: "I ask for the rest api '/api/rest/cities/list'"
         def res = get('/api/rest/cities/list')
 
         then: "the result should  the cites 'Paris' 'Rennes' 'Bordeaux' 'Reims'"
         res.status == HttpStatus.OK
-        res.json.collect{it.name} == ["Paris", "Rennes", "Bordeaux", "Reims"]
+        res.json.collect { it.name } == ["Paris", "Rennes", "Bordeaux", "Reims"]
     }
 }

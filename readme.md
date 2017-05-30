@@ -19,14 +19,18 @@ The main fonctionalities are :
 * Kotlin as programation language
 * Groovy as programation language for testing
 * Spock as a testing framework
+* Geb for functional tests
 * Spring :
     * Spring-boot to launch and develop more easily the project
     * Spring-mvc to build :
         * A Rest API
         * Client page interaction
     * Spring-boot-devtools to reload easily the project
+    * Spring-actutor to provide all of Spring Boot’s production-ready features
+    * Spring security to login and control access pages
 * Thymeleaf, an html template pattern
-* Html, CSS3, JavaScripts
+* Mybatis to manipulate the database
+* Html, CSS3, JavaScripts, bootstrap, validator.js
 
 ## Prerequisite
 

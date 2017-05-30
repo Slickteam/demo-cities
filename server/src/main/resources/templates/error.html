@@ -15,7 +15,8 @@
 
     <div class="site-content">
         <!--/*@thymesVar id="errorMessage" type="java.lang.String"*/-->
-        <h1 id="errorMessage" th:text="${errorMessage}">Error</h1>
+        <h1 id="errorMessage"
+            th:text="${errorMessage != null} ? |error :  ${errorMessage} |: 'Error : page not found' ">Error</h1>
 
     </div>
 

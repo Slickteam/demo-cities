@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.context.request.WebRequest
+import org.springframework.web.servlet.NoHandlerFoundException
 import java.lang.Exception
 
 
@@ -28,7 +29,16 @@ internal class GlobalExceptionHandler {
 
 	@ExceptionHandler(value = Exception::class)
 	fun exception(exception: Exception, model: Model): String {
+		println("exception launch")
 		model.addAttribute("errorMessage", exception.message)
+		return "error"
+	}
+
+	@ExceptionHandler(NoHandlerFoundException::class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	fun handleResourceNotFoundException(model: Model): String {
+		println("page not found")
+		model.addAttribute("errorMessage", "request page not found")
 		return "error"
 	}
 }

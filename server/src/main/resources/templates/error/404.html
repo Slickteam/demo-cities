@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <head th:replace="fragments/headTag :: headTag (title='Error page')"></head>
+    <head th:replace="/fragments/headTag :: headTag (title='Error page')"></head>
 
     <meta charset="utf-8"/>
 </head>
@@ -10,7 +10,7 @@
 
 <div class="site">
 
-    <div th:include="fragments/bodyHeader (tab='cities')" th:remove="tag"></div>
+    <div th:include="/fragments/bodyHeader (tab='cities')" th:remove="tag"></div>
 
 
     <div class="site-content">

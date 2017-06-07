@@ -106,7 +106,6 @@ dependencies {
     compile("com.h2database:h2")
     runtime("org.springframework.boot:spring-boot-starter-actuator")
 
-
     // assemble spock dependencies in a list
     def spockDependencies = ["org.spockframework:spock-core:$spock_version",
                              "org.spockframework:spock-spring:$spock_version"]
@@ -157,9 +156,10 @@ dependencies {
     }
 
 
+
 }
 
-task printActiveProfile{
+task printActiveProfile {
     println("active profile = ${bootRun.systemProperties['spring.profiles.active']}")
 }
 

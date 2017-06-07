@@ -82,21 +82,6 @@ class SecurityAccessSpeck extends IntegrationTestBase {
 
 
     @WithMockUser
-    def "try to go to home page without right password"() {
-
-        given:
-
-        when: "I try to acces to the '/' url"
-        def request = this.mockMvc.perform(get("/"))
-
-        then: "the controller shoult return the 'login' page"
-        request.andExpect(status().isOk())
-        request.andExpect(view().name("index"))
-
-
-    }
-
-    @WithMockUser
     def "test logout"() {
 
         given: "I'm connected"

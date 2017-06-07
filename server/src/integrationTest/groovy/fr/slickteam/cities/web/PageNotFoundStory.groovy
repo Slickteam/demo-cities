@@ -8,7 +8,6 @@ import org.springframework.test.web.servlet.MockMvc
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view
 
 /**
  * Created by jguidoux on 11/05/2017.
@@ -31,7 +30,6 @@ class PageNotFoundStory extends IntegrationTestBase {
 
         then: "The user should  be authenticated"
         request.andExpect(status().isNotFound())
-        request.andExpect(view().name("error"))
 
 
     }

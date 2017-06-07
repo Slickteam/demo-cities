@@ -83,7 +83,7 @@ class SearchCitySpec extends BaseGebsSpec {
         then: "I should be on the error page"
         def errorPage = at ErrorPage
         and: "The error message should be : City 'Guérande' not found"
-        errorPage.errorMessage == "City 'Guérande' not found."
+        errorPage.errorMessage == "Error : City 'Guérande' not found."
 
 
     }

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <head th:replace="/fragments/headTag :: headTag (title='Error page')"></head>
+
+    <meta charset="utf-8"/>
+</head>
+<body>
+
+<div class="site">
+
+    <div th:include="/fragments/bodyHeader (tab='cities')" th:remove="tag"></div>
+
+
+    <div class="site-content">
+        <!--/*@thymesVar id="errorMessage" type="java.lang.String"*/-->
+        <h1 id="errorMessage"
+            th:text="${errorMessage != null} ? |error :  ${errorMessage} |: 'Error : page not found' ">Error</h1>
+
+    </div>
+
+    <div th:include="fragments/bodyFooter" th:remove="tag"></div>
+</div>
+</body>
+</html>

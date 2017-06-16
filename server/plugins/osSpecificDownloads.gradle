@@ -36,7 +36,6 @@ task downloadChromeDriver {
 task unzipChromeDriver(type: Copy) {
     dependsOn downloadChromeDriver
     def outputDir = file("$buildDir/webdriver/chromedriver")
-    outputs.dir(outputDir)
 
     from(zipTree(downloadChromeDriver.outputs.files.singleFile))
     into(outputDir)
@@ -71,7 +70,6 @@ task downloadGeckoDriver {
 task unzipGeckoDriver(type: Copy) {
     dependsOn downloadGeckoDriver
     def outputDir = file("$buildDir/webdriver/geckodriver")
-    outputs.dir(outputDir)
 
     from(zipTree(downloadGeckoDriver.outputs.files.singleFile))
     into(outputDir)

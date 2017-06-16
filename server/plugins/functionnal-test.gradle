@@ -12,16 +12,16 @@
  */
 
 sourceSets {
-    functionnalTest {
+    functionalTest {
 
 
-        if (plugins.withType(org.gradle.api.plugins.GroovyPlugin)) {
+        if (plugins.withType(GroovyPlugin)) {
             groovy {
                 compileClasspath += main.output + test.output + integrationTest.output
                 runtimeClasspath += main.output + test.output + integrationTest.output
             }
         }
-        if (plugins.withType(org.gradle.api.plugins.JavaPlugin)) {
+        if (plugins.withType(JavaPlugin)) {
             java {
                 compileClasspath += main.output + test.output + integrationTest.output
                 runtimeClasspath += main.output + test.output + integrationTest.output
@@ -33,16 +33,16 @@ sourceSets {
 }
 
 
-// funcional test can use all dependencies of intagration test
+// functional test can use all dependencies of integration test
 configurations {
-    functionnalTestCompile.extendsFrom integrationTestCompile
+    functionalTestCompile.extendsFrom integrationTestCompile
 }
 
 
 // create the functional test task
 task functionalTest(type: Test) {
-    testClassesDir = sourceSets.functionnalTest.output.classesDir
-    classpath = sourceSets.functionnalTest.runtimeClasspath
+    testClassesDirs = sourceSets.functionalTest.output.classesDirs
+    classpath = sourceSets.functionalTest.runtimeClasspath
 }
 
 
@@ -55,9 +55,9 @@ functionalTest.mustRunAfter test
 /**
  * separate integration and unit test reports
  * unit tests is in 'build/reports/tests'
- * integration tests report is in 'build/reports/integrationtests'
+ * integration tests report is in 'build/reports/functionalTests'
  */
 tasks.withType(Test) {
-    reports.html.destination = file("${reporting.baseDir}/${name}s")
+    reports.html.destination file("${reporting.baseDir}/${name}s")
 }
 

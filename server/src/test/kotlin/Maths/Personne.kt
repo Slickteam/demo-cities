@@ -1,5 +1,6 @@
 package Maths
 
+import fr.slickteam.cities.model.City
 import java.io.File
 
 /**
@@ -35,6 +36,8 @@ fun main(args: Array<String>) {
         in 11..20 -> print("Je suis un adolescent")
         else -> print("Je suis un adulte")
     }
+
+    val city = City(name = "aa")
 
 
 }

@@ -16,6 +16,8 @@ buildscript {
 
 plugins {
     id 'org.springframework.boot' version '1.5.3.RELEASE'
+    id "org.jetbrains.kotlin.jvm" version "1.1.2-5"
+
 }
 
 apply plugin: 'java-library'
@@ -125,9 +127,9 @@ dependencies {
 
 
 
-    functionnalTestCompile "org.gebish:geb-spock:${gebVersion}"
-    functionnalTestCompile "org.seleniumhq.selenium:selenium-chrome-driver:${seleniumVersion}"
-    integrationTestCompile "org.seleniumhq.selenium:selenium-firefox-driver:${seleniumVersion}"
+    functionalTestCompile "org.gebish:geb-spock:${gebVersion}"
+    functionalTestCompile "org.seleniumhq.selenium:selenium-chrome-driver:${seleniumVersion}"
+    functionalTestCompile "org.seleniumhq.selenium:selenium-firefox-driver:${seleniumVersion}"
 //    integrationTestCompile('info.novatec.testit:webtester-support-marionette:2.0.4') {
 //        transitive = true
 //    }

@@ -26,8 +26,8 @@ drivers.each { driver ->
 
         dependsOn build
 
-        testClassesDir = sourceSets.functionnalTest.output.classesDir
-        classpath = sourceSets.functionnalTest.runtimeClasspath
+        testClassesDirs = sourceSets.functionalTest.output.classesDirs
+        classpath = sourceSets.functionalTest.runtimeClasspath
 
 
         systemProperty "geb.build.reportsDir", "${reports.html.destination}/geb-report"

@@ -103,6 +103,8 @@ dependencies {
     compile group: 'com.google.guava', name: 'guava', version: '21.0'
     compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4:2.1.2.RELEASE'
     compile "org.hibernate:hibernate-validator"
+    compile "io.springfox:springfox-swagger2:2.7.0"
+    runtime 'io.springfox:springfox-swagger-ui:2.7.0'
 
 
     compile("com.h2database:h2")

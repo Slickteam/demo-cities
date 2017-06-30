@@ -61,7 +61,7 @@ class SwaggerConfig {
 	fun api(): Docket {
 		return Docket(DocumentationType.SWAGGER_2)
 				.select()
-				.apis(RequestHandlerSelectors.any())
+				.apis(RequestHandlerSelectors.basePackage("fr.slickteam.cities.rest"))
 				.paths(PathSelectors.any())
 				.build()
 	}

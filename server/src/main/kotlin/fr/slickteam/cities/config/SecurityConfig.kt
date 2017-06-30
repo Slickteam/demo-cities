@@ -27,7 +27,9 @@ class SecurityConfig(val userDetailsService: AuthenticationService, var env: Env
 		http
 				.authorizeRequests()
 				.antMatchers("/css/**", "/js/**", "/images/**",
-						"/api/rest/**", "/login", "/signup", "/logout", "/myconsole/**").permitAll()
+						"/api/rest/**", "/login", "/signup", "/logout", "/myconsole/**",
+						"/swagger-ui.html", "/**/*swagger*/**",
+						"/v2/api-docs/**").permitAll()
 				.antMatchers("/", "/**").hasRole("USER")
 				.and()
 				.formLogin()

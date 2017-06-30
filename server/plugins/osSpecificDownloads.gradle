@@ -16,7 +16,7 @@ buildscript {
 task downloadChromeDriver {
 
     shouldRunAfter build
-    def outputFile = file("$buildDir/webdriver/chromedriver.zip")
+    def outputFile = file("${project.gradle.gradleUserHomeDir}/webdriver/chromedriver-${chromeDriverVersion}.zip")
     inputs.property("chromeDriverVersion", chromeDriverVersion)
     outputs.file(outputFile)
 
@@ -48,7 +48,7 @@ task unzipChromeDriver(type: Copy) {
 task downloadGeckoDriver {
 
     shouldRunAfter build
-    def outputFile = file("$buildDir/webdriver/geckodriver.zip")
+    def outputFile = file("${project.gradle.gradleUserHomeDir}/webdriver/geckodriver${geckoDriverVersion}.zip")
     inputs.property("geckoDriverVersion", geckoDriverVersion)
     outputs.file(outputFile)
 

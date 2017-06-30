@@ -162,7 +162,8 @@ dependencies {
 }
 
 task printActiveProfile {
-    println("active profile = ${bootRun.systemProperties['spring.profiles.active']}")
+    doLast {
+        println("active profile = ${bootRun.systemProperties['spring.profiles.active']}")
+
+    }
 }
-
-
